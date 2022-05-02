@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from .models import *
+from .forms import OrderForm
 
 def index(request):
     return render(request, 'templates/index.html',)
@@ -37,3 +38,14 @@ def orders(request):
             customer = request.POST.get("customerId")
             orders = Order.objects.filter(customer=customer)
     return render(request, 'templates/orders.html', {'orders': orders, 'userName': userName})
+
+def newOrder(request):
+    if request.method == "POST":
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            new_order = form.save()
+            return render(request, "templates/orders.html", {'new_order': new_order})
+    else:
+        form = OrderForm()
+
+    return render(request, "templates/neworder.html", {'form':form})

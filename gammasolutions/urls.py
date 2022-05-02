@@ -27,6 +27,7 @@ urlpatterns = [
     path('dash/brokers/', dash_views.brokers),
     path('dash/shippers/', dash_views.shippers),
     path('dash/orders/', dash_views.orders),
+    path('dash/orders/new/', dash_views.newOrder),
 ]
 
 
