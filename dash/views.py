@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from .models import *
-from .forms import OrderForm
+from .forms import OrderForm, DriverForm, CustomerForm
 
 def index(request):
     return render(request, 'templates/index.html',)
@@ -43,9 +43,37 @@ def newOrder(request):
     if request.method == "POST":
         form = OrderForm(request.POST)
         if form.is_valid():
-            new_order = form.save()
-            return render(request, "templates/orders.html", {'new_order': new_order})
+            myOrder = form.save(commit=False)
+            myOrder.gRate = myOrder.driver.gRate
+            myOrder.save()
+            
+            return redirect('/dash/orders/')
     else:
         form = OrderForm()
+        ftype = "order" 
 
-    return render(request, "templates/neworder.html", {'form':form})
+    return render(request, "templates/new-form.html", {'form':form, 'formType':ftype})
+ 
+def newDriver(request):
+    if request.method == "POST":
+        form = DriverForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/dash/drivers/')
+    else:
+        form = DriverForm()
+        ftype = "driver" 
+
+    return render(request, "templates/new-form.html", {'form':form, 'formType':ftype})
+
+def newCustomer(request):
+    if request.method == "POST":
+        form = CustomerForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/dash/customers/')
+    else:
+        form = CustomerForm()
+        ftype = "customer" 
+
+    return render(request, "templates/new-form.html", {'form':form, 'formType':ftype})

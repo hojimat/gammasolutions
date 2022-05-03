@@ -23,6 +23,7 @@
                         <th>Destination</th>
                         <th>PU</th>
                         <th>DO</th>
+                        <th>gRate</th>
                     </tr>
                 </thead>
                 <tfoot>
@@ -33,6 +34,7 @@
                         <th>Destination</th>
                         <th>PU</th>
                         <th>DO</th>
+                        <th>gRate</th>
                     </tr>
                 </tfoot>
                 <tbody>
@@ -44,6 +46,7 @@
                         <td>{{ order.destinationState }}</td>
                         <td>{{ order.pickupDate }}</td>
                         <td>{{ order.deliveryDate  }}</td>
+                        <td>{{ order.gRate }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
