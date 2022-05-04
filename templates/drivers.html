@@ -50,10 +50,10 @@
                         <td>
                           <form action='/dash/orders/' method='post'>
                           {% csrf_token %}
-                          <input type='hidden' name='userType', value="driver" />
-                          <input type='hidden' name='driverId', value={{driver.pk}} />
-                          <input type='hidden' name='userName', value='{{driver.firstName}} {{driver.lastName}}' />
-                          <input type='submit' name='query', value='View' />
+                          <input type='hidden' name='userType' value="driver" />
+                          <input type='hidden' name='driverId' value={{driver.pk}} />
+                          <input type='hidden' name='userName' value='{{driver.firstName}} {{driver.lastName}}' />
+                          <input class="btn btn-info" type='submit' name='query' value='View' />
                           </form>
                         </td>
                     </tr>

@@ -50,9 +50,10 @@ def newOrder(request):
             return redirect('/dash/orders/')
     else:
         form = OrderForm()
-        ftype = "order" 
 
-    return render(request, "templates/new-form.html", {'form':form, 'formType':ftype})
+    formType = "order" 
+
+    return render(request, "templates/new-form.html", {'form':form, 'formType':formType})
  
 def newDriver(request):
     if request.method == "POST":
@@ -62,9 +63,10 @@ def newDriver(request):
             return redirect('/dash/drivers/')
     else:
         form = DriverForm()
-        ftype = "driver" 
+    
+    formType = "driver" 
 
-    return render(request, "templates/new-form.html", {'form':form, 'formType':ftype})
+    return render(request, "templates/new-form.html", {'form':form, 'formType':formType})
 
 def newCustomer(request):
     if request.method == "POST":
@@ -74,6 +76,7 @@ def newCustomer(request):
             return redirect('/dash/customers/')
     else:
         form = CustomerForm()
-        ftype = "customer" 
+    
+    formType = "customer" 
 
-    return render(request, "templates/new-form.html", {'form':form, 'formType':ftype})
+    return render(request, "templates/new-form.html", {'form':form, 'formType':formType})

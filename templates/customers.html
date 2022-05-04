@@ -45,10 +45,10 @@
                         <td>
                           <form action='/dash/orders/' method='post'>
                           {% csrf_token %}
-                          <input type='hidden' name='userType', value="customer" />
-                          <input type='hidden' name='customerId', value={{customer.pk}} />
-                          <input type='hidden' name='userName', value='{{customer.companyName}}' />
-                          <input type='submit' name='query', value='View' />
+                          <input type='hidden' name='userType' value="customer" />
+                          <input type='hidden' name='customerId' value={{customer.pk}} />
+                          <input type='hidden' name='userName' value='{{customer.companyName}}' />
+                          <input type='submit' name='query' class='btn btn-info' value='View' />
                           </form>
                         </td>
                         <td>{{ customer.entity | title }}</td>

@@ -1,3 +1,4 @@
 Django
 django-localflavor
+django-crispy-forms
 

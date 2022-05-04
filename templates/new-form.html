@@ -1,29 +1,23 @@
 {% extends 'templates/dash.html' %}
 {% block content %}
+{% load crispy_forms_tags %}
 
-<!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">New order</h1>
+    <h1 class="h3 mb-0 text-gray-800">New {{formType}}</h1>
 </div>
 
-<!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">New order</h6>
     </div>
     <div class="card-body">
-        <form method='post'>
+        <form method='post' class='bootstrap4'>
             {% csrf_token %}
-            {% for field in form %}
-                <div>
-                    {{ field.label_tag }}
-                    {{ field }}
-                </div>
-            {% endfor %}
-
-            <input type='submit' value='Create'/>
+            {{ form | crispy}}
+            <input type='submit' value='Create' class='btn btn-primary' />
         </form>
     </div>
+
 </div>
 
 {% endblock %}
