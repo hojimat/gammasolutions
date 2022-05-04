@@ -20,7 +20,9 @@
 
     <!-- Custom styles for this template-->
     <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
-    <link href="{% static 'vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+
+    {% block styles %}
+    {% endblock %} 
 
 </head>
 
@@ -411,11 +413,6 @@
     <!-- Custom scripts for all pages-->
     <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
     
-    <!-- Data tables plugins and scripts -->
-    <script src="{% static 'vendor/datatables/jquery.dataTables.min.js' %}"></script>
-    <script src="{% static 'vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
-    <script src="{% static 'js/demo/datatables-demo.js' %}"></script>
-
     {% block scripts %}
     {% endblock %}
 
