@@ -8,13 +8,13 @@
 
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">New order</h6>
+        <h6 class="m-0 font-weight-bold text-primary">New {{formType}}</h6>
     </div>
     <div class="card-body">
         <form method='post' class='bootstrap4'>
             {% csrf_token %}
             {{ form | crispy}}
-            <input type='submit' value='Create' class='btn btn-primary' />
+            <input type='submit' value='Submit' class='btn btn-primary' />
         </form>
     </div>
 

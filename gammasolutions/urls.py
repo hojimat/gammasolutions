@@ -22,14 +22,19 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', dash_views.index),
     path('dash/', dash_views.main),
+
     path('dash/drivers/', dash_views.drivers),
+    path('dash/drivers/new/', dash_views.newDriver), # create
+    path('dash/drivers/<int:pk>/', dash_views.readDriver), # read
+    path('dash/drivers/<int:pk>/edit/', dash_views.editDriver), # update
+
     path('dash/customers/', dash_views.customers),
-    path('dash/brokers/', dash_views.brokers),
-    path('dash/shippers/', dash_views.shippers),
+    path('dash/customers/new/', dash_views.newCustomer), # create
+    path('dash/customers/<int:pk>/', dash_views.readCustomer), # read
+    path('dash/customers/<int:pk>/edit/', dash_views.editCustomer), # update
+
     path('dash/orders/', dash_views.orders),
-    path('dash/orders/new/', dash_views.newOrder),
-    path('dash/drivers/new/', dash_views.newDriver),
-    path('dash/customers/new/', dash_views.newCustomer),
+    path('dash/orders/new/', dash_views.newOrder), # create
 ]
 
 

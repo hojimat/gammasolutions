@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from .models import *
 from .forms import OrderForm, DriverForm, CustomerForm
+from datetime import datetime, timedelta
 
 def index(request):
     return render(request, 'templates/index.html',)
@@ -17,43 +18,33 @@ def customers(request):
     customers = Customer.objects.all()
     return render(request, 'templates/customers.html', {'customers': customers})
 
-def brokers(request):
-    brokers = Customer.objects.filter(entity="broker")
-    return render(request, 'templates/customers.html', {'customers': brokers})
-
-def shippers(request):
-    shippers = Customer.objects.filter(entity="shipper")
-    return render(request, 'templates/customers.html', {'customers': shippers})
-
 def orders(request):
     orders = Order.objects.all()
-    userName = "all users"
-    if request.method == "POST":
-        userType = request.POST.get("userType")
-        userName = request.POST.get("userName")
-        if userType=="driver":
-            driver = request.POST.get("driverId")
-            orders = Order.objects.filter(driver=driver)
-        elif userType=="customer":
-            customer = request.POST.get("customerId")
-            orders = Order.objects.filter(customer=customer)
-    return render(request, 'templates/orders.html', {'orders': orders, 'userName': userName})
+    #orders = Order.objects.filter(deliveryDate__gt = ( datetime.today() - timedelta(days=30) ) )
+    return render(request, 'templates/orders.html', {'orders': orders})
+
+def readDriver(request,pk):
+    driver = Driver.objects.get(pk=pk)
+    orders = Order.objects.filter(driver=driver)
+    return render(request, "templates/details.html", {'userId': pk, 'orders': orders, 'userName': f"{driver.firstName} {driver.lastName}"})
+
+def readCustomer(request,pk):
+    customer = Customer.objects.get(pk=pk)
+    orders = Order.objects.filter(customer=customer)
+    return render(request, "templates/details.html", {'userId': pk, 'orders': orders, 'userName': customer.companyName})
 
 def newOrder(request):
     if request.method == "POST":
         form = OrderForm(request.POST)
         if form.is_valid():
-            myOrder = form.save(commit=False)
-            myOrder.gRate = myOrder.driver.gRate
-            myOrder.save()
-            
+            form.save()
             return redirect('/dash/orders/')
     else:
         form = OrderForm()
 
-    formType = "order" 
+    fType = "order"
 
-    return render(request, "templates/new-form.html", {'form':form, 'formType':formType})
+    return render(request, "templates/new-form.html", {'form':form,'formType':fType})
  
 def newDriver(request):
     if request.method == "POST":
@@ -63,10 +54,10 @@ def newDriver(request):
             return redirect('/dash/drivers/')
     else:
         form = DriverForm()
-    
-    formType = "driver" 
 
-    return render(request, "templates/new-form.html", {'form':form, 'formType':formType})
+    fType = "driver"
+
+    return render(request, "templates/new-form.html", {'form':form,'formType':fType})
 
 def newCustomer(request):
     if request.method == "POST":
@@ -76,7 +67,31 @@ def newCustomer(request):
             return redirect('/dash/customers/')
     else:
         form = CustomerForm()
-    
-    formType = "customer" 
 
-    return render(request, "templates/new-form.html", {'form':form, 'formType':formType})
+    fType = "customer"
+
+    return render(request, "templates/new-form.html", {'form':form,'formType':fType})
+
+def editDriver(request,pk):
+    driver = Driver.objects.get(pk=pk)
+    if request.method == "POST":
+        form = DriverForm(request.POST, instance=driver)
+        if form.is_valid():
+            form.save()
+            return redirect('/dash/drivers/')
+    else:
+        form = DriverForm(instance=driver)
+
+    return render(request, "templates/new-form.html", {'form': form})
+
+def editCustomer(request,pk):
+    customer = Customer.objects.get(pk=pk)
+    if request.method == "POST":
+        form = CustomerForm(request.POST, instance=customer)
+        if form.is_valid():
+            form.save()
+            return redirect('/dash/customers/')
+    else:
+        form = CustomerForm(instance=customer)
+
+    return render(request, "templates/new-form.html", {'form': form})

@@ -20,41 +20,26 @@
                     <tr>
                         <th>Name</th>
                         <th>MC#</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>gRate</th>
-                        <th>Orders</th>
+                        <th>US DOT#</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                        <th>CDL</th>
+                        <th>&gamma; rate</th>
+                        <th>Options</th>
                     </tr>
                 </thead>
-                <tfoot>
-                    <tr>
-                        <th>Name</th>
-                        <th>MC#</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>gRate</th>
-                        <th>Orders</th>
-                    </tr>
-                </tfoot>
                 <tbody>
                     {% for driver in drivers %}
                     <tr>
                         <td>{{ driver.firstName }} {{driver.lastName}}</td>
                         <td>{{ driver.mc }}</td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>Lorem Ipsum </td>
+                        <td>{{ driver.usdot }}</td>
+                        <td>{{ driver.phone }}</td>
+                        <td>{{ driver.city }}, {{ driver.state}}</td>
+                        <td>{{ driver.cdl }}</td>
                         <td>{{ driver.gRate}}</td>
                         <td>
-                          <form action='/dash/orders/' method='post'>
-                          {% csrf_token %}
-                          <input type='hidden' name='userType' value="driver" />
-                          <input type='hidden' name='driverId' value={{driver.pk}} />
-                          <input type='hidden' name='userName' value='{{driver.firstName}} {{driver.lastName}}' />
-                          <input class="btn btn-info" type='submit' name='query' value='View' />
-                          </form>
+                            <a class='btn btn-info btn-sm' href="/dash/drivers/{{driver.pk}}/">View</a>
                         </td>
                     </tr>
                     {% endfor %}

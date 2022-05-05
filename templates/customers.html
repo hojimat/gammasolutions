@@ -21,35 +21,19 @@
                         <th>MC#</th>
                         <th>Office</th>
                         <th>Age</th>
-                        <th>Start date</th>
+                        <th>Details</th>
                         <th>Entity</th>
                     </tr>
                 </thead>
-                <tfoot>
-                    <tr>
-                        <th>Company Name</th>
-                        <th>MC#</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Entity</th>
-                    </tr>
-                </tfoot>
                 <tbody>
                     {% for customer in customers %}
                     <tr>
                         <td>{{ customer.companyName }}</td>
                         <td>{{ customer.mc }}</td>
-                        <td>Edinburgh</td>
+                        <td>{{ customer.zipCode }} {{ customer.address}}, {{ customer.city }}, {{customer.state}}</td>
                         <td>61</td>
                         <td>
-                          <form action='/dash/orders/' method='post'>
-                          {% csrf_token %}
-                          <input type='hidden' name='userType' value="customer" />
-                          <input type='hidden' name='customerId' value={{customer.pk}} />
-                          <input type='hidden' name='userName' value='{{customer.companyName}}' />
-                          <input type='submit' name='query' class='btn btn-info' value='View' />
-                          </form>
+                            <a class='btn btn-info btn-sm' href="/dash/customers/{{customer.pk}}/">View</a>
                         </td>
                         <td>{{ customer.entity | title }}</td>
                     </tr>

@@ -22,25 +22,13 @@
                         <th>Origin</th>
                         <th>Destination</th>
                         <th>Pick up date</th>
-                        <th>Deliver date</th>
+                        <th>Delivery date</th>
                         <th>Miles</th>
+                        <th>Payment due</th>
                         <th>Gross</th>
-                        <th>gRate</th>
+                        <th>&gamma; rate</th>
                     </tr>
                 </thead>
-                <tfoot>
-                    <tr>
-                        <th>Customer</th>
-                        <th>Driver</th>
-                        <th>Origin</th>
-                        <th>Destination</th>
-                        <th>Pick up date</th>
-                        <th>Deliver date</th>
-                        <th>Miles</th>
-                        <th>Gross</th>
-                        <th>gRate</th>
-                    </tr>
-                </tfoot>
                 <tbody>
                     {% for order in orders %}
                     <tr>
@@ -51,6 +39,7 @@
                         <td>{{ order.pickupDate | date:"n/j h:i" }}</td>
                         <td>{{ order.deliveryDate | date:"n/j h:i"  }}</td>
                         <td>{{ order.mileage }}</td>
+                        <td>{{ order.paymentDue | date:"n/j" }}</td>
                         <td>{{ order.gross }}</td>
                         <td>{{ order.gRate }}</td>
                     </tr>

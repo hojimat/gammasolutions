@@ -13,7 +13,8 @@ class Driver(models.Model):
     trailer = models.CharField(max_length=10, blank=True) # Trailer number
     address = models.CharField(max_length=70, blank=True)
     zipCode = models.CharField(max_length=10, blank=True)
-    state = models.CharField(max_length=2, blank=False, default='NY')
+    city = models.CharField(max_length=30, blank=False, default='Palo Alto')
+    state = models.CharField(max_length=2, blank=False, default='CA')
     gRate = models.FloatField(blank=False, default=0) # my percentage from gross
 
 class Customer(models.Model):
@@ -27,6 +28,7 @@ class Customer(models.Model):
     entity = models.CharField(max_length=20, blank=True) # broker or shipper or else?
     address = models.CharField(max_length=70, blank=True)
     zipCode = models.CharField(max_length=10, blank=True)
+    city = models.CharField(max_length=30, blank=False, default='New York')
     state = models.CharField(max_length=2, blank=False, default='NY')
 
 class Order(models.Model):
@@ -47,10 +49,12 @@ class Order(models.Model):
     mileage = models.SmallIntegerField(blank=False, default=0)
     deadhead = models.SmallIntegerField(blank=False, default=0)
     gross = models.FloatField(blank=False, default=0)
+    paymentDue = models.DateField(blank=False, default="2022-01-13")
     gRate = models.FloatField(blank=False, default=0) # to be inherited from Driver 
     fuelBurnt = models.FloatField(blank=False, default=0) # gallons
     fuelPrice = models.FloatField(blank=False, default=0) # USD per gallon
     toll = models.FloatField(blank=False, default=0)
+
 
 class Document(models.Model):
     issueDate = models.DateTimeField()

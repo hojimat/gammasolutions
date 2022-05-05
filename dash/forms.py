@@ -45,12 +45,13 @@ class OrderForm(forms.ModelForm):
     customer = CustomerModelChoiceField(queryset=Customer.objects.all(), empty_label="Choose")
     class Meta:
         model = Order
-        exclude = ('gRate',)
+        fields = '__all__'
         widgets = {
             'originState' : USStateSelect(),
             'destinationState' : USStateSelect(),
             'pickupDate' : DateTimeSelect(),
             'deliveryDate' : DateTimeSelect(),
+            'paymentDue' : DateSelect(),
         }
         labels = {
             'originCity' : 'PU city',
@@ -65,6 +66,4 @@ class OrderForm(forms.ModelForm):
             'destinationZipCode' : 'DO ZIP code',
             'destinationMarket' : 'DO KMA',
             'deliveryDate' : 'DO time',
-
         }
-
