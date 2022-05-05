@@ -1,0 +1,36 @@
+{% extends 'templates/dash.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<div class="d-flex justify-content-center">
+  <!-- Dropdown Card Example -->
+  <div class="card shadow mb-4">
+      <!-- Card Header - Dropdown -->
+      <div
+          class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+          <h6 class="m-0 font-weight-bold text-primary">Confirm deletion</h6>
+      </div>
+      <!-- Card Body -->
+      <div class="card-body">
+          Are you sure you want to delete {{ userName}}? You will have to delete all associated orders first.
+
+        <div class='row justify-content-center'>
+        <div>
+          <form method='post'>
+            {% csrf_token %}
+            <input class='btn btn-danger mt-2' type='submit' value="Yes, I am sure">
+          </form>
+        </div>
+        <div>
+          <a href="/dash/" class='btn btn-secondary mt-2 ml-5'>No, take me back</a>
+        </div>
+       </div>
+      </div>
+  </div>
+
+</div>
+
+
+{% endblock %}
+
+

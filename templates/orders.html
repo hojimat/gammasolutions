@@ -27,6 +27,7 @@
                         <th>Payment due</th>
                         <th>Gross</th>
                         <th>&gamma; rate</th>
+                        <th>Details</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,6 +43,9 @@
                         <td>{{ order.paymentDue | date:"n/j" }}</td>
                         <td>{{ order.gross }}</td>
                         <td>{{ order.gRate }}</td>
+                        <td>
+                            <a class='btn btn-info btn-sm' href="/dash/orders/{{order.pk}}/">View</a>
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>
