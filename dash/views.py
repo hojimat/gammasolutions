@@ -31,7 +31,7 @@ def orders(request):
 def readDriver(request,pk):
     driver = Driver.objects.get(pk=pk)
     orders = Order.objects.filter(driver=driver)
-    return render(request, "templates/details.html", {'userId': pk, 'orders': orders, 'userName': f"{driver.firstName} {driver.lastName}"})
+    return render(request, "templates/details.html", {'user': driver, 'userId': pk, 'orders': orders, 'userName': f"{driver.firstName} {driver.lastName}"})
 
 def readCustomer(request,pk):
     customer = Customer.objects.get(pk=pk)

@@ -42,7 +42,8 @@ class CustomerForm(forms.ModelForm):
 
 class OrderForm(forms.ModelForm):
     driver = DriverModelChoiceField(queryset=Driver.objects.all(), empty_label="Choose")
-    customer = CustomerModelChoiceField(queryset=Customer.objects.all(), empty_label="Choose")
+    broker = CustomerModelChoiceField(queryset=Broker.objects.all(), empty_label="Choose")
+    shipper = CustomerModelChoiceField(queryset=Shipper.objects.all(), empty_label="Choose")
     class Meta:
         model = Order
         fields = '__all__'

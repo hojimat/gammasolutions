@@ -1,13 +1,110 @@
 {% extends 'templates/dash.html' %}
+{% load static %}
 {% block content %}
 
 <div class="container-fluid">
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">{{ userName }}</h1>
+        <h1 class="h3 mb-0 text-gray-800">Details</h1>
         <a href="#" class="btn btn-primary btn-icon-split ml-3"><span class="icon text-white-50"><i class="fas fa-download"></i></span><span class="text">Generate Report</span></a>
     </div>
+
+
+
+          <div class="row gutters-sm">
+            <div class="col-md-4 mb-3">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex flex-column align-items-center text-center">
+                    <img src="{% static 'img/undraw_profile.svg' %}" alt="Admin" class="rounded-circle" width="150">
+                    <div class="mt-3">
+                      <h4 class="font-weight-bold text-gray-800">{{ userName }}</h4>
+
+                      <p class="text-secondary mb-1">Full Stack Developer</p>
+                      <p class="text-muted font-size-sm">{{user.zip}} {{user.address}}, {{user.city}}, {{user.state}}</p>
+                      <button class="btn btn-primary">Follow</button>
+                      <button class="btn btn-outline-primary">Message</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0 font-weight-bold text-gray-800">Email</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{user.email}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0 font-weight-bold text-gray-800">Phone</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{user.phone}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0 font-weight-bold text-gray-800">Mobile</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      (320) 380-4539
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0 font-weight-bold text-gray-800">Address</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      Bay Area, San Francisco, CA
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0 font-weight-bold text-gray-800">Birthdate</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{ user.birthDate }}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0 font-weight-bold text-gray-800">MC/DOT#</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{ user.mc }} / {{ user.usdot }}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0 font-weight-bold text-gray-800">CDL#</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{ user.cdl }}
+                    </div>
+                  </div>
+                  <hr>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+
+
+
 
     <!-- Content Row -->
     <div class="row">
@@ -95,6 +192,62 @@
             </div>
         </div>
     </div>
+
+
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Orders for {{ userName }}</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Customer</th>
+                        <th>Driver</th>
+                        <th>Origin</th>
+                        <th>Destination</th>
+                        <th>Pick up date</th>
+                        <th>Deliver date</th>
+                        <th>Miles</th>
+                        <th>Gross</th>
+                        <th>&gamma; rate</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                    <tr>
+                        <td>{{ order.customer.companyName }}</td>
+                        <td>{{ order.driver.firstName }} {{order.driver.lastName}}</td>
+                        <td>{{order.originCity}}, {{ order.originState }}</td>
+                        <td>{{order.destinationCity}}, {{ order.destinationState }}</td>
+                        <td>{{ order.pickupDate | date:"n/j h:i" }}</td>
+                        <td>{{ order.deliveryDate | date:"n/j h:i"  }}</td>
+                        <td>{{ order.mileage }}</td>
+                        <td>{{ order.gross }}</td>
+                        <td>{{ order.gRate }}</td>
+                        <td>
+                            <a class='btn btn-info btn-sm' href="/dash/orders/{{order.pk}}/">View</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
 
     <!-- Content Row -->
 
@@ -261,50 +414,6 @@
 
 </div>
 
-<!-- DataTales Example -->
-<div class="card shadow mb-4">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Orders for {{ userName }}</h6>
-    </div>
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                    <tr>
-                        <th>Customer</th>
-                        <th>Driver</th>
-                        <th>Origin</th>
-                        <th>Destination</th>
-                        <th>Pick up date</th>
-                        <th>Deliver date</th>
-                        <th>Miles</th>
-                        <th>Gross</th>
-                        <th>&gamma; rate</th>
-                        <th>Details</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for order in orders %}
-                    <tr>
-                        <td>{{ order.customer.companyName }}</td>
-                        <td>{{ order.driver.firstName }} {{order.driver.lastName}}</td>
-                        <td>{{order.originCity}}, {{ order.originState }}</td>
-                        <td>{{order.destinationCity}}, {{ order.destinationState }}</td>
-                        <td>{{ order.pickupDate | date:"n/j h:i" }}</td>
-                        <td>{{ order.deliveryDate | date:"n/j h:i"  }}</td>
-                        <td>{{ order.mileage }}</td>
-                        <td>{{ order.gross }}</td>
-                        <td>{{ order.gRate }}</td>
-                        <td>
-                            <a class='btn btn-info btn-sm' href="/dash/orders/{{order.pk}}/">View</a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
 
 <div class="d-sm-flex align-items-center justify-content-end mb-4">
     <a href="edit/" class="btn btn-info btn-icon-split ml-3"><span class="icon text-white-50"><i class="fas fa-pencil-alt"></i></span><span class="text">Update user</span></a>
