@@ -24,22 +24,22 @@ urlpatterns = [
     path('dash/', dash_views.main),
 
     path('dash/drivers/', dash_views.drivers),
-    path('dash/drivers/new/', dash_views.newDriver), # create
-    path('dash/drivers/<int:pk>/', dash_views.readDriver), # read
-    path('dash/drivers/<int:pk>/edit/', dash_views.editDriver), # update
-    path('dash/drivers/<int:pk>/delete/', dash_views.deleteDriver), # delete
+    path('dash/drivers/new/', dash_views.new_driver), # create
+    path('dash/drivers/<int:pk>/', dash_views.read_driver), # read
+    path('dash/drivers/<int:pk>/edit/', dash_views.edit_driver), # update
+    path('dash/drivers/<int:pk>/delete/', dash_views.delete_driver), # delete
 
     path('dash/customers/', dash_views.customers),
-    path('dash/customers/new/', dash_views.newCustomer), # create
-    path('dash/customers/<int:pk>/', dash_views.readCustomer), # read
-    path('dash/customers/<int:pk>/edit/', dash_views.editCustomer), # update
-    path('dash/customers/<int:pk>/delete/', dash_views.deleteCustomer), # delete
+    path('dash/customers/new/', dash_views.new_customer), # create
+    path('dash/customers/<int:pk>/', dash_views.read_customer), # read
+    path('dash/customers/<int:pk>/edit/', dash_views.edit_customer), # update
+    path('dash/customers/<int:pk>/delete/', dash_views.delete_customer), # delete
 
     path('dash/orders/', dash_views.orders),
-    path('dash/orders/new/', dash_views.newOrder), # create
-    path('dash/orders/<int:pk>/', dash_views.readOrder), # read
-    path('dash/orders/<int:pk>/edit/', dash_views.editOrder), # update
-    path('dash/orders/<int:pk>/delete/', dash_views.deleteOrder), # delete
+    path('dash/orders/new/', dash_views.new_order), # create
+    path('dash/orders/<int:pk>/', dash_views.read_order), # read
+    path('dash/orders/<int:pk>/edit/', dash_views.edit_order), # update
+    path('dash/orders/<int:pk>/delete/', dash_views.delete_order), # delete
 ]
 
 

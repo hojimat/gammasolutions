@@ -24,47 +24,30 @@ class DriverForm(forms.ModelForm):
             'gRate' : 'Rate',
         }
 
-class CustomerForm(forms.ModelForm):
+class BrokerForm(forms.ModelForm):
     class Meta:
-        model = Customer
+        model = Broker
         fields = '__all__'
         widgets = {
             'state' : USStateSelect(),
         }
         labels = {
-            'companyName' : 'Company name',
-            'firstName' : 'First name',
-            'lastName' : 'Last name',
             'mc' : 'MC number',
             'usdot' : 'US DOT number',
-            'zipCode' : 'ZIP code',
+            'zip_code' : 'ZIP code',
         }
 
 class OrderForm(forms.ModelForm):
-    driver = DriverModelChoiceField(queryset=Driver.objects.all(), empty_label="Choose")
-    broker = CustomerModelChoiceField(queryset=Broker.objects.all(), empty_label="Choose")
-    shipper = CustomerModelChoiceField(queryset=Shipper.objects.all(), empty_label="Choose")
+    driver = forms.ModelChoiceField(queryset=Driver.objects.all(), empty_label="Choose")
+    broker = forms.ModelChoiceField(queryset=Broker.objects.all(), empty_label="Choose")
+    shipper = forms.ModelChoiceField(queryset=Shipper.objects.all(), empty_label="Choose", required=False)
     class Meta:
         model = Order
         fields = '__all__'
         widgets = {
-            'originState' : USStateSelect(),
-            'destinationState' : USStateSelect(),
-            'pickupDate' : DateTimeSelect(),
-            'deliveryDate' : DateTimeSelect(),
-            'paymentDue' : DateSelect(),
-        }
-        labels = {
-            'originCity' : 'PU city',
-            'originState' : 'PU state',
-            'originAddress' : 'PU address',
-            'originZipCode' : 'PU ZIP code',
-            'originMarket' : 'PU KMA',
-            'pickupDate' : 'PU time',
-            'destinationCity' : 'DO city',
-            'destinationState' : 'DO state',
-            'destinationAddress' : 'DO address',
-            'destinationZipCode' : 'DO ZIP code',
-            'destinationMarket' : 'DO KMA',
-            'deliveryDate' : 'DO time',
+            'origin_state' : USStateSelect(),
+            'destination_state' : USStateSelect(),
+            'pickup_date' : DateTimeSelect(),
+            'delivery_date' : DateTimeSelect(),
+            'payment_due' : DateSelect(),
         }

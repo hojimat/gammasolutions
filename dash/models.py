@@ -13,6 +13,9 @@ class Entity(models.Model):
 
     class Meta:
         abstract = True
+
+    def full_address(self):
+        return f"{self.zip_code} {self.address}, {self.city}, {self.state}"
     
 class Driver(Entity):
     first_name = models.CharField(max_length=20, blank=False, default="Scott")
@@ -30,6 +33,9 @@ class Driver(Entity):
     emergency_contact_name = models.CharField(max_length=40, blank=True, default="Young Neil")
     emergency_contact_phone = models.CharField(max_length=25, blank=True, default="+1(xxx)xxx-xx-xx")
 
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
+
 #####################################################
 
 class Customer(Entity):
@@ -40,6 +46,9 @@ class Customer(Entity):
 
     class Meta:
         abstract = True
+
+    def __str__(self):
+        return self.company_name
 
 class Broker(Customer):
     mc = models.CharField(max_length=10, blank=True)
@@ -53,8 +62,8 @@ class Shipper(Customer):
 
 class Order(models.Model):
     driver = models.ForeignKey(Driver, on_delete=models.RESTRICT, related_name='orders', null=False)
-    broker = models.ForeignKey(Broker, on_delete=models.RESTRICT, related_name='orders', null=True)
-    shipper = models.ForeignKey(Shipper, on_delete=models.RESTRICT, related_name='orders', null=True)
+    broker = models.ForeignKey(Broker, on_delete=models.RESTRICT, related_name='orders', null=True, blank=True)
+    shipper = models.ForeignKey(Shipper, on_delete=models.RESTRICT, related_name='orders', null=True, blank=True)
     commodity = models.CharField(max_length=50, blank=True)
     origin_city = models.CharField(max_length=30, blank=False, default='New York')
     origin_state = models.CharField(max_length=2, blank=False, default='NY')
@@ -79,6 +88,11 @@ class Order(models.Model):
     fuel_price = models.FloatField(blank=False, default=0) # USD per gallon
     toll = models.FloatField(blank=False, default=0)
 
+    def origin_full_address(self):
+        return f"{self.origin_zip_code} {self.origin_address}, {self.origin_city}, {self.origin_state}"
+
+    def destination_full_address(self):
+        return f"{self.destination_zip_code} {self.destination_address}, {self.destination_city}, {self.destination_state}"
 #####################################################
 
 class Document(models.Model):
@@ -91,6 +105,9 @@ class Document(models.Model):
     
     class Meta:
         abstract = True
+
+    def __str__(self):
+        return self.name
 
 class DriverDocument(Document):
     CDL = 'CDL'
@@ -143,6 +160,9 @@ class Equipment(models.Model):
     class Meta:
         abstract = True
 
+    def __str__(self):
+        self.model
+
 class Trailer(Equipment):
     RFR = 'RFR'
     VAN = 'VAN'
@@ -151,6 +171,9 @@ class Trailer(Equipment):
 
     category = models.CharField(max_length=10, blank=False, choices=TYPES, default=VAN)
     driver = models.ManyToManyField(Driver, related_name='trailers')
+
+    def __str__(self):
+        self.category
 
 class Truck(Equipment):
     driver = models.ManyToManyField(Driver, related_name='trucks')

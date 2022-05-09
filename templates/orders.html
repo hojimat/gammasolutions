@@ -33,14 +33,14 @@
                 <tbody>
                     {% for order in orders %}
                     <tr>
-                        <td>{{ order.customer.companyName }}</td>
-                        <td>{{ order.driver.firstName }} {{order.driver.lastName}}</td>
-                        <td>{{order.originCity}}, {{ order.originState }}</td>
-                        <td>{{order.destinationCity}}, {{ order.destinationState }}</td>
-                        <td>{{ order.pickupDate | date:"n/j h:i" }}</td>
-                        <td>{{ order.deliveryDate | date:"n/j h:i"  }}</td>
+                        <td>{{ order.broker }}</td>
+                        <td>{{ order.driver }}</td>
+                        <td>{{order.origin_city}}, {{ order.origin_state }}</td>
+                        <td>{{order.destination_city}}, {{ order.destination_state }}</td>
+                        <td>{{ order.pickup_date | date:"n/j h:i" }}</td>
+                        <td>{{ order.delivery_date | date:"n/j h:i"  }}</td>
                         <td>{{ order.mileage }}</td>
-                        <td>{{ order.paymentDue | date:"n/j" }}</td>
+                        <td>{{ order.payment_due | date:"n/j" }}</td>
                         <td>{{ order.gross }}</td>
                         <td>{{ order.gRate }}</td>
                         <td>

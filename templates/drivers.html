@@ -32,11 +32,11 @@
                 <tbody>
                     {% for driver in drivers %}
                     <tr>
-                        <td>{{ driver.firstName }} {{driver.lastName}}</td>
+                        <td>{{ driver }}</td>
                         <td>{{ driver.mc }}</td>
                         <td>{{ driver.usdot }}</td>
                         <td>{{ driver.phone }}</td>
-                        <td>{{ driver.city }}, {{ driver.state}}</td>
+                        <td>{{ driver.full_address }}</td>
                         <td>{{ driver.cdl }}</td>
                         <td>{{ driver.gRate}}</td>
                         <td>{{ driver.orders.count }}</td>

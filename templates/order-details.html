@@ -5,7 +5,7 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">{{ userName }}</h1>
+        <h1 class="h3 mb-0 text-gray-800">Order #{{ order.pk }}</h1>
         <a href="#" class="btn btn-primary btn-icon-split ml-3"><span class="icon text-white-50"><i class="fas fa-download"></i></span><span class="text">Generate Report</span></a>
     </div>
 
@@ -264,7 +264,7 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Orders for {{ userName }}</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Orders for {{ order.pk }}</h6>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -286,12 +286,12 @@
                 <tbody>
                     {% for order in orders %}
                     <tr>
-                        <td>{{ order.customer.companyName }}</td>
-                        <td>{{ order.driver.firstName }} {{order.driver.lastName}}</td>
-                        <td>{{order.originCity}}, {{ order.originState }}</td>
-                        <td>{{order.destinationCity}}, {{ order.destinationState }}</td>
-                        <td>{{ order.pickupDate | date:"n/j h:i" }}</td>
-                        <td>{{ order.deliveryDate | date:"n/j h:i"  }}</td>
+                        <td>{{ order.customer }}</td>
+                        <td>{{ order.driver }}</td>
+                        <td>{{order.origin_full_address }}</td>
+                        <td>{{order.destination_full_address }}</td>
+                        <td>{{ order.pickup_date | date:"n/j h:i" }}</td>
+                        <td>{{ order.delivery_date | date:"n/j h:i"  }}</td>
                         <td>{{ order.mileage }}</td>
                         <td>{{ order.gross }}</td>
                         <td>{{ order.gRate }}</td>

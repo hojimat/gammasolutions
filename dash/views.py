@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.db.models import RestrictedError
 from .models import *
-from .forms import OrderForm, DriverForm, CustomerForm
+from .forms import OrderForm, DriverForm, BrokerForm
 from datetime import datetime, timedelta
 
 def index(request):
@@ -18,7 +18,7 @@ def drivers(request):
     return render(request, 'templates/drivers.html', {'drivers': drivers})
 
 def customers(request):
-    customers = Customer.objects.all()
+    customers = Broker.objects.all()
     return render(request, 'templates/customers.html', {'customers': customers})
 
 def orders(request):
@@ -28,23 +28,23 @@ def orders(request):
 
 # READ MODELS
 
-def readDriver(request,pk):
+def read_driver(request,pk):
     driver = Driver.objects.get(pk=pk)
     orders = Order.objects.filter(driver=driver)
-    return render(request, "templates/details.html", {'user': driver, 'userId': pk, 'orders': orders, 'userName': f"{driver.firstName} {driver.lastName}"})
+    return render(request, "templates/details.html", {'user': driver, 'userId': pk, 'orders': orders})
 
-def readCustomer(request,pk):
-    customer = Customer.objects.get(pk=pk)
-    orders = Order.objects.filter(customer=customer)
-    return render(request, "templates/details.html", {'userId': pk, 'orders': orders, 'userName': customer.companyName})
+def read_customer(request,pk):
+    customer = Broker.objects.get(pk=pk)
+    orders = Order.objects.filter(broker=customer)
+    return render(request, "templates/details.html", {'user': customer, 'userId': pk, 'orders': orders})
 
-def readOrder(request,pk):
+def read_order(request,pk):
     order = Order.objects.get(pk=pk)
-    return render(request, "templates/orderDetails.html", {'order': order})
+    return render(request, "templates/order-details.html", {'order': order})
 
 # CREATE MODELS
 
-def newOrder(request):
+def new_order(request):
     if request.method == "POST":
         form = OrderForm(request.POST)
         if form.is_valid():
@@ -57,7 +57,7 @@ def newOrder(request):
 
     return render(request, "templates/new-form.html", {'form':form,'formType':fType})
  
-def newDriver(request):
+def new_driver(request):
     if request.method == "POST":
         form = DriverForm(request.POST)
         if form.is_valid():
@@ -70,14 +70,14 @@ def newDriver(request):
 
     return render(request, "templates/new-form.html", {'form':form,'formType':fType})
 
-def newCustomer(request):
+def new_customer(request):
     if request.method == "POST":
-        form = CustomerForm(request.POST)
+        form = BrokerForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('/dash/customers/')
     else:
-        form = CustomerForm()
+        form = BrokerForm()
 
     fType = "customer"
 
@@ -85,7 +85,7 @@ def newCustomer(request):
 
 # UPDATE MODELS
 
-def editDriver(request,pk):
+def edit_driver(request,pk):
     driver = Driver.objects.get(pk=pk)
     if request.method == "POST":
         form = DriverForm(request.POST, instance=driver)
@@ -97,19 +97,19 @@ def editDriver(request,pk):
 
     return render(request, "templates/new-form.html", {'form': form})
 
-def editCustomer(request,pk):
-    customer = Customer.objects.get(pk=pk)
+def edit_customer(request,pk):
+    customer = Broker.objects.get(pk=pk)
     if request.method == "POST":
-        form = CustomerForm(request.POST, instance=customer)
+        form = BrokerForm(request.POST, instance=customer)
         if form.is_valid():
             form.save()
             return redirect('/dash/customers/')
     else:
-        form = CustomerForm(instance=customer)
+        form = BrokerForm(instance=customer)
 
     return render(request, "templates/new-form.html", {'form': form})
 
-def editOrder(request,pk):
+def edit_order(request,pk):
     order = Order.objects.get(pk=pk)
     if request.method == "POST":
         form = OrderForm(request.POST, instance=order)
@@ -123,7 +123,7 @@ def editOrder(request,pk):
 
 # DELETE MODELS
 
-def deleteDriver(request,pk):
+def delete_driver(request,pk):
     driver = Driver.objects.get(pk=pk)
     if request.method == "POST":
         try:
@@ -133,10 +133,10 @@ def deleteDriver(request,pk):
 
         return redirect('/dash/drivers/')
         
-    return render(request, "templates/delete.html", {'userName': f"{driver.firstName} {driver.lastName}"})
+    return render(request, "templates/delete.html", {'object_name': driver})
 
-def deleteCustomer(request,pk):
-    customer = Customer.objects.get(pk=pk)
+def delete_customer(request,pk):
+    customer = Broker.objects.get(pk=pk)
     if request.method == "POST":
         try:
             customer.delete()
@@ -145,9 +145,9 @@ def deleteCustomer(request,pk):
 
         return redirect('/dash/customers/')
         
-    return render(request, "templates/delete.html", {'userName': customer.companyName})
+    return render(request, "templates/delete.html", {'object_name': customer})
 
-def deleteOrder(request,pk):
+def delete_order(request,pk):
     order = Order.objects.get(pk=pk)
     if request.method == "POST":
         try:
@@ -157,4 +157,4 @@ def deleteOrder(request,pk):
 
         return redirect('/dash/orders/')
         
-    return render(request, "templates/delete.html", {'userName': f"Order #{pk}"})
+    return render(request, "templates/delete.html", {'object_name': f"Order #{pk}"})
