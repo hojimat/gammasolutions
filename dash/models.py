@@ -103,7 +103,7 @@ class DriverDocument(Document):
         (MED, "Medical Card"),
         (DRG, "Drug Test"),
     )
-    name = models.CharField(max_length=10, blank=FALSE, choices=DOCS, deafult=CDL)
+    name = models.CharField(max_length=10, blank=False, choices=DOCS, default=CDL)
     driver = models.ForeignKey(Driver, on_delete=models.RESTRICT, related_name='documents', null=False)
 
 class OrderDocument(Document):
@@ -113,7 +113,7 @@ class OrderDocument(Document):
         (BOL, "Bill of Lading"),
         (INV, "Invoice"),
     )
-    name = models.CharField(max_length=10, blank=FALSE, choices=DOCS, deafult=BOL)
+    name = models.CharField(max_length=10, blank=False, choices=DOCS, default=BOL)
     order = models.ForeignKey(Order, on_delete=models.RESTRICT, related_name='documents', null=False)
 
 class BrokerDocument(Document):
@@ -121,7 +121,7 @@ class BrokerDocument(Document):
     DOCS = (
         (STP, "Setup document"),
     )
-    name = models.CharField(max_length=10, blank=FALSE, choices=DOCS, deafult=STP)
+    name = models.CharField(max_length=10, blank=False, choices=DOCS, default=STP)
     driver = models.ForeignKey(Driver, on_delete=models.RESTRICT, related_name='broker_dox', null=False)
     broker = models.ForeignKey(Broker, on_delete=models.RESTRICT, related_name='documents', null=False)
 
@@ -149,7 +149,7 @@ class Trailer(Equipment):
     FLT = 'FLT'
     TYPES = ((RFR, "Reefer"), (VAN, "Dry Van"), (FLT, "Flatbed"), )
 
-    category = models.CharField(max_length=10, blank=FALSE, choices=TYPES, default=VAN)
+    category = models.CharField(max_length=10, blank=False, choices=TYPES, default=VAN)
     driver = models.ManyToManyField(Driver, related_name='trailers')
 
 class Truck(Equipment):
