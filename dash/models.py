@@ -1,4 +1,5 @@
 from django.db import models
+from .widgets import USCanadaStates
 
 class Entity(models.Model):
     phone = models.CharField(max_length=25, blank=True, default="+1(xxx)xxx-xx-xx")
@@ -9,7 +10,7 @@ class Entity(models.Model):
     zip_code = models.CharField(max_length=10, blank=True)
     address = models.CharField(max_length=70, blank=True)
     city = models.CharField(max_length=30, blank=False, default='Palo Alto')
-    state = models.CharField(max_length=2, blank=False, default='CA')
+    state = models.CharField(max_length=2, blank=False, choices=USCanadaStates, default='CA')
 
     class Meta:
         abstract = True
@@ -17,10 +18,15 @@ class Entity(models.Model):
     def full_address(self):
         return f"{self.zip_code} {self.address}, {self.city}, {self.state}"
     
+    def short_address(self):
+        return f"{self.city}, {self.state}"
+    
 class Driver(Entity):
+    GENDERS = (('M',"Male"),('F',"Female"),('X',"Do not specify"))
     first_name = models.CharField(max_length=20, blank=False, default="Scott")
     last_name = models.CharField(max_length=20, blank=False, default="Pilgrim")
     birth_date = models.DateField(null=True, blank=True, default="1990-3-15")
+    gender = models.CharField(max_length=10, choices=GENDERS, default='M')
     mc = models.CharField(max_length=10, blank=True) # MC number
     usdot = models.CharField(max_length=10, blank=True) # DOT number
     g_rate = models.FloatField(blank=False, default=0) # my percentage from gross
@@ -99,12 +105,12 @@ class Order(models.Model):
     trailer = models.ForeignKey(Trailer, on_delete=models.SET_NULL, related_name='orders', null=True, blank=True)
     commodity = models.CharField(max_length=50, blank=True)
     origin_city = models.CharField(max_length=30, blank=False, default='New York')
-    origin_state = models.CharField(max_length=2, blank=False, default='NY')
+    origin_state = models.CharField(max_length=2, blank=False, choices=USCanadaStates, default='NY')
     origin_address = models.CharField(max_length=70, blank=False, default='12 Broadway')
     origin_zip_code = models.CharField(max_length=10, blank=False, default='34342')
     origin_market = models.CharField(max_length=50, blank=False, default=0)
     destination_city = models.CharField(max_length=30, blank=False, default='Palo Alto')
-    destination_state = models.CharField(max_length=2, blank=False, default='CA')
+    destination_state = models.CharField(max_length=2, blank=False, choices=USCanadaStates, default='CA')
     destination_address = models.CharField(max_length=70, blank=False, default='1 Mountain View')
     destination_zip_code = models.CharField(max_length=10, blank=False, default='34341')
     destination_market = models.CharField(max_length=50, blank=False, default=0)
@@ -127,6 +133,12 @@ class Order(models.Model):
 
     def destination_full_address(self):
         return f"{self.destination_zip_code} {self.destination_address}, {self.destination_city}, {self.destination_state}"
+
+    def origin_short_address(self):
+        return f"{self.origin_city}, {self.origin_state}"
+
+    def destination_short_address(self):
+        return f"{self.destination_city}, {self.destination_state}"
 
 #####################################################
 
@@ -161,9 +173,11 @@ class DriverDocument(Document):
 class OrderDocument(Document):
     BOL = 'BOL'
     INV = 'INV'
+    RCON = 'RCON'
     DOCS = (
         (BOL, "Bill of Lading"),
         (INV, "Invoice"),
+        (RCON, "Rate Confirmation"),
     )
     name = models.CharField(max_length=10, blank=False, choices=DOCS, default=BOL)
     order = models.ForeignKey(Order, on_delete=models.RESTRICT, related_name='documents', null=False)

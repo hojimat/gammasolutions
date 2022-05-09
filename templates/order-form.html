@@ -1,0 +1,132 @@
+{% extends 'templates/dash.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<div class='row'>
+<div class='col-xl-6 mx-auto'>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Customer information form</h6>
+    </div>
+
+    <div class="card-body">
+        <form method='post' class='bootstrap4'>
+          {% csrf_token %}
+          <div class="form-row">
+            <div class="form-group col-md-6">
+				{{ form.driver | as_crispy_field }}
+            </div>
+            <div class="form-group col-md-6">
+				{{ form.broker | as_crispy_field }}
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+				{{ form.shipper | as_crispy_field }}
+            </div>
+            <div class="form-group col-md-6">
+				{{ form.commodity | as_crispy_field }}
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-4">
+				{{ form.origin_address | as_crispy_field }}
+            </div>
+            <div class="form-group col-md-3">
+				{{ form.origin_city | as_crispy_field }}
+            </div>
+            <div class="form-group col-md-3">
+				{{ form.origin_state | as_crispy_field }}
+            </div>
+            <div class="form-group col-md-2">
+				{{ form.origin_zip_code | as_crispy_field }}
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-4">
+				{{ form.destination_address | as_crispy_field }}
+            </div>
+            <div class="form-group col-md-3">
+				{{ form.destination_city | as_crispy_field }}
+            </div>
+            <div class="form-group col-md-3">
+				{{ form.destination_state | as_crispy_field }}
+            </div>
+            <div class="form-group col-md-2">
+				{{ form.destination_zip_code | as_crispy_field }}
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-8">
+				{{ form.origin_market | as_crispy_field }}
+            </div>
+            <div class="form-group col-md-4">
+				{{ form.pickup_date | as_crispy_field }}
+            </div>
+          </div>
+          <div class="form-row justify-content-between">
+            <div class="form-group col-md-8">
+				{{ form.destination_market | as_crispy_field }}
+            </div>
+            <div class="form-group col-md-4">
+				{{ form.delivery_date | as_crispy_field }}
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-5">
+				{{ form.truck | as_crispy_field }}
+            </div>
+            <div class="form-group col-md-5">
+				{{ form.trailer | as_crispy_field }}
+            </div>
+            <div class="form-group col-md-2">
+				{{ form.temperature | as_crispy_field }}
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+				{{ form.load_type | as_crispy_field }}
+            </div>
+            <div class="form-group col-md-6">
+				{{ form.instructions | as_crispy_field }}
+            </div>
+          </div>
+          <div class="form-row justify-content-between">
+            <div class="form-group col-md-2">
+				{{ form.mileage | as_crispy_field }}
+            </div>
+            <div class="form-group col-md-2">
+				{{ form.deadhead | as_crispy_field }}
+            </div>
+            <div class="form-group col-md-2">
+				{{ form.toll | as_crispy_field }}
+            </div>
+            <div class="form-group col-md-2">
+				{{ form.fuel_burnt | as_crispy_field }}
+            </div>
+            <div class="form-group col-md-2">
+				{{ form.fuel_price | as_crispy_field }}
+            </div>
+          </div>
+          <div class="form-row justify-content-between">
+            <div class="form-group col-md-3">
+				{{ form.gross | as_crispy_field }}
+            </div>
+            <div class="form-group col-md-3">
+				{{ form.payment_due | as_crispy_field }}
+            </div>
+            <div class="form-group col-md-3">
+				{{ form.g_rate | as_crispy_field }}
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block btn-lg">Submit</button>
+        </form>
+    </div>
+</div> <!-- end card -->
+</div> <!-- end column -->
+</div> <!-- end row -->
+
+{% endblock %}
+
+

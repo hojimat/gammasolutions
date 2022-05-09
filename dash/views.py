@@ -53,9 +53,7 @@ def new_order(request):
     else:
         form = OrderForm()
 
-    fType = "order"
-
-    return render(request, "templates/new-form.html", {'form':form,'formType':fType})
+    return render(request, "templates/order-form.html", {'form':form})
  
 def new_driver(request):
     if request.method == "POST":
@@ -66,9 +64,7 @@ def new_driver(request):
     else:
         form = DriverForm()
 
-    fType = "driver"
-
-    return render(request, "templates/new-form.html", {'form':form,'formType':fType})
+    return render(request, "templates/driver-form.html", {'form':form})
 
 def new_customer(request):
     if request.method == "POST":
@@ -79,9 +75,7 @@ def new_customer(request):
     else:
         form = BrokerForm()
 
-    fType = "customer"
-
-    return render(request, "templates/new-form.html", {'form':form,'formType':fType})
+    return render(request, "templates/customer-form.html", {'form':form})
 
 # UPDATE MODELS
 
@@ -95,7 +89,7 @@ def edit_driver(request,pk):
     else:
         form = DriverForm(instance=driver)
 
-    return render(request, "templates/new-form.html", {'form': form})
+    return render(request, "templates/driver-form.html", {'form': form})
 
 def edit_customer(request,pk):
     customer = Broker.objects.get(pk=pk)
@@ -107,7 +101,7 @@ def edit_customer(request,pk):
     else:
         form = BrokerForm(instance=customer)
 
-    return render(request, "templates/new-form.html", {'form': form})
+    return render(request, "templates/customer-form.html", {'form': form})
 
 def edit_order(request,pk):
     order = Order.objects.get(pk=pk)
@@ -119,7 +113,7 @@ def edit_order(request,pk):
     else:
         form = OrderForm(instance=order)
 
-    return render(request, "templates/new-form.html", {'form': form})
+    return render(request, "templates/order-form.html", {'form': form})
 
 # DELETE MODELS
 

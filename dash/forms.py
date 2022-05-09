@@ -1,5 +1,4 @@
 from django import forms
-from localflavor.us.forms import USStateSelect, USStateField
 from crispy_forms.helper import FormHelper
 from .models import *
 from .widgets import *
@@ -9,22 +8,18 @@ class DriverForm(forms.ModelForm):
         model = Driver
         fields = '__all__'
         widgets = {
-            'birthDate' : DateSelect(),
-            'state' : USStateSelect(),
+            'birth_date' : DateSelect(),
         }
         labels = {
             'mc' : 'MC number',
             'usdot' : 'US DOT number',
-            'gRate' : 'Rate',
+            'g_rate' : 'Default charge rate',
         }
 
 class BrokerForm(forms.ModelForm):
     class Meta:
         model = Broker
         fields = '__all__'
-        widgets = {
-            'state' : USStateSelect(),
-        }
         labels = {
             'mc' : 'MC number',
             'usdot' : 'US DOT number',
@@ -40,9 +35,11 @@ class OrderForm(forms.ModelForm):
         model = Order
         fields = '__all__'
         widgets = {
-            'origin_state' : USStateSelect(),
-            'destination_state' : USStateSelect(),
             'pickup_date' : DateTimeSelect(),
             'delivery_date' : DateTimeSelect(),
             'payment_due' : DateSelect(),
+        }
+        labels = {
+            'destination_zip_code' : 'Destination ZIP',
+            'origin_zip_code' : 'Origin ZIP',
         }
