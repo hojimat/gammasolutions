@@ -23,11 +23,6 @@ class Driver(Entity):
     birth_date = models.DateField(null=True, blank=True, default="1990-3-15")
     mc = models.CharField(max_length=10, blank=True) # MC number
     usdot = models.CharField(max_length=10, blank=True) # DOT number
-    cdl = models.CharField(max_length=10, blank=True) # CDL number
-    cdl_expiry = models.DateField(blank=True, default="2030-3-15")
-    vin = models.CharField(max_length=10, blank=True) # VIN number
-    trailer = models.CharField(max_length=10, blank=True) # Trailer number
-    trailer_type = models.CharField(max_length=20, blank=False, default='Reefer') 
     g_rate = models.FloatField(blank=False, default=0) # my percentage from gross
     active = models.BooleanField(default=True) # to filter out non-active drivers
     emergency_contact_name = models.CharField(max_length=40, blank=True, default="Young Neil")
@@ -60,10 +55,48 @@ class Shipper(Customer):
 
 #####################################################
 
+class Equipment(models.Model):
+    FRM = 'FRM'
+    OO = 'OO'
+    OWNERS = ((FRM, "Company"), (OO, "Owner Operator"))
+
+    ownership = models.CharField(max_length=10, blank=False, choices=OWNERS, default=OO)
+    vin = models.CharField(max_length=10, blank=True) # VIN number
+    model = models.CharField(max_length=10, blank=True)
+    year = models.IntegerField(blank=True)
+    license_plate = models.CharField(max_length=10, blank=True)
+    license_expiry = models.DateField(blank=True, null=True)
+    active = models.BooleanField(default=True) # i.e. default truck/trailer at the moment
+
+    class Meta:
+        abstract = True
+
+    def __str__(self):
+        self.model
+
+class Trailer(Equipment):
+    RFR = 'RFR'
+    VAN = 'VAN'
+    FLT = 'FLT'
+    TYPES = ((RFR, "Reefer"), (VAN, "Dry Van"), (FLT, "Flatbed"), )
+
+    category = models.CharField(max_length=10, blank=False, choices=TYPES, default=VAN)
+    driver = models.ManyToManyField(Driver, related_name='trailers')
+
+    def __str__(self):
+        self.category
+
+class Truck(Equipment):
+    driver = models.ManyToManyField(Driver, related_name='trucks')
+
+#####################################################
+
 class Order(models.Model):
     driver = models.ForeignKey(Driver, on_delete=models.RESTRICT, related_name='orders', null=False)
     broker = models.ForeignKey(Broker, on_delete=models.RESTRICT, related_name='orders', null=True, blank=True)
     shipper = models.ForeignKey(Shipper, on_delete=models.RESTRICT, related_name='orders', null=True, blank=True)
+    truck = models.ForeignKey(Truck, on_delete=models.SET_NULL, related_name='orders', null=True, blank=True)
+    trailer = models.ForeignKey(Trailer, on_delete=models.SET_NULL, related_name='orders', null=True, blank=True)
     commodity = models.CharField(max_length=50, blank=True)
     origin_city = models.CharField(max_length=30, blank=False, default='New York')
     origin_state = models.CharField(max_length=2, blank=False, default='NY')
@@ -78,6 +111,7 @@ class Order(models.Model):
     pickup_date = models.DateTimeField(blank=False, default="2022-01-13 08:00AM")
     delivery_date = models.DateTimeField(blank=False, default="2022-01-13 08:00AM")
     load_type = models.CharField(max_length=100, blank=False, default="palletized;lumper")
+    temperature = models.FloatField(blank=True, default=70)
     instructions = models.CharField(max_length=500, blank=True)
     mileage = models.SmallIntegerField(blank=False, default=0)
     deadhead = models.SmallIntegerField(blank=False, default=0)
@@ -93,6 +127,7 @@ class Order(models.Model):
 
     def destination_full_address(self):
         return f"{self.destination_zip_code} {self.destination_address}, {self.destination_city}, {self.destination_state}"
+
 #####################################################
 
 class Document(models.Model):
@@ -141,41 +176,5 @@ class BrokerDocument(Document):
     name = models.CharField(max_length=10, blank=False, choices=DOCS, default=STP)
     driver = models.ForeignKey(Driver, on_delete=models.RESTRICT, related_name='broker_dox', null=False)
     broker = models.ForeignKey(Broker, on_delete=models.RESTRICT, related_name='documents', null=False)
-
-#####################################################
-
-class Equipment(models.Model):
-    FRM = 'FRM'
-    OO = 'OO'
-    OWNERS = ((FRM, "Company"), (OO, "Owner Operator"))
-
-    owner = models.CharField(max_length=10, blank=False, choices=OWNERS, default=OO)
-    vin = models.CharField(max_length=10, blank=True) # VIN number
-    model = models.CharField(max_length=10, blank=True)
-    year = models.IntegerField(blank=True)
-    license_plate = models.CharField(max_length=10, blank=True)
-    license_expiry = models.DateField(blank=True, null=True)
-    active = models.BooleanField(default=True) # to filter out non-active trucks
-
-    class Meta:
-        abstract = True
-
-    def __str__(self):
-        self.model
-
-class Trailer(Equipment):
-    RFR = 'RFR'
-    VAN = 'VAN'
-    FLT = 'FLT'
-    TYPES = ((RFR, "Reefer"), (VAN, "Dry Van"), (FLT, "Flatbed"), )
-
-    category = models.CharField(max_length=10, blank=False, choices=TYPES, default=VAN)
-    driver = models.ManyToManyField(Driver, related_name='trailers')
-
-    def __str__(self):
-        self.category
-
-class Truck(Equipment):
-    driver = models.ManyToManyField(Driver, related_name='trucks')
 
 #####################################################

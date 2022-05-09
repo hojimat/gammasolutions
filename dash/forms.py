@@ -13,14 +13,8 @@ class DriverForm(forms.ModelForm):
             'state' : USStateSelect(),
         }
         labels = {
-            'firstName' : 'First name',
-            'lastName' : 'Last name',
-            'birthDate' : 'Birth date',
             'mc' : 'MC number',
             'usdot' : 'US DOT number',
-            'cdl' : 'CDL',
-            'vin' : 'VIN number',
-            'zipCode' : 'ZIP code',
             'gRate' : 'Rate',
         }
 
@@ -34,13 +28,14 @@ class BrokerForm(forms.ModelForm):
         labels = {
             'mc' : 'MC number',
             'usdot' : 'US DOT number',
-            'zip_code' : 'ZIP code',
         }
 
 class OrderForm(forms.ModelForm):
     driver = forms.ModelChoiceField(queryset=Driver.objects.all(), empty_label="Choose")
     broker = forms.ModelChoiceField(queryset=Broker.objects.all(), empty_label="Choose")
     shipper = forms.ModelChoiceField(queryset=Shipper.objects.all(), empty_label="Choose", required=False)
+    truck = forms.ModelChoiceField(queryset=Truck.objects.all(), empty_label="Choose", required=False)
+    trailer = forms.ModelChoiceField(queryset=Trailer.objects.all(), empty_label="Choose", required=False)
     class Meta:
         model = Order
         fields = '__all__'
