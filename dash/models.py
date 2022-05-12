@@ -68,17 +68,18 @@ class Equipment(models.Model):
 
     ownership = models.CharField(max_length=10, blank=False, choices=OWNERS, default=OO)
     vin = models.CharField(max_length=10, blank=True) # VIN number
-    model = models.CharField(max_length=10, blank=True)
+    model = models.CharField(max_length=50, blank=False, default="")
     year = models.IntegerField(blank=True)
     license_plate = models.CharField(max_length=10, blank=True)
     license_expiry = models.DateField(blank=True, null=True)
+    weight = models.FloatField(blank=True, default=0) # max lbs
     active = models.BooleanField(default=True) # i.e. default truck/trailer at the moment
 
     class Meta:
         abstract = True
 
     def __str__(self):
-        self.model
+        return f"{self.model} # {self.license_plate}"
 
 class Trailer(Equipment):
     RFR = 'RFR'
@@ -86,14 +87,17 @@ class Trailer(Equipment):
     FLT = 'FLT'
     TYPES = ((RFR, "Reefer"), (VAN, "Dry Van"), (FLT, "Flatbed"), )
 
-    category = models.CharField(max_length=10, blank=False, choices=TYPES, default=VAN)
-    driver = models.ManyToManyField(Driver, related_name='trailers')
+    category = models.CharField(max_length=5, blank=False, choices=TYPES, default=VAN)
+    driver = models.ManyToManyField(Driver, related_name='trailers', blank=True)
+    width  = models.FloatField(blank=True, default=0) # ft
+    height = models.FloatField(blank=True, default=0) # ft
+    length = models.FloatField(blank=True, default=0) # ft
 
     def __str__(self):
-        self.category
+        return f"{self.get_category_display()} # {self.license_plate}"
 
 class Truck(Equipment):
-    driver = models.ManyToManyField(Driver, related_name='trucks')
+    driver = models.ManyToManyField(Driver, related_name='trucks', blank=True)
 
 #####################################################
 
@@ -108,17 +112,21 @@ class Order(models.Model):
     origin_state = models.CharField(max_length=2, blank=False, choices=USCanadaStates, default='NY')
     origin_address = models.CharField(max_length=70, blank=False, default='12 Broadway')
     origin_zip_code = models.CharField(max_length=10, blank=False, default='34342')
-    origin_market = models.CharField(max_length=50, blank=False, default=0)
+    origin_market = models.CharField(max_length=50, blank=False, default='')
     destination_city = models.CharField(max_length=30, blank=False, default='Palo Alto')
     destination_state = models.CharField(max_length=2, blank=False, choices=USCanadaStates, default='CA')
     destination_address = models.CharField(max_length=70, blank=False, default='1 Mountain View')
     destination_zip_code = models.CharField(max_length=10, blank=False, default='34341')
-    destination_market = models.CharField(max_length=50, blank=False, default=0)
+    destination_market = models.CharField(max_length=50, blank=False, default='')
     pickup_date = models.DateTimeField(blank=False, default="2022-01-13 08:00AM")
     delivery_date = models.DateTimeField(blank=False, default="2022-01-13 08:00AM")
     load_type = models.CharField(max_length=100, blank=False, default="palletized;lumper")
     temperature = models.FloatField(blank=True, default=70)
     instructions = models.CharField(max_length=500, blank=True)
+    width  = models.FloatField(blank=True, default=0) # ft
+    height = models.FloatField(blank=True, default=0) # ft
+    length = models.FloatField(blank=True, default=0) # ft
+    weight = models.FloatField(blank=True, default=0) # max lbs
     mileage = models.SmallIntegerField(blank=False, default=0)
     deadhead = models.SmallIntegerField(blank=False, default=0)
     gross = models.FloatField(blank=False, default=0)
@@ -127,6 +135,8 @@ class Order(models.Model):
     fuel_burnt = models.FloatField(blank=False, default=0) # gallons
     fuel_price = models.FloatField(blank=False, default=0) # USD per gallon
     toll = models.FloatField(blank=False, default=0)
+    completed = models.BooleanField(default=False) 
+    paid = models.BooleanField(default=False) 
 
     def origin_full_address(self):
         return f"{self.origin_zip_code} {self.origin_address}, {self.origin_city}, {self.origin_state}"
@@ -144,8 +154,8 @@ class Order(models.Model):
 
 class Document(models.Model):
     name = models.CharField(max_length=50, blank=False, default=0)
-    issue_date = models.DateTimeField()
-    expiry_date = models.DateTimeField()
+    issue_date = models.DateField(blank=True, null=True)
+    expiry_date = models.DateField(blank=True, null=True)
     issued_by = models.CharField(max_length=50, blank=True)
     number = models.CharField(max_length=20, blank=True)
     detail = models.CharField(max_length=50, blank=True, default=0)

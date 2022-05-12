@@ -40,6 +40,10 @@ urlpatterns = [
     path('dash/orders/<int:pk>/', dash_views.read_order), # read
     path('dash/orders/<int:pk>/edit/', dash_views.edit_order), # update
     path('dash/orders/<int:pk>/delete/', dash_views.delete_order), # delete
+
+    path('dash/trucks/new/', dash_views.new_truck), # create
+
+    path('dash/trailers/new/', dash_views.new_trailer), # create
 ]
 
 

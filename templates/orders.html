@@ -1,6 +1,17 @@
 {% extends 'templates/dash.html' %}
 {% block content %}
 
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags}} alert-dismissable fade show" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endfor %}
+{% endif %}
+
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Orders</h1>
@@ -28,6 +39,7 @@
                         <th>Gross</th>
                         <th>&gamma; rate</th>
                         <th>Details</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -45,6 +57,19 @@
                         <td>{{ order.gRate }}</td>
                         <td>
                             <a class='btn btn-info btn-sm' href="/dash/orders/{{order.pk}}/">View</a>
+                        </td>
+                        <td>
+                            {% if order.completed %}
+                                Completed;
+                            {% else %}
+                                In-progress;
+                            {% endif %}
+
+                            {% if order.paid %}
+                                Paid
+                            {% else %}
+                                Not paid
+                            {% endif %}
                         </td>
                     </tr>
                     {% endfor %}

@@ -42,4 +42,26 @@ class OrderForm(forms.ModelForm):
         labels = {
             'destination_zip_code' : 'Destination ZIP',
             'origin_zip_code' : 'Origin ZIP',
+            'g_rate' : 'Default charge rate',
+        }
+
+class TruckForm(forms.ModelForm):
+    class Meta:
+        model = Truck
+        fields = '__all__'
+        labels = {
+            'vin': 'VIN number',
+            'weight': 'Max load capacity (lbs)'
+        }
+
+class TrailerForm(forms.ModelForm):
+    class Meta:
+        model = Trailer
+        fields = '__all__'
+        labels = {
+            'vin': 'VIN number',
+            'weight': 'Max load capacity (lbs)',
+            'height': 'Height (ft)',
+            'width': 'Width (ft)',
+            'length': 'Length (ft)',
         }

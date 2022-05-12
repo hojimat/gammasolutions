@@ -1,0 +1,25 @@
+{% extends 'templates/dash.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Add equipment</h1>
+</div>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Add equipment</h6>
+    </div>
+    <div class="card-body">
+        <form method='post' class='bootstrap4'>
+            {% csrf_token %}
+            {{ form | crispy}}
+            <input type='submit' value='Submit' class='btn btn-primary' />
+        </form>
+    </div>
+
+</div>
+
+{% endblock %}
+
+

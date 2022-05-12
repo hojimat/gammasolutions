@@ -2,8 +2,9 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.db.models import RestrictedError
 from .models import *
-from .forms import OrderForm, DriverForm, BrokerForm
+from .forms import * 
 from datetime import datetime, timedelta
+from django.contrib import messages
 
 def index(request):
     return render(request, 'templates/index.html',)
@@ -30,12 +31,21 @@ def orders(request):
 
 def read_driver(request,pk):
     driver = Driver.objects.get(pk=pk)
-    orders = Order.objects.filter(driver=driver)
-    return render(request, "templates/details.html", {'user': driver, 'userId': pk, 'orders': orders})
+    orders = driver.orders.all()
+    documents = driver.documents.all()
+    trucks = driver.trucks.all()
+    trailers = driver.trailers.all()
+    return render(request, "templates/driver-details.html", {'user': driver,
+                                                             'userId': pk,
+                                                             'orders': orders,
+                                                             'documents': documents,
+                                                             'trucks': trucks,
+                                                             'trailers': trailers,
+                                                             })
 
 def read_customer(request,pk):
     customer = Broker.objects.get(pk=pk)
-    orders = Order.objects.filter(broker=customer)
+    orders = customer.orders.all()
     return render(request, "templates/details.html", {'user': customer, 'userId': pk, 'orders': orders})
 
 def read_order(request,pk):
@@ -77,6 +87,28 @@ def new_customer(request):
 
     return render(request, "templates/customer-form.html", {'form':form})
 
+def new_truck(request):
+    if request.method == "POST":
+        form = TruckForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(f"/dash/drivers/")
+    else:
+        form = TruckForm()
+
+    return render(request, "templates/truck-form.html", {'form':form})
+
+def new_trailer(request):
+    if request.method == "POST":
+        form = TrailerForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(f"/dash/drivers/")
+    else:
+        form = TrailerForm()
+
+    return render(request, "templates/trailer-form.html", {'form':form})
+
 # UPDATE MODELS
 
 def edit_driver(request,pk):
@@ -85,6 +117,7 @@ def edit_driver(request,pk):
         form = DriverForm(request.POST, instance=driver)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Successfully updated the driver information.')
             return redirect('/dash/drivers/')
     else:
         form = DriverForm(instance=driver)
@@ -97,6 +130,7 @@ def edit_customer(request,pk):
         form = BrokerForm(request.POST, instance=customer)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Successfully updated the broker information.')
             return redirect('/dash/customers/')
     else:
         form = BrokerForm(instance=customer)
@@ -109,6 +143,7 @@ def edit_order(request,pk):
         form = OrderForm(request.POST, instance=order)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Successfully updated the order information.')
             return redirect('/dash/orders/')
     else:
         form = OrderForm(instance=order)
@@ -122,7 +157,9 @@ def delete_driver(request,pk):
     if request.method == "POST":
         try:
             driver.delete()
+            messages.warning(request, 'Successfully deleted the driver.')
         except RestrictedError:
+            messages.error(request, 'Could not delete the driver. Delete associated orders first.')
             pass
 
         return redirect('/dash/drivers/')
@@ -134,7 +171,9 @@ def delete_customer(request,pk):
     if request.method == "POST":
         try:
             customer.delete()
+            messages.warning(request, 'Successfully deleted the customer.')
         except RestrictedError:
+            messages.error(request, 'Could not delete the customer. Delete associated orders first.')
             pass
 
         return redirect('/dash/customers/')
@@ -146,6 +185,7 @@ def delete_order(request,pk):
     if request.method == "POST":
         try:
             order.delete()
+            messages.warning(request, 'Successfully deleted the order.')
         except RestrictedError:
             pass
 
