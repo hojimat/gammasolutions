@@ -29,7 +29,6 @@ class OrderForm(forms.ModelForm):
     driver = forms.ModelChoiceField(queryset=Driver.objects.all(), empty_label="Choose")
     broker = forms.ModelChoiceField(queryset=Broker.objects.all(), empty_label="Choose")
     shipper = forms.ModelChoiceField(queryset=Shipper.objects.all(), empty_label="Choose", required=False)
-    #equipment = forms.ModelChoiceField(queryset=Equipment.objects.all(), empty_label="Choose", required=False)
     class Meta:
         model = Order
         fields = '__all__'
