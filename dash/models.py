@@ -1,6 +1,35 @@
 from django.db import models
 from .widgets import USCanadaStates
 
+class Equipment(models.Model):
+    FRM = 'FRM'
+    OO = 'OO'
+    OWNERS = ((FRM, "Company"), (OO, "Owner Operator"))
+
+    RFR = 'RFR'
+    VAN = 'VAN'
+    FLT = 'FLT'
+    TRK = 'TRK'
+    TYPES = ((RFR, "Reefer"), (VAN, "Dry Van"), (FLT, "Flatbed"), (TRK, "Truck"), )
+
+    ownership = models.CharField(max_length=10, blank=False, choices=OWNERS, default=OO)
+    category = models.CharField(max_length=5, blank=False, choices=TYPES, default=VAN)
+    vin = models.CharField(max_length=10, blank=True) # VIN number
+    model = models.CharField(max_length=50, blank=False, default="")
+    year = models.IntegerField(blank=True, default=2000)
+    license_plate = models.CharField(max_length=10, blank=True)
+    license_expiry = models.DateField(blank=True, null=True)
+    weight = models.FloatField(blank=True, default=0) # max lbs
+    width  = models.FloatField(blank=True, default=0) # ft
+    height = models.FloatField(blank=True, default=0) # ft
+    length = models.FloatField(blank=True, default=0) # ft
+    active = models.BooleanField(default=True) # i.e. default truck/trailer at the moment
+
+    def __str__(self):
+        return f"{self.get_category_display()} {self.model} # {self.license_plate}"
+
+#####################################################
+
 class Entity(models.Model):
     phone = models.CharField(max_length=25, blank=True, default="+1(xxx)xxx-xx-xx")
     mobile = models.CharField(max_length=25, blank=True, default='+1(xxx)xxx-xx-xx')
@@ -33,6 +62,7 @@ class Driver(Entity):
     active = models.BooleanField(default=True) # to filter out non-active drivers
     emergency_contact_name = models.CharField(max_length=40, blank=True, default="Young Neil")
     emergency_contact_phone = models.CharField(max_length=25, blank=True, default="+1(xxx)xxx-xx-xx")
+    equipment = models.ManyToManyField(Equipment, related_name='drivers', blank=True)
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
@@ -61,65 +91,24 @@ class Shipper(Customer):
 
 #####################################################
 
-class Equipment(models.Model):
-    FRM = 'FRM'
-    OO = 'OO'
-    OWNERS = ((FRM, "Company"), (OO, "Owner Operator"))
-
-    ownership = models.CharField(max_length=10, blank=False, choices=OWNERS, default=OO)
-    vin = models.CharField(max_length=10, blank=True) # VIN number
-    model = models.CharField(max_length=50, blank=False, default="")
-    year = models.IntegerField(blank=True)
-    license_plate = models.CharField(max_length=10, blank=True)
-    license_expiry = models.DateField(blank=True, null=True)
-    weight = models.FloatField(blank=True, default=0) # max lbs
-    active = models.BooleanField(default=True) # i.e. default truck/trailer at the moment
-
-    class Meta:
-        abstract = True
-
-    def __str__(self):
-        return f"{self.model} # {self.license_plate}"
-
-class Trailer(Equipment):
-    RFR = 'RFR'
-    VAN = 'VAN'
-    FLT = 'FLT'
-    TYPES = ((RFR, "Reefer"), (VAN, "Dry Van"), (FLT, "Flatbed"), )
-
-    category = models.CharField(max_length=5, blank=False, choices=TYPES, default=VAN)
-    driver = models.ManyToManyField(Driver, related_name='trailers', blank=True)
-    width  = models.FloatField(blank=True, default=0) # ft
-    height = models.FloatField(blank=True, default=0) # ft
-    length = models.FloatField(blank=True, default=0) # ft
-
-    def __str__(self):
-        return f"{self.get_category_display()} # {self.license_plate}"
-
-class Truck(Equipment):
-    driver = models.ManyToManyField(Driver, related_name='trucks', blank=True)
-
-#####################################################
-
 class Order(models.Model):
     driver = models.ForeignKey(Driver, on_delete=models.RESTRICT, related_name='orders', null=False)
     broker = models.ForeignKey(Broker, on_delete=models.RESTRICT, related_name='orders', null=True, blank=True)
     shipper = models.ForeignKey(Shipper, on_delete=models.RESTRICT, related_name='orders', null=True, blank=True)
-    truck = models.ForeignKey(Truck, on_delete=models.SET_NULL, related_name='orders', null=True, blank=True)
-    trailer = models.ForeignKey(Trailer, on_delete=models.SET_NULL, related_name='orders', null=True, blank=True)
+    equipment = models.ManyToManyField(Equipment, related_name='orders', blank=True)
     commodity = models.CharField(max_length=50, blank=True)
     origin_city = models.CharField(max_length=30, blank=False, default='New York')
     origin_state = models.CharField(max_length=2, blank=False, choices=USCanadaStates, default='NY')
     origin_address = models.CharField(max_length=70, blank=False, default='12 Broadway')
     origin_zip_code = models.CharField(max_length=10, blank=False, default='34342')
-    origin_market = models.CharField(max_length=50, blank=False, default='')
+    origin_market = models.CharField(max_length=50, blank=True, default='')
     destination_city = models.CharField(max_length=30, blank=False, default='Palo Alto')
     destination_state = models.CharField(max_length=2, blank=False, choices=USCanadaStates, default='CA')
     destination_address = models.CharField(max_length=70, blank=False, default='1 Mountain View')
     destination_zip_code = models.CharField(max_length=10, blank=False, default='34341')
-    destination_market = models.CharField(max_length=50, blank=False, default='')
-    pickup_date = models.DateTimeField(blank=False, default="2022-01-13 08:00AM")
-    delivery_date = models.DateTimeField(blank=False, default="2022-01-13 08:00AM")
+    destination_market = models.CharField(max_length=50, blank=True, default='')
+    pickup_date = models.DateTimeField(blank=False, default="2022-01-13 08:00")
+    delivery_date = models.DateTimeField(blank=False, default="2022-01-13 08:00")
     load_type = models.CharField(max_length=100, blank=False, default="palletized;lumper")
     temperature = models.FloatField(blank=True, default=70)
     instructions = models.CharField(max_length=500, blank=True)
@@ -150,55 +139,39 @@ class Order(models.Model):
     def destination_short_address(self):
         return f"{self.destination_city}, {self.destination_state}"
 
+    # def to return recent orders only (for last 30 days)
 #####################################################
 
 class Document(models.Model):
-    name = models.CharField(max_length=50, blank=False, default=0)
-    issue_date = models.DateField(blank=True, null=True)
-    expiry_date = models.DateField(blank=True, null=True)
-    issued_by = models.CharField(max_length=50, blank=True)
-    number = models.CharField(max_length=20, blank=True)
-    detail = models.CharField(max_length=50, blank=True, default=0)
-    
-    class Meta:
-        abstract = True
-
-    def __str__(self):
-        return self.name
-
-class DriverDocument(Document):
     CDL = 'CDL'
     DSP = 'DSP'
     MED = 'MED'
     DRG = 'DRG'
+    BOL = 'BOL'
+    INV = 'INV'
+    RCON = 'RCON'
+    STP = 'STP'
     DOCS = (
         (CDL, "Commercial Driver's License"),
         (DSP, "Dispatcher Agreement"),
         (MED, "Medical Card"),
         (DRG, "Drug Test"),
-    )
-    name = models.CharField(max_length=10, blank=False, choices=DOCS, default=CDL)
-    driver = models.ForeignKey(Driver, on_delete=models.RESTRICT, related_name='documents', null=False)
-
-class OrderDocument(Document):
-    BOL = 'BOL'
-    INV = 'INV'
-    RCON = 'RCON'
-    DOCS = (
         (BOL, "Bill of Lading"),
         (INV, "Invoice"),
         (RCON, "Rate Confirmation"),
-    )
-    name = models.CharField(max_length=10, blank=False, choices=DOCS, default=BOL)
-    order = models.ForeignKey(Order, on_delete=models.RESTRICT, related_name='documents', null=False)
-
-class BrokerDocument(Document):
-    STP = 'STP'
-    DOCS = (
         (STP, "Setup document"),
     )
-    name = models.CharField(max_length=10, blank=False, choices=DOCS, default=STP)
-    driver = models.ForeignKey(Driver, on_delete=models.RESTRICT, related_name='broker_dox', null=False)
-    broker = models.ForeignKey(Broker, on_delete=models.RESTRICT, related_name='documents', null=False)
+    name = models.CharField(max_length=10, blank=False, choices=DOCS, default=RCON)
+    issue_date = models.DateField(blank=True, null=True)
+    expiry_date = models.DateField(blank=True, null=True)
+    issued_by = models.CharField(max_length=50, blank=True)
+    number = models.CharField(max_length=20, blank=True)
+    detail = models.CharField(max_length=50, blank=True, default=0)
+    driver = models.ForeignKey(Driver, on_delete=models.RESTRICT, related_name='documents', blank=True, null=True)
+    order = models.ForeignKey(Order, on_delete=models.RESTRICT, related_name='documents', blank=True, null=True)
+    broker = models.ForeignKey(Broker, on_delete=models.RESTRICT, related_name='documents', blank=True, null=True)
+    
+    def __str__(self):
+        return self.name
 
 #####################################################

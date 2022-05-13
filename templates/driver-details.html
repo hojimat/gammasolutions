@@ -197,8 +197,8 @@
                 <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                     aria-labelledby="dropdownMenuLink">
                     <div class="dropdown-header">Trucks actions:</div>
-                    <a class="dropdown-item" href="new-truck/">Add a truck</a>
-                    <a class="dropdown-item" href="#">Add a trailer</a>
+                    <a class="dropdown-item" href="{% url 'dash-new-equipment' %}">New equipment</a>
+                    <a class="dropdown-item" href="{% url 'dash-equipment' %}">Go to equipment</a>
                 </div>
             </div>
         </div>
@@ -216,15 +216,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for truck in trucks %}
+                        {% for eqm in equipment %}
                         <tr>
-                            <td>Truck</td>
-                            <td>{{ truck.model }}</td>
-                            <td>{{ truck.license_plate }}</td>
-                            <td>{{ truck.license_expiry }}</td>
-                            <td>{{ truck.ownership }}</td>
+                            <td>{{ eqm.get_category_display }}</td>
+                            <td>{{ eqm.model }}</td>
+                            <td>{{ eqm.license_plate }}</td>
+                            <td>{{ eqm.license_expiry }}</td>
+                            <td>{{ eqm.get_ownership_display }}</td>
                             <td>
-                                <a class='btn btn-info btn-sm' href="#">View</a>
+                                <a class='btn btn-info btn-sm' href="{% url 'dash-edit-equipment' eqm.pk %}">Edit</a>
+                                <a class='btn btn-danger btn-sm' href="{% url 'dash-delete-equipment' eqm.pk %}">Delete</a>
                             </td>
                         </tr>
                         {% endfor %}
@@ -321,7 +322,7 @@
                         <td>{{ order.gross }}</td>
                         <td>{{ order.gRate }}</td>
                         <td>
-                            <a class='btn btn-info btn-sm' href="/dash/orders/{{order.pk}}/">View</a>
+                            <a class='btn btn-info btn-sm' href="{% url 'dash-read-order' order.pk %}">View</a>
                         </td>
                     </tr>
                     {% endfor %}

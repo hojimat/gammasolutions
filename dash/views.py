@@ -24,8 +24,15 @@ def customers(request):
 
 def orders(request):
     orders = Order.objects.all()
-    #orders = Order.objects.filter(deliveryDate__gt = ( datetime.today() - timedelta(days=30) ) )
     return render(request, 'templates/orders.html', {'orders': orders})
+
+def equipment(request):
+    equipment = Equipment.objects.all()
+    return render(request, 'templates/equipment.html', {'equipment': equipment})
+
+def documents(request):
+    documents = Document.objects.all()
+    return render(request, 'templates/documents.html', {'documents': documents})
 
 # READ MODELS
 
@@ -33,14 +40,12 @@ def read_driver(request,pk):
     driver = Driver.objects.get(pk=pk)
     orders = driver.orders.all()
     documents = driver.documents.all()
-    trucks = driver.trucks.all()
-    trailers = driver.trailers.all()
+    equipment = driver.equipment.all()
     return render(request, "templates/driver-details.html", {'user': driver,
                                                              'userId': pk,
                                                              'orders': orders,
                                                              'documents': documents,
-                                                             'trucks': trucks,
-                                                             'trailers': trailers,
+                                                             'equipment': equipment,
                                                              })
 
 def read_customer(request,pk):
@@ -87,27 +92,27 @@ def new_customer(request):
 
     return render(request, "templates/customer-form.html", {'form':form})
 
-def new_truck(request):
+def new_equipment(request):
     if request.method == "POST":
-        form = TruckForm(request.POST)
+        form = EquipmentForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect(f"/dash/drivers/")
+            return redirect(f"/dash/equipment/")
     else:
-        form = TruckForm()
+        form = EquipmentForm()
 
-    return render(request, "templates/truck-form.html", {'form':form})
+    return render(request, "templates/equipment-form.html", {'form':form})
 
-def new_trailer(request):
+def new_document(request):
     if request.method == "POST":
-        form = TrailerForm(request.POST)
+        form = DocumentForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect(f"/dash/drivers/")
+            return redirect(f"/dash/documents/")
     else:
-        form = TrailerForm()
+        form = DocumentForm()
 
-    return render(request, "templates/trailer-form.html", {'form':form})
+    return render(request, "templates/document-form.html", {'form':form})
 
 # UPDATE MODELS
 
@@ -149,6 +154,32 @@ def edit_order(request,pk):
         form = OrderForm(instance=order)
 
     return render(request, "templates/order-form.html", {'form': form})
+
+def edit_equipment(request,pk):
+    eqm = Equipment.objects.get(pk=pk)
+    if request.method == "POST":
+        form = EquipmentForm(request.POST, instance=eqm)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully updated the order information.')
+            return redirect('/dash/equipment/')
+    else:
+        form = EquipmentForm(instance=eqm)
+
+    return render(request, "templates/equipment-form.html", {'form': form})
+
+def edit_document(request,pk):
+    document = Document.objects.get(pk=pk)
+    if request.method == "POST":
+        form = DocumentForm(request.POST, instance=document)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully updated the order information.')
+            return redirect('/dash/documents/')
+    else:
+        form = DocumentForm(instance=document)
+
+    return render(request, "templates/document-form.html", {'form': form})
 
 # DELETE MODELS
 
@@ -192,3 +223,30 @@ def delete_order(request,pk):
         return redirect('/dash/orders/')
         
     return render(request, "templates/delete.html", {'object_name': f"Order #{pk}"})
+
+def delete_equipment(request,pk):
+    eqm = Equipment.objects.get(pk=pk)
+    if request.method == "POST":
+        try:
+            eqm.delete()
+            messages.warning(request, 'Successfully deleted the order.')
+        except RestrictedError:
+            pass
+
+        return redirect('/dash/equipment/')
+        
+    return render(request, "templates/delete.html", {'object_name': eqm})
+
+
+def delete_document(request,pk):
+    document = Document.objects.get(pk=pk)
+    if request.method == "POST":
+        try:
+            document.delete()
+            messages.warning(request, 'Successfully deleted the order.')
+        except RestrictedError:
+            pass
+
+        return redirect('/dash/documents/')
+        
+    return render(request, "templates/delete.html", {'object_name': document})

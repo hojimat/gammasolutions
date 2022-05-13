@@ -21,29 +21,35 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns as statics
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', dash_views.index),
-    path('dash/', dash_views.main),
+    path('dash/', dash_views.main, name='dash-main'),
 
-    path('dash/drivers/', dash_views.drivers),
-    path('dash/drivers/new/', dash_views.new_driver), # create
-    path('dash/drivers/<int:pk>/', dash_views.read_driver), # read
+    path('dash/drivers/', dash_views.drivers, name='dash-drivers'),
+    path('dash/drivers/new/', dash_views.new_driver, name='dash-new-driver'), # create
+    path('dash/drivers/<int:pk>/', dash_views.read_driver, name='dash-read-driver'), # read
     path('dash/drivers/<int:pk>/edit/', dash_views.edit_driver), # update
     path('dash/drivers/<int:pk>/delete/', dash_views.delete_driver), # delete
 
-    path('dash/customers/', dash_views.customers),
-    path('dash/customers/new/', dash_views.new_customer), # create
-    path('dash/customers/<int:pk>/', dash_views.read_customer), # read
+    path('dash/customers/', dash_views.customers, name='dash-customers'),
+    path('dash/customers/new/', dash_views.new_customer, name='dash-new-customer'), # create
+    path('dash/customers/<int:pk>/', dash_views.read_customer, name='dash-read-customer'), # read
     path('dash/customers/<int:pk>/edit/', dash_views.edit_customer), # update
     path('dash/customers/<int:pk>/delete/', dash_views.delete_customer), # delete
 
-    path('dash/orders/', dash_views.orders),
-    path('dash/orders/new/', dash_views.new_order), # create
-    path('dash/orders/<int:pk>/', dash_views.read_order), # read
+    path('dash/orders/', dash_views.orders, name='dash-orders'),
+    path('dash/orders/new/', dash_views.new_order, name='dash-new-order'), # create
+    path('dash/orders/<int:pk>/', dash_views.read_order, name='dash-read-order'), # read
     path('dash/orders/<int:pk>/edit/', dash_views.edit_order), # update
     path('dash/orders/<int:pk>/delete/', dash_views.delete_order), # delete
 
-    path('dash/trucks/new/', dash_views.new_truck), # create
+    path('dash/equipment/', dash_views.equipment, name='dash-equipment'),
+    path('dash/equipment/new/', dash_views.new_equipment, name='dash-new-equipment'), # create
+    path('dash/equipment/<int:pk>/edit/', dash_views.edit_equipment, name='dash-edit-equipment'), # update
+    path('dash/equipment/<int:pk>/delete/', dash_views.delete_equipment, name='dash-delete-equipment'), # delete
 
-    path('dash/trailers/new/', dash_views.new_trailer), # create
+    path('dash/documents/', dash_views.documents, name='dash-documents'),
+    path('dash/documents/new/', dash_views.new_document, name='dash-new-document'), # create
+    path('dash/documents/<int:pk>/edit/', dash_views.edit_document), # update
+    path('dash/documents/<int:pk>/delete/', dash_views.delete_document), # delete
 ]
 
 

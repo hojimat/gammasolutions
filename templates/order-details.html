@@ -296,7 +296,7 @@
                         <td>{{ order.gross }}</td>
                         <td>{{ order.gRate }}</td>
                         <td>
-                            <a class='btn btn-info btn-sm' href="/dash/orders/{{order.pk}}/">View</a>
+                            <a class='btn btn-info btn-sm' href="{% url 'dash-read-order' order.pk %}">View</a>
                         </td>
                     </tr>
                     {% endfor %}

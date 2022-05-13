@@ -1,0 +1,79 @@
+{% extends 'templates/dash.html' %}
+{% block content %}
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags}} alert-dismissable fade show" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endfor %}
+{% endif %}
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Documents</h1>
+    <a href="{% url 'dash-new-document' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i> New document</a>
+</div>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Documents central storage</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Issue date</th>
+                            <th>Expirty date</th>
+                            <th>Issued by</th>
+                            <th>Number</th>
+                            <th>Detail</th>
+                            <th>Driver</th>
+                            <th>Order</th>
+                            <th>Broker</th>
+                            <th>Options</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for document in documents %}
+                        <tr>
+                            <td>{{ document.get_name_display }}</td>
+                            <td>{{ document.issue_date }}</td>
+                            <td>{{ document.expiry_date }}</td>
+                            <td>{{ document.issued_by }}</td>
+                            <td>{{ document.number }}</td>
+                            <td>{{ document.detail }}</td>
+                            <td>{{ document.driver }}</td>
+                            <td>{{ document.broker }}</td>
+                            <td>{{ document.order }}</td>
+                            <td>
+                                <a class='btn btn-info btn-sm' href="{{ document.pk }}/edit/">Edit</a>
+                                <a class='btn btn-danger btn-sm' href="{{ document.pk}}/delete/">Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% load static %}
+{% block styles %}
+<link href="{% static 'vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block scripts %}
+<!-- Data tables plugins and scripts -->
+<script src="{% static 'vendor/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static 'js/demo/datatables-demo.js' %}"></script>
+{% endblock %}

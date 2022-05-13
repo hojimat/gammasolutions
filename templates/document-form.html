@@ -1,0 +1,58 @@
+{% extends 'templates/dash.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<div class='row'>
+<div class='col-xl-6 mx-auto'>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Document information</h6>
+    </div>
+
+    <div class="card-body">
+        <form method='post' class='bootstrap4'>
+          {% csrf_token %}
+          <div class="form-row">
+            <div class="form-group col-md-4">
+				{{ form.name | as_crispy_field }}
+            </div>
+            <div class="form-group col-md-4">
+				{{ form.number | as_crispy_field }}
+            </div>
+            <div class="form-group col-md-4">
+				{{ form.detail | as_crispy_field }}
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-4">
+				{{ form.issue_date | as_crispy_field }}
+            </div>
+            <div class="form-group col-md-4">
+				{{ form.expiry_date | as_crispy_field }}
+            </div>
+            <div class="form-group col-md-4">
+				{{ form.issued_by | as_crispy_field }}
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-4">
+				{{ form.driver | as_crispy_field }}
+            </div>
+            <div class="form-group col-md-4">
+				{{ form.order | as_crispy_field }}
+            </div>
+            <div class="form-group col-md-4">
+				{{ form.broker | as_crispy_field }}
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block btn-lg">Submit</button>
+        </form>
+    </div>
+</div> <!-- end card -->
+</div> <!-- end column -->
+</div> <!-- end row -->
+
+{% endblock %}
+
+

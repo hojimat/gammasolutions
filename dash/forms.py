@@ -29,8 +29,7 @@ class OrderForm(forms.ModelForm):
     driver = forms.ModelChoiceField(queryset=Driver.objects.all(), empty_label="Choose")
     broker = forms.ModelChoiceField(queryset=Broker.objects.all(), empty_label="Choose")
     shipper = forms.ModelChoiceField(queryset=Shipper.objects.all(), empty_label="Choose", required=False)
-    truck = forms.ModelChoiceField(queryset=Truck.objects.all(), empty_label="Choose", required=False)
-    trailer = forms.ModelChoiceField(queryset=Trailer.objects.all(), empty_label="Choose", required=False)
+    #equipment = forms.ModelChoiceField(queryset=Equipment.objects.all(), empty_label="Choose", required=False)
     class Meta:
         model = Order
         fields = '__all__'
@@ -45,18 +44,9 @@ class OrderForm(forms.ModelForm):
             'g_rate' : 'Default charge rate',
         }
 
-class TruckForm(forms.ModelForm):
+class EquipmentForm(forms.ModelForm):
     class Meta:
-        model = Truck
-        fields = '__all__'
-        labels = {
-            'vin': 'VIN number',
-            'weight': 'Max load capacity (lbs)'
-        }
-
-class TrailerForm(forms.ModelForm):
-    class Meta:
-        model = Trailer
+        model = Equipment
         fields = '__all__'
         labels = {
             'vin': 'VIN number',
@@ -64,4 +54,13 @@ class TrailerForm(forms.ModelForm):
             'height': 'Height (ft)',
             'width': 'Width (ft)',
             'length': 'Length (ft)',
+        }
+
+class DocumentForm(forms.ModelForm):
+    class Meta:
+        model = Document
+        fields = '__all__'
+        widgets = {
+            'issue_date': DateSelect(),
+            'expiry_date': DateSelect(),
         }

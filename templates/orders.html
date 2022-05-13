@@ -15,13 +15,13 @@
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Orders</h1>
-    <a href="/dash/orders/new/" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i> New order</a>
+    <a href="{% url 'dash-new-order' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i> New order</a>
 </div>
 
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Orders for {{userName}}</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Orders</h6>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -56,7 +56,7 @@
                         <td>{{ order.gross }}</td>
                         <td>{{ order.gRate }}</td>
                         <td>
-                            <a class='btn btn-info btn-sm' href="/dash/orders/{{order.pk}}/">View</a>
+                            <a class='btn btn-info btn-sm' href="{% url 'dash-read-order' order.pk %}">View</a>
                         </td>
                         <td>
                             {% if order.completed %}
