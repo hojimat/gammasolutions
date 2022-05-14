@@ -81,7 +81,7 @@ def new_driver(request):
 
 def new_customer(request):
     if request.method == "POST":
-        form = BrokerForm(request.POST)
+        form = BrokerForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('/dash/customers/')
@@ -130,7 +130,7 @@ def edit_driver(request,pk):
 def edit_customer(request,pk):
     customer = Broker.objects.get(pk=pk)
     if request.method == "POST":
-        form = BrokerForm(request.POST, instance=customer)
+        form = BrokerForm(request.POST, request.FILES, instance=customer)
         if form.is_valid():
             form.save()
             messages.success(request, 'Successfully updated the broker information.')
