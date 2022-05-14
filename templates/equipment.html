@@ -49,11 +49,7 @@
                             <td>{{ eqm.year }}</td>
                             <td>{{ eqm.license_plate }}</td>
                             <td>{{ eqm.license_expiry }}</td>
-                            <td>
-                                {% for driver in eqm.drivers.all %}
-                                    {{ driver }}; 
-                                {% endfor %}
-                            </td>
+                            <td>{{ eqm.owner }}</td>
                             <td>{{ eqm.get_ownership_display }}</td>
                             <td>{{ eqm.vin }}</td>
                             <td>{{ eqm.weight }} lbs.</td>

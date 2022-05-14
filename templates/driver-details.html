@@ -17,7 +17,11 @@
               <div class="card">
                 <div class="card-body">
                   <div class="d-flex flex-column align-items-center text-center">
+                    {% if user.avatar %}
+                        <img src="{{ user.avatar.url }}" alt="Admin" class="rounded-circle" width="150">
+                    {% else %}
                     <img src="{% static 'img/undraw_profile.svg' %}" alt="Admin" class="rounded-circle" width="150">
+                    {% endif %}
                     <div class="mt-3">
                       <h4 class="font-weight-bold text-gray-800">{{ user }}</h4>
 
@@ -185,69 +189,6 @@
 
 <div class="row">
   <!-- Equipment -->
-  <div class="col-xl-6">
-    <div class="card shadow mb-4">
-        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Trucks and Trailers</h6>
-            <div class="dropdown no-arrow">
-                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                    aria-labelledby="dropdownMenuLink">
-                    <div class="dropdown-header">Trucks actions:</div>
-                    <a class="dropdown-item" href="{% url 'dash-new-equipment' %}">New equipment</a>
-                    <a class="dropdown-item" href="{% url 'dash-equipment' %}">Go to equipment</a>
-                </div>
-            </div>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered table-hover" id="dataTablePlain" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>Type</th>
-                            <th>Model</th>
-                            <th>License#</th>
-                            <th>Expiry</th>
-                            <th>Owner</th>
-                            <th>Details</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for eqm in equipment %}
-                        <tr>
-                            <td>{{ eqm.get_category_display }}</td>
-                            <td>{{ eqm.model }}</td>
-                            <td>{{ eqm.license_plate }}</td>
-                            <td>{{ eqm.license_expiry }}</td>
-                            <td>{{ eqm.get_ownership_display }}</td>
-                            <td>
-                                <a class='btn btn-info btn-sm' href="{% url 'dash-edit-equipment' eqm.pk %}">Edit</a>
-                                <a class='btn btn-danger btn-sm' href="{% url 'dash-delete-equipment' eqm.pk %}">Delete</a>
-                            </td>
-                        </tr>
-                        {% endfor %}
-
-                        {% for trailer in trailers %}
-                        <tr>
-                            <td>{{ trailer.get_category_display }}</td>
-                            <td>{{ trailer.model }}</td>
-                            <td>{{ truck.license_plate }}</td>
-                            <td>{{ truck.license_expiry }}</td>
-                            <td>{{ truck.ownership }}</td>
-                            <td>
-                                <a class='btn btn-info btn-sm' href="#">View</a>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div> <!-- end responsive table -->
-        </div> <!-- end card body -->
-  	</div>  <!-- end card -->
-  </div>  <!-- end col -->
   <!-- Documents -->
   <div class="col-xl-6">
    <div class="card shadow mb-4">
@@ -287,57 +228,9 @@
   </div>
 </div> <!-- end row -->
 
-<!-- DataTales Example -->
-<div class="card shadow mb-4">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Orders for {{ userName }}</h6>
-    </div>
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                    <tr>
-                        <th>Customer</th>
-                        <th>Driver</th>
-                        <th>Origin</th>
-                        <th>Destination</th>
-                        <th>Pick up date</th>
-                        <th>Deliver date</th>
-                        <th>Miles</th>
-                        <th>Gross</th>
-                        <th>&gamma; rate</th>
-                        <th>Details</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for order in orders %}
-                    <tr>
-                        <td>{{ order.broker }}</td>
-                        <td>{{ order.driver}}</td>
-                        <td>{{order.origin_city}}, {{ order.origin_state }}</td>
-                        <td>{{order.destination_city}}, {{ order.destination_state }}</td>
-                        <td>{{ order.pickup_date | date:"n/j h:i" }}</td>
-                        <td>{{ order.delivery_date | date:"n/j h:i"  }}</td>
-                        <td>{{ order.mileage }}</td>
-                        <td>{{ order.gross }}</td>
-                        <td>{{ order.gRate }}</td>
-                        <td>
-                            <a class='btn btn-info btn-sm' href="{% url 'dash-read-order' order.pk %}">View</a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
 
-
-
-
-
-
-
+<!-- Orders all relevant -->
+{% include 'templates/orders-table.html' %}
 
 
 

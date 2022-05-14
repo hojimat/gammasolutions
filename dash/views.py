@@ -40,18 +40,16 @@ def read_driver(request,pk):
     driver = Driver.objects.get(pk=pk)
     orders = driver.orders.all()
     documents = driver.documents.all()
-    equipment = driver.equipment.all()
     return render(request, "templates/driver-details.html", {'user': driver,
                                                              'userId': pk,
                                                              'orders': orders,
                                                              'documents': documents,
-                                                             'equipment': equipment,
                                                              })
 
 def read_customer(request,pk):
     customer = Broker.objects.get(pk=pk)
     orders = customer.orders.all()
-    return render(request, "templates/details.html", {'user': customer, 'userId': pk, 'orders': orders})
+    return render(request, "templates/customer-details.html", {'user': customer, 'userId': pk, 'orders': orders})
 
 def read_order(request,pk):
     order = Order.objects.get(pk=pk)
@@ -72,7 +70,7 @@ def new_order(request):
  
 def new_driver(request):
     if request.method == "POST":
-        form = DriverForm(request.POST)
+        form = DriverForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('/dash/drivers/')
@@ -119,7 +117,7 @@ def new_document(request):
 def edit_driver(request,pk):
     driver = Driver.objects.get(pk=pk)
     if request.method == "POST":
-        form = DriverForm(request.POST, instance=driver)
+        form = DriverForm(request.POST, request.FILES, instance=driver)
         if form.is_valid():
             form.save()
             messages.success(request, 'Successfully updated the driver information.')

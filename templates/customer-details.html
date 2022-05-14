@@ -195,51 +195,8 @@
 
 
 
-<!-- DataTales Example -->
-<div class="card shadow mb-4">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Orders for {{ userName }}</h6>
-    </div>
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                    <tr>
-                        <th>Customer</th>
-                        <th>Driver</th>
-                        <th>Origin</th>
-                        <th>Destination</th>
-                        <th>Pick up date</th>
-                        <th>Deliver date</th>
-                        <th>Miles</th>
-                        <th>Gross</th>
-                        <th>&gamma; rate</th>
-                        <th>Details</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for order in orders %}
-                    <tr>
-                        <td>{{ order.broker }}</td>
-                        <td>{{ order.driver}}</td>
-                        <td>{{order.origin_city}}, {{ order.origin_state }}</td>
-                        <td>{{order.destination_city}}, {{ order.destination_state }}</td>
-                        <td>{{ order.pickup_date | date:"n/j h:i" }}</td>
-                        <td>{{ order.delivery_date | date:"n/j h:i"  }}</td>
-                        <td>{{ order.mileage }}</td>
-                        <td>{{ order.gross }}</td>
-                        <td>{{ order.gRate }}</td>
-                        <td>
-                            <a class='btn btn-info btn-sm' href="{% url 'dash-read-order' %}">View</a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-
+<!-- Orders -->
+{% include 'templates/orders-table.html' %}
 
 
 

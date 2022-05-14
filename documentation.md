@@ -5,3 +5,6 @@ The dash app has three main types of actors: Driver, Broker, Shipper. All of the
 ## Why no formsets for dynamic creation of Equipment?
 Because adding equipment will be the least frequent operation ever. There will be at most 10 drivers with 1 truck and 2 trailers, which makes it 30 entries at most. Separate entry avoids complexity and formsets.
 Plus page view instead of table view allows for image or document uploads.
+
+## Why no ManyToMany relation between Drivers and Trucks (Equipment)?
+Because Driver's trucks can be traced through Driver's orders, and every order has exactly one truck and one trailer. To compensate for profit calculation etc. Driver has attribute owner which simply states the name of the owner operator or a company.

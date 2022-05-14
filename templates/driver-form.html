@@ -10,7 +10,7 @@
     </div>
 
     <div class="card-body">
-        <form method='post' class='bootstrap4'>
+        <form method='post' class='bootstrap4' enctype='multipart/form-data'>
           {% csrf_token %}
           <div class="form-row">
             <div class="form-group col-md-6">
@@ -78,15 +78,13 @@
 				{{ form.emergency_contact_phone | as_crispy_field }}
             </div>
           </div>
-          <div class="form-row">
-            <div class="form-group col-md-5">
-				{{ form.equipment | as_crispy_field }}
-            </div>
-          </div>
           <div class="form-row justify-content-end">
             <div class="form-group">
 	            {{ form.active | as_crispy_field }}
             </div>
+          </div>
+          <div class="form-group">
+	          {{ form.avatar | as_crispy_field }}
           </div>
 
           <button type="submit" class="btn btn-primary btn-block btn-lg">Submit</button>

@@ -12,6 +12,7 @@ class Equipment(models.Model):
     TRK = 'TRK'
     TYPES = ((RFR, "Reefer"), (VAN, "Dry Van"), (FLT, "Flatbed"), (TRK, "Truck"), )
 
+    owner = models.CharField(max_length=40, blank=False, default="Gamma Trucking LLC")
     ownership = models.CharField(max_length=10, blank=False, choices=OWNERS, default=OO)
     category = models.CharField(max_length=5, blank=False, choices=TYPES, default=VAN)
     vin = models.CharField(max_length=10, blank=True) # VIN number
@@ -40,6 +41,7 @@ class Entity(models.Model):
     address = models.CharField(max_length=70, blank=True)
     city = models.CharField(max_length=30, blank=False, default='Palo Alto')
     state = models.CharField(max_length=2, blank=False, choices=USCanadaStates, default='CA')
+    avatar = models.ImageField(upload_to='avatars/', blank=True, null=True)
 
     class Meta:
         abstract = True
@@ -62,7 +64,6 @@ class Driver(Entity):
     active = models.BooleanField(default=True) # to filter out non-active drivers
     emergency_contact_name = models.CharField(max_length=40, blank=True, default="Young Neil")
     emergency_contact_phone = models.CharField(max_length=25, blank=True, default="+1(xxx)xxx-xx-xx")
-    equipment = models.ManyToManyField(Equipment, related_name='drivers', blank=True)
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
@@ -95,7 +96,8 @@ class Order(models.Model):
     driver = models.ForeignKey(Driver, on_delete=models.RESTRICT, related_name='orders', null=False)
     broker = models.ForeignKey(Broker, on_delete=models.RESTRICT, related_name='orders', null=True, blank=True)
     shipper = models.ForeignKey(Shipper, on_delete=models.RESTRICT, related_name='orders', null=True, blank=True)
-    equipment = models.ManyToManyField(Equipment, related_name='orders', blank=True)
+    truck = models.ForeignKey(Equipment, on_delete=models.RESTRICT, related_name='truck_orders', null=True, blank=True)
+    trailer = models.ForeignKey(Equipment, on_delete=models.RESTRICT, related_name='trailer_orders', null=True, blank=True)
     commodity = models.CharField(max_length=50, blank=True)
     origin_city = models.CharField(max_length=30, blank=False, default='New York')
     origin_state = models.CharField(max_length=2, blank=False, choices=USCanadaStates, default='NY')
@@ -138,6 +140,9 @@ class Order(models.Model):
 
     def destination_short_address(self):
         return f"{self.destination_city}, {self.destination_state}"
+
+    def __str__(self):
+        return f"{self.pickup_date.strftime('%b %d')} {self.origin_state}-{self.destination_state} by {self.driver}"
 
     # def to return recent orders only (for last 30 days)
 #####################################################
