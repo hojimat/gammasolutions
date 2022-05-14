@@ -14,6 +14,8 @@ class DriverForm(forms.ModelForm):
             'mc' : 'MC number',
             'usdot' : 'US DOT number',
             'g_rate' : 'Default charge rate',
+            'emergency_contact_name' : 'Emer. contact name',
+            'emergency_contact_phone' : 'Emer. contact phone',
         }
 
 class BrokerForm(forms.ModelForm):

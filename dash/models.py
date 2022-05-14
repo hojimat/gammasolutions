@@ -1,5 +1,6 @@
 from django.db import models
 from .widgets import USCanadaStates
+from datetime import datetime, timedelta
 
 class Equipment(models.Model):
     FRM = 'FRM'
@@ -51,6 +52,12 @@ class Entity(models.Model):
     
     def short_address(self):
         return f"{self.city}, {self.state}"
+
+    def earnings(self, days=0):
+        date_from = datetime.today() - timedelta(days=days) 
+        all_earnings = self.orders.filter(payment_due__gt = date_from)
+        total_earnings = all_earnings.aggregate(models.Sum('gross'))['gross__sum']
+        return total_earnings
     
 class Driver(Entity):
     GENDERS = (('M',"Male"),('F',"Female"),('X',"Do not specify"))
@@ -129,6 +136,9 @@ class Order(models.Model):
     completed = models.BooleanField(default=False) 
     paid = models.BooleanField(default=False) 
 
+    def __str__(self):
+        return f"{self.pickup_date.strftime('%b %d')} {self.origin_state}-{self.destination_state} by {self.driver}"
+
     def origin_full_address(self):
         return f"{self.origin_zip_code} {self.origin_address}, {self.origin_city}, {self.origin_state}"
 
@@ -140,10 +150,7 @@ class Order(models.Model):
 
     def destination_short_address(self):
         return f"{self.destination_city}, {self.destination_state}"
-
-    def __str__(self):
-        return f"{self.pickup_date.strftime('%b %d')} {self.origin_state}-{self.destination_state} by {self.driver}"
-
+    
     # def to return recent orders only (for last 30 days)
 #####################################################
 

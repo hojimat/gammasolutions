@@ -39,17 +39,24 @@ def documents(request):
 def read_driver(request,pk):
     driver = Driver.objects.get(pk=pk)
     orders = driver.orders.all()
+    earnings = driver.earnings(days=300)
     documents = driver.documents.all()
     return render(request, "templates/driver-details.html", {'user': driver,
                                                              'userId': pk,
                                                              'orders': orders,
+                                                             'earnings': earnings,
                                                              'documents': documents,
                                                              })
 
 def read_customer(request,pk):
     customer = Broker.objects.get(pk=pk)
     orders = customer.orders.all()
-    return render(request, "templates/customer-details.html", {'user': customer, 'userId': pk, 'orders': orders})
+    earnings = customer.earnings(days=300)
+    return render(request, "templates/customer-details.html", {'user': customer,
+                                                               'userId': pk,
+                                                               'orders': orders,
+                                                               'earnings': earnings,
+                                                               })
 
 def read_order(request,pk):
     order = Order.objects.get(pk=pk)
