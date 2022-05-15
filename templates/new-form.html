@@ -2,23 +2,14 @@
 {% block content %}
 {% load crispy_forms_tags %}
 
-<div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">New {{formType}}</h1>
-</div>
-
-<div class="card shadow mb-4">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">New {{formType}}</h6>
-    </div>
-    <div class="card-body">
-        <form method='post' class='bootstrap4'>
-            {% csrf_token %}
-            {{ form | crispy}}
-            <input type='submit' value='Submit' class='btn btn-primary' />
-        </form>
-    </div>
-
-</div>
+<div class='row'>
+<div class='col-xl-6 mx-auto'>
+<div class="card shadow my-4">
+    {% block newform %}
+    {% endblock %}
+</div> <!-- end card -->
+</div> <!-- end col-mdumn -->
+</div> <!-- end row -->
 
 {% endblock %}
 

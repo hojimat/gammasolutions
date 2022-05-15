@@ -1,82 +1,76 @@
-{% extends 'templates/dash.html' %}
-{% block content %}
+{% extends 'templates/new-form.html' %}
+
+{% block newform %}
 {% load crispy_forms_tags %}
 
-<div class='row'>
-<div class='col-xl-6 mx-auto'>
-<div class="card shadow mb-4">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Customer information form</h6>
-    </div>
+<div class="card-header py-3">
+    Customer information form
+</div>
 
-    <div class="card-body">
-        <form method='post' class='bootstrap4' enctype='multipart/form-data'>
-          {% csrf_token %}
-          <div class="form-row">
-            <div class="form-group col-md-6">
-				{{ form.company_name | as_crispy_field }}
-            </div>
-            <div class="form-group col-md-6">
-				{{ form.email | as_crispy_field }}
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-4">
-				{{ form.phone | as_crispy_field }}
-            </div>
-            <div class="form-group col-md-4">
-				{{ form.mobile | as_crispy_field }}
-            </div>
-            <div class="form-group col-md-4">
-				{{ form.fax | as_crispy_field }}
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-4">
-				{{ form.mc | as_crispy_field }}
-            </div>
-            <div class="form-group col-md-4">
-				{{ form.usdot | as_crispy_field }}
-            </div>
-            <div class="form-group col-md-4">
-		  	    {{ form.website | as_crispy_field }}
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-4">
-				{{ form.address | as_crispy_field }}
-            </div>
-            <div class="form-group col-md-3">
-				{{ form.city | as_crispy_field }}
-            </div>
-            <div class="form-group col-md-3">
-				{{ form.state | as_crispy_field }}
-            </div>
-            <div class="form-group col-md-2">
-				{{ form.zip_code | as_crispy_field }}
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-4">
-				{{ form.telegram | as_crispy_field }}
-            </div>
-            <div class="form-group col-md-4">
-				{{ form.contact_name_1 | as_crispy_field }}
-            </div>
-            <div class="form-group col-md-4">
-				{{ form.contact_name_2 | as_crispy_field }}
-            </div>
-          </div>
-          <div class="form-group">
-		  	{{ form.avatar | as_crispy_field }}
-          </div>
+<div class="card-body">
+    <form method='post' class='bootstrap4' enctype='multipart/form-data'>
+      {% csrf_token %}
+      <div class="row">
+        <div class="col-md">
+			{{ form.company_name | as_crispy_field }}
+        </div>
+        <div class="col-md">
+			{{ form.email | as_crispy_field }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md">
+			{{ form.phone | as_crispy_field }}
+        </div>
+        <div class="col-md">
+			{{ form.mobile | as_crispy_field }}
+        </div>
+        <div class="col-md">
+			{{ form.fax | as_crispy_field }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md">
+			{{ form.mc | as_crispy_field }}
+        </div>
+        <div class="col-md">
+			{{ form.usdot | as_crispy_field }}
+        </div>
+        <div class="col-md">
+	  	    {{ form.website | as_crispy_field }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+			{{ form.address | as_crispy_field }}
+        </div>
+        <div class="col-md-3">
+			{{ form.city | as_crispy_field }}
+        </div>
+        <div class="col-md-3">
+			{{ form.state | as_crispy_field }}
+        </div>
+        <div class="col-md-2">
+			{{ form.zip_code | as_crispy_field }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md">
+			{{ form.telegram | as_crispy_field }}
+        </div>
+        <div class="col-md">
+			{{ form.contact_name_1 | as_crispy_field }}
+        </div>
+        <div class="col-md">
+			{{ form.contact_name_2 | as_crispy_field }}
+        </div>
+      </div>
+     
+     {{ form.avatar | as_crispy_field }}
 
-          <button type="submit" class="btn btn-primary btn-block btn-lg">Submit</button>
-        </form>
-    </div>
-</div> <!-- end card -->
-</div> <!-- end column -->
-</div> <!-- end row -->
+      <button type="submit" class="btn btn-primary btn-block btn-lg">Submit</button>
+    </form>
+</div>
 
 {% endblock %}
 

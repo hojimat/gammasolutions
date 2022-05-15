@@ -1,73 +1,67 @@
-{% extends 'templates/dash.html' %}
-{% block content %}
+{% extends 'templates/new-form.html' %}
+{% block newform %}
 {% load crispy_forms_tags %}
 
-<div class='row'>
-<div class='col-xl-6 mx-auto'>
-<div class="card shadow mb-4">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Equipment information</h6>
-    </div>
+<div class="card-header py-3">
+    <h4>Equipment information</h4>
+</div>
 
-    <div class="card-body">
-        <form method='post' class='bootstrap4'>
-          {% csrf_token %}
-          <div class="form-row">
-            <div class="form-group col-md-4">
-				{{ form.category | as_crispy_field }}
-            </div>
-            <div class="form-group col-md-4">
-				{{ form.ownership | as_crispy_field }}
-            </div>
-            <div class="form-group col-md-4">
-				{{ form.owner | as_crispy_field }}
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-4">
-				{{ form.vin | as_crispy_field }}
-            </div>
-            <div class="form-group col-md-4">
-				{{ form.model | as_crispy_field }}
-            </div>
-            <div class="form-group col-md-4">
-				{{ form.year | as_crispy_field }}
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-4">
-				{{ form.license_plate | as_crispy_field }}
-            </div>
-            <div class="form-group col-md-4">
-				{{ form.license_expiry | as_crispy_field }}
-            </div>
-            <div class="form-group col-md-4">
-				{{ form.weight | as_crispy_field }}
-            </div>
-          </div>
-          <div class="form-row justify-content-between">
-            <div class="form-group col-md-4">
-				{{ form.width | as_crispy_field }}
-            </div>
-            <div class="form-group col-md-4">
-				{{ form.height | as_crispy_field }}
-            </div>
-            <div class="form-group col-md-4">
-		  	    {{ form.length | as_crispy_field }}
-            </div>
-          </div>
-          <div class="form-row justify-content-end">
-            <div class="form-group">
-	            {{ form.active | as_crispy_field }}
-            </div>
-          </div>
+<div class="card-body">
+    <form method='post' class='bootstrap4'>
+      {% csrf_token %}
+      <div class="row">
+        <div class="col-4">
+			{{ form.category | as_crispy_field }}
+        </div>
+        <div class="col-4">
+			{{ form.ownership | as_crispy_field }}
+        </div>
+        <div class="col-4">
+			{{ form.owner | as_crispy_field }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4">
+			{{ form.vin | as_crispy_field }}
+        </div>
+        <div class="col-4">
+			{{ form.model | as_crispy_field }}
+        </div>
+        <div class="col-4">
+			{{ form.year | as_crispy_field }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4">
+			{{ form.license_plate | as_crispy_field }}
+        </div>
+        <div class="col-4">
+			{{ form.license_expiry | as_crispy_field }}
+        </div>
+        <div class="col-4">
+			{{ form.weight | as_crispy_field }}
+        </div>
+      </div>
+      <div class="row justify-content-between">
+        <div class="col-4">
+			{{ form.width | as_crispy_field }}
+        </div>
+        <div class="col-4">
+			{{ form.height | as_crispy_field }}
+        </div>
+        <div class="col-4">
+	  	    {{ form.length | as_crispy_field }}
+        </div>
+      </div>
+      <div class="row justify-content-end">
+      
+      {{ form.active | as_crispy_field }}
+      
+      </div>
 
-          <button type="submit" class="btn btn-primary btn-block btn-lg">Submit</button>
-        </form>
-    </div>
-</div> <!-- end card -->
-</div> <!-- end column -->
-</div> <!-- end row -->
+      <button type="submit" class="btn btn-primary btn-block btn-lg">Submit</button>
+    </form>
+</div>
 
 {% endblock %}
 
