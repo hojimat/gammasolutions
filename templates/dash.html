@@ -10,7 +10,7 @@
         
         {% load static %}
         <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
-        <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+        <script src="{% static 'vendor/fontawesome/all.min.js' %}" crossorigin="anonymous"></script>
         <link href="{% static 'vendor/simpledatatables/all.min.css' %}" rel="stylesheet" />
         <!-- page-specific styles -->
         {% block styles %}
@@ -20,7 +20,7 @@
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-primary">
             <!-- Navbar Brand--> 
-            <a class="navbar-brand ps-3" href="{% url 'dash-main' %}"><i class="fas fa-truck-monster"></i> Gamma TMS</a>
+            <a class="navbar-brand ps-3" href="{% url 'dash-main' %}"><i class="fas fa-xl fa-truck-monster"></i> Gamma TMS</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -50,24 +50,24 @@
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Main</div>
                             <a class="nav-link" href="{% url 'dash-drivers' %}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-user-astronaut"></i></div>
                                 Drivers
                             </a>
                             <a class="nav-link" href="{% url 'dash-customers' %}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-user-group"></i></div>
                                 Customers
                             </a>
                             <a class="nav-link" href="{% url 'dash-orders' %}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-dolly"></i></div>
                                 Orders
                             </a>
                             <div class="sb-sidenav-menu-heading">Extra</div>
                             <a class="nav-link" href="{% url 'dash-equipment' %}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-truck-moving"></i></div>
                                 Equipment
                             </a>
                             <a class="nav-link" href="{% url 'dash-documents' %}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-folder-open"></i></div>
                                 Documents
                             </a>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -101,15 +101,6 @@
                                     </div>
                                 </nav>
                             </div>
-                            <div class="sb-sidenav-menu-heading">Addons</div>
-                            <a class="nav-link" href="charts.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                                Charts
-                            </a>
-                            <a class="nav-link" href="tables.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Tables
-                            </a>
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">

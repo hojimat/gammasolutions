@@ -7,7 +7,7 @@
 </div>
 
 <div class="card-body">
-    <form method='post' class='bootstrap4'>
+    <form method='post' class='bootstrap4' enctype='multipart/form-data'>
       {% csrf_token %}
       <div class="row">
         <div class="col">
@@ -42,6 +42,8 @@
 			{{ form.broker | as_crispy_field }}
         </div>
       </div>
+
+      {{ form.scanned_copy | as_crispy_field }}
 
       <button type="submit" class="btn btn-primary btn-block btn-lg">Submit</button>
     </form>

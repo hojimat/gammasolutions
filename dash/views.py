@@ -69,6 +69,7 @@ def new_order(request):
         form = OrderForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Successfully created an order.')
             return redirect('/dash/orders/')
     else:
         form = OrderForm()
@@ -80,6 +81,7 @@ def new_driver(request):
         form = DriverForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Successfully added a driver.')
             return redirect('/dash/drivers/')
     else:
         form = DriverForm()
@@ -91,6 +93,7 @@ def new_customer(request):
         form = BrokerForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Successfully added a customer.')
             return redirect('/dash/customers/')
     else:
         form = BrokerForm()
@@ -102,6 +105,7 @@ def new_equipment(request):
         form = EquipmentForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Successfully added an equipment.')
             return redirect(f"/dash/equipment/")
     else:
         form = EquipmentForm()
@@ -110,9 +114,10 @@ def new_equipment(request):
 
 def new_document(request):
     if request.method == "POST":
-        form = DocumentForm(request.POST)
+        form = DocumentForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Successfully added a document.')
             return redirect(f"/dash/documents/")
     else:
         form = DocumentForm()
@@ -166,7 +171,7 @@ def edit_equipment(request,pk):
         form = EquipmentForm(request.POST, instance=eqm)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Successfully updated the order information.')
+            messages.success(request, 'Successfully updated the equipment information.')
             return redirect('/dash/equipment/')
     else:
         form = EquipmentForm(instance=eqm)
@@ -179,7 +184,7 @@ def edit_document(request,pk):
         form = DocumentForm(request.POST, instance=document)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Successfully updated the order information.')
+            messages.success(request, 'Successfully updated the document information.')
             return redirect('/dash/documents/')
     else:
         form = DocumentForm(instance=document)
@@ -234,7 +239,7 @@ def delete_equipment(request,pk):
     if request.method == "POST":
         try:
             eqm.delete()
-            messages.warning(request, 'Successfully deleted the order.')
+            messages.warning(request, 'Successfully deleted the equipment.')
         except RestrictedError:
             pass
 
@@ -248,7 +253,7 @@ def delete_document(request,pk):
     if request.method == "POST":
         try:
             document.delete()
-            messages.warning(request, 'Successfully deleted the order.')
+            messages.warning(request, 'Successfully deleted the document.')
         except RestrictedError:
             pass
 

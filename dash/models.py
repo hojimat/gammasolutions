@@ -179,6 +179,7 @@ class Document(models.Model):
     issued_by = models.CharField(max_length=50, blank=True)
     number = models.CharField(max_length=20, blank=True)
     detail = models.CharField(max_length=50, blank=True, default=0)
+    scanned_copy = models.FileField(upload_to='documents/', blank=True, null=True) 
     driver = models.ForeignKey(Driver, on_delete=models.RESTRICT, related_name='documents', blank=True, null=True)
     order = models.ForeignKey(Order, on_delete=models.RESTRICT, related_name='documents', blank=True, null=True)
     broker = models.ForeignKey(Broker, on_delete=models.RESTRICT, related_name='documents', blank=True, null=True)
