@@ -17,7 +17,7 @@
         </div>
     </div>
     <div class="col-xl-3 col-md-6">
-        <div class="card bg-warning text-white mb-4">
+        <div class="card bg-warning text-white mb-4 ">
             <div class="card-body">Warning Card</div>
             <div class="card-footer d-flex align-items-center justify-content-between">
                 <a class="small text-white stretched-link" href="#">View Details</a>
@@ -45,17 +45,28 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-xl-6">
-        <div class="card mb-4">
-            <div class="card-header">
-                <i class="fas fa-chart-area me-1"></i>
-                Area Chart Example
+    <!-- Area Chart -->
+    <div class="col-xl-8">
+        <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+
+            <div class="card-header py-3">
+                 <i class="fas fa-chart-line me-1"></i>
+                 Earnings history
             </div>
-            <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
+            <!-- Card Body -->
+            <div class="card-body">
+                <div class="chart-area">
+                    <canvas id="earningsHistory"></canvas>
+                </div>
+            </div>
+
+            <!-- Card footer -->
+            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
         </div>
     </div>
-    <div class="col-xl-6">
-        <div class="card mb-4">
+    <div class="col-xl-4">
+        <div class="card mb-4 shadow">
             <div class="card-header">
                 <i class="fas fa-chart-bar me-1"></i>
                 Bar Chart Example
@@ -64,98 +75,15 @@
         </div>
     </div>
 </div>
-<div class="card mb-4">
-    <div class="card-header">
-        <i class="fas fa-table me-1"></i>
-        DataTable Example
-    </div>
-    <div class="card-body">
-        <table id="datatablesSimple">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Position</th>
-                    <th>Office</th>
-                    <th>Age</th>
-                    <th>Start date</th>
-                    <th>Salary</th>
-                </tr>
-            </thead>
-            <tfoot>
-                <tr>
-                    <th>Name</th>
-                    <th>Position</th>
-                    <th>Office</th>
-                    <th>Age</th>
-                    <th>Start date</th>
-                    <th>Salary</th>
-                </tr>
-            </tfoot>
-            <tbody>
-                <tr>
-                    <td>Tiger Nixon</td>
-                    <td>System Architect</td>
-                    <td>Edinburgh</td>
-                    <td>61</td>
-                    <td>2011/04/25</td>
-                    <td>$320,800</td>
-                </tr>
-                <tr>
-                    <td>Garrett Winters</td>
-                    <td>Accountant</td>
-                    <td>Tokyo</td>
-                    <td>63</td>
-                    <td>2011/07/25</td>
-                    <td>$170,750</td>
-                </tr>
-                <tr>
-                    <td>Ashton Cox</td>
-                    <td>Junior Technical Author</td>
-                    <td>San Francisco</td>
-                    <td>66</td>
-                    <td>2009/01/12</td>
-                    <td>$86,000</td>
-                </tr>
-                <tr>
-                    <td>Cedric Kelly</td>
-                    <td>Senior Javascript Developer</td>
-                    <td>Edinburgh</td>
-                    <td>22</td>
-                    <td>2012/03/29</td>
-                    <td>$433,060</td>
-                </tr>
-                <tr>
-                    <td>Airi Satou</td>
-                    <td>Accountant</td>
-                    <td>Tokyo</td>
-                    <td>33</td>
-                    <td>2008/11/28</td>
-                    <td>$162,700</td>
-                </tr>
-                <tr>
-                    <td>Brielle Williamson</td>
-                    <td>Integration Specialist</td>
-                    <td>New York</td>
-                    <td>61</td>
-                    <td>2012/12/02</td>
-                    <td>$372,000</td>
-                </tr>
-                <tr>
-                    <td>Herrod Chandler</td>
-                    <td>Sales Assistant</td>
-                    <td>San Francisco</td>
-                    <td>59</td>
-                    <td>2012/08/06</td>
-                    <td>$137,500</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
 
 {% endblock %}
 
 
 {% block scripts %}
+<script src="{% static 'vendor/chartjs/Chart.min.js' %}"></script>
+<script>
+    const myGross = [{% for i in earnings %}{{ i.gross }},{% endfor %}];
+    const myDates = [{% for i in earnings %}"{{ i.payment_due }}",{% endfor %}];
+</script>
+<script src="{% static 'js/chart-area.js' %}"></script>
 {% endblock %}
-

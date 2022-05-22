@@ -17,8 +17,7 @@
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h1 mt-4 mb-0">Drivers</h1>
-    <a href="{% url 'dash-new-driver' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-            class="fas fa-plus fa-sm text-white-50"></i> New driver</a>
+    <a href="{% url 'dash-new-driver' %}" class="btn btn-sm btn-primary shadow"><i class="fas fa-plus text-white-50"></i> New driver</a>
 </div>
 
 <!-- Drivers table -->
@@ -54,7 +53,7 @@
                         <td>{{ driver.gRate}}</td>
                         <td>{{ driver.orders.count }}</td>
                         <td>
-                            <a class='btn btn-info btn-sm' href="{% url 'dash-read-driver' driver.pk %}">View</a>
+                            <a class='btn btn-primary btn-sm' href="{% url 'dash-read-driver' driver.pk %}">View</a>
                         </td>
                     </tr>
                     {% endfor %}

@@ -10,7 +10,9 @@ def index(request):
     return render(request, 'templates/index.html',)
 
 def main(request):
-    return render(request, 'templates/main.html')
+    orders = Order.objects.all()
+    earnings = orders.values('payment_due').annotate(gross=models.Sum('gross')).order_by('payment_due')
+    return render(request, 'templates/main.html', {'orders': orders, 'earnings': earnings})
 
 # ALL MODELS
 
@@ -39,23 +41,31 @@ def documents(request):
 def read_driver(request,pk):
     driver = Driver.objects.get(pk=pk)
     orders = driver.orders.all()
-    earnings = driver.earnings(days=300)
+    earnings_wk = driver.earnings(days=7)
+    earnings_yr = driver.earnings(days=365)
+    earnings_hist = driver.earnings_history()
     documents = driver.documents.all()
-    return render(request, "templates/driver-details.html", {'user': driver,
+    return render(request, "templates/entity-details.html", {'user': driver,
                                                              'userId': pk,
                                                              'orders': orders,
-                                                             'earnings': earnings,
+                                                             'earnings_wk': earnings_wk,
+                                                             'earnings_yr': earnings_yr,
+                                                             'earnings_hist': earnings_hist,
                                                              'documents': documents,
                                                              })
 
 def read_customer(request,pk):
     customer = Broker.objects.get(pk=pk)
     orders = customer.orders.all()
-    earnings = customer.earnings(days=300)
-    return render(request, "templates/customer-details.html", {'user': customer,
+    earnings_wk = customer.earnings(days=7)
+    earnings_yr = customer.earnings(days=365)
+    earnings_hist = customer.earnings_history()
+    return render(request, "templates/entity-details.html", {'user': customer,
                                                                'userId': pk,
                                                                'orders': orders,
-                                                               'earnings': earnings,
+                                                               'earnings_wk': earnings_wk,
+                                                               'earnings_yr': earnings_yr,
+                                                               'earnings_hist': earnings_hist,
                                                                })
 
 def read_order(request,pk):

@@ -14,12 +14,72 @@
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h1 mt-4 mb-0">Orders</h1>
-    <a href="{% url 'dash-new-order' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-            class="fas fa-plus fa-sm text-white-50"></i> New order</a>
+    <a href="{% url 'dash-new-order' %}" class="btn btn-sm btn-primary shadow"><i
+            class="fas fa-plus text-white-50"></i> New order</a>
 </div>
 
 <!-- Orders Table -->
-{% include 'templates/orders-table.html' %}
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+         <i class="fas fa-table me-1"></i>
+         Orders
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover" id="datatablesSimple" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Customer</th>
+                        <th>Driver</th>
+                        <th>Origin</th>
+                        <th>Destination</th>
+                        <th>Pick up date</th>
+                        <th>Delivery date</th>
+                        <th>Miles</th>
+                        <th>Payment due</th>
+                        <th>Gross</th>
+                        <th>&gamma; rate</th>
+                        <th>Details</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                    <tr>
+                        <td>{{ order.broker }}</td>
+                        <td>{{ order.driver }}</td>
+                        <td>{{order.origin_city}}, {{ order.origin_state }}</td>
+                        <td>{{order.destination_city}}, {{ order.destination_state }}</td>
+                        <td>{{ order.pickup_date | date:"M j h:i" }}</td>
+                        <td>{{ order.delivery_date | date:"M j h:i"  }}</td>
+                        <td>{{ order.mileage }}</td>
+                        <td>{{ order.payment_due | date:"M j" }}</td>
+                        <td>{{ order.gross }}</td>
+                        <td>{{ order.gRate }}</td>
+                        <td>
+                            <a class='btn btn-info btn-sm' href="{% url 'dash-read-order' order.pk %}">View</a>
+                        </td>
+                        <td>
+                            {% if order.completed %}
+                                Completed;
+                            {% else %}
+                                In-progress;
+                            {% endif %}
+
+                            {% if order.paid %}
+                                Paid
+                            {% else %}
+                                Not paid
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
 
 {% endblock %}
 

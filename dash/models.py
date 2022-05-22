@@ -56,8 +56,18 @@ class Entity(models.Model):
     def earnings(self, days=0):
         date_from = datetime.today() - timedelta(days=days) 
         all_earnings = self.orders.filter(payment_due__gt = date_from)
-        total_earnings = all_earnings.aggregate(models.Sum('gross'))['gross__sum']
+        total_earnings = all_earnings.aggregate(models.Sum('gross'))['gross__sum'] or 0.0
         return total_earnings
+
+    def earnings_history(self):
+        all_earnings = self.orders.values('payment_due').annotate(gross=models.Sum('gross')).order_by('payment_due')
+        if not all_earnings.exists():
+            return [{'payment_due': "Mar. 15, 2022", 'gross':100},
+                    {'payment_due': "Jun. 15, 2022", 'gross':400}, 
+                    {'payment_due': "Sep. 15, 2022", 'gross':500},
+                    {'payment_due': "Dec. 15, 2022", 'gross':700}
+                   ]
+        return all_earnings
     
 class Driver(Entity):
     GENDERS = (('M',"Male"),('F',"Female"),('X',"Do not specify"))
