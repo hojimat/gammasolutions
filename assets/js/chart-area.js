@@ -3,7 +3,7 @@ Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSyste
 Chart.defaults.global.defaultFontColor = '#292b2c';
 
 // Area Chart Example
-const ctx = document.getElementById("earningsHistory");
+var ctx = document.getElementById("earningsHistory");
 const myLineChart = new Chart(ctx, {
   type: 'line',
   data: {
@@ -33,11 +33,13 @@ const myLineChart = new Chart(ctx, {
           display: false
         },
         ticks: {
+          maxTicksLimit: 10,
         }
       }],
       yAxes: [{
         ticks: {
           min: 0,
+          maxTicksLimit: 7,
         },
         gridLines: {
           color: "rgba(0, 0, 0, .125)",
@@ -46,7 +48,9 @@ const myLineChart = new Chart(ctx, {
     },
     legend: {
       display: false
-    }
+    },
+    maintainAspectRatio: false,
+    responsive: true,
   }
 });
 

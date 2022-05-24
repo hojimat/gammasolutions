@@ -10,9 +10,13 @@ def index(request):
     return render(request, 'templates/index.html',)
 
 def main(request):
-    orders = Order.objects.all()
+    orders = Order.objects.select_related('driver')
     earnings = orders.values('payment_due').annotate(gross=models.Sum('gross')).order_by('payment_due')
-    return render(request, 'templates/main.html', {'orders': orders, 'earnings': earnings})
+    earnings_by_driver = orders.values('driver').annotate(gross=models.Sum('gross'), driverName=models.functions.Concat('driver__first_name', models.Value(' '), 'driver__last_name'))
+    return render(request, 'templates/main.html', {'orders': orders,
+                                                   'earnings': earnings,
+                                                   'earnings_by_driver': earnings_by_driver,
+                                                   })
 
 # ALL MODELS
 
@@ -25,7 +29,7 @@ def customers(request):
     return render(request, 'templates/customers.html', {'customers': customers})
 
 def orders(request):
-    orders = Order.objects.all()
+    orders = Order.objects.select_related('driver')
     return render(request, 'templates/orders.html', {'orders': orders})
 
 def equipment(request):
@@ -69,7 +73,7 @@ def read_customer(request,pk):
                                                                })
 
 def read_order(request,pk):
-    order = Order.objects.get(pk=pk)
+    order = Order.objects.select_related('driver').get(pk=pk)
     return render(request, "templates/order-details.html", {'order': order})
 
 # CREATE MODELS
@@ -163,7 +167,7 @@ def edit_customer(request,pk):
     return render(request, "templates/customer-form.html", {'form': form})
 
 def edit_order(request,pk):
-    order = Order.objects.get(pk=pk)
+    order = Order.objects.select_related('driver').get(pk=pk)
     if request.method == "POST":
         form = OrderForm(request.POST, instance=order)
         if form.is_valid():
@@ -232,7 +236,7 @@ def delete_customer(request,pk):
     return render(request, "templates/delete.html", {'object_name': customer})
 
 def delete_order(request,pk):
-    order = Order.objects.get(pk=pk)
+    order = Order.objects.select_related('driver').get(pk=pk)
     if request.method == "POST":
         try:
             order.delete()

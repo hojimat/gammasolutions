@@ -8,7 +8,7 @@
 </ol>
 <div class="row">
     <div class="col-xl-3 col-md-6">
-        <div class="card bg-primary text-white mb-4">
+        <div class="card bg-primary text-white mb-4 shadow">
             <div class="card-body">Primary Card</div>
             <div class="card-footer d-flex align-items-center justify-content-between">
                 <a class="small text-white stretched-link" href="#">View Details</a>
@@ -17,7 +17,7 @@
         </div>
     </div>
     <div class="col-xl-3 col-md-6">
-        <div class="card bg-warning text-white mb-4 ">
+        <div class="card bg-warning text-white mb-4 shadow">
             <div class="card-body">Warning Card</div>
             <div class="card-footer d-flex align-items-center justify-content-between">
                 <a class="small text-white stretched-link" href="#">View Details</a>
@@ -26,7 +26,7 @@
         </div>
     </div>
     <div class="col-xl-3 col-md-6">
-        <div class="card bg-success text-white mb-4">
+        <div class="card bg-success text-white mb-4 shadow">
             <div class="card-body">Success Card</div>
             <div class="card-footer d-flex align-items-center justify-content-between">
                 <a class="small text-white stretched-link" href="#">View Details</a>
@@ -35,7 +35,7 @@
         </div>
     </div>
     <div class="col-xl-3 col-md-6">
-        <div class="card bg-danger text-white mb-4">
+        <div class="card bg-danger text-white mb-4 shadow">
             <div class="card-body">Danger Card</div>
             <div class="card-footer d-flex align-items-center justify-content-between">
                 <a class="small text-white stretched-link" href="#">View Details</a>
@@ -57,7 +57,7 @@
             <!-- Card Body -->
             <div class="card-body">
                 <div class="chart-area">
-                    <canvas id="earningsHistory"></canvas>
+                    <canvas id="earningsHistory" style='height:20rem'></canvas>
                 </div>
             </div>
 
@@ -65,13 +65,21 @@
             <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
         </div>
     </div>
+    <!-- Pie Chart -->
     <div class="col-xl-4">
-        <div class="card mb-4 shadow">
-            <div class="card-header">
-                <i class="fas fa-chart-bar me-1"></i>
-                Bar Chart Example
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                 <i class="fas fa-chart-pie me-1"></i>
+                 Earnings by driver
             </div>
-            <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+            <!-- Card Body -->
+            <div class="card-body">
+                <div class="chart-pie">
+                    <canvas id="earningsByDriver" style='height:20rem'></canvas>
+                </div>
+            </div>
+            <!-- Card footer -->
+            <div class="card-footer small text-muted">Updated yesterday at 11:58 PM</div>
         </div>
     </div>
 </div>
@@ -84,6 +92,9 @@
 <script>
     const myGross = [{% for i in earnings %}{{ i.gross }},{% endfor %}];
     const myDates = [{% for i in earnings %}"{{ i.payment_due }}",{% endfor %}];
+    const driverGross = [{% for i in earnings_by_driver %}{{ i.gross }},{% endfor %}];
+    const driverNames = [{% for i in earnings_by_driver %}"{{ i.driverName }}",{% endfor %}];
 </script>
 <script src="{% static 'js/chart-area.js' %}"></script>
+<script src="{% static 'js/chart-pie.js' %}"></script>
 {% endblock %}

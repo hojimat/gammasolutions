@@ -60,6 +60,7 @@ class EquipmentForm(forms.ModelForm):
         }
 
 class DocumentForm(forms.ModelForm):
+    order = forms.ModelChoiceField(queryset=Order.objects.select_related('driver'), empty_label="Choose")
     class Meta:
         model = Document
         fields = '__all__'

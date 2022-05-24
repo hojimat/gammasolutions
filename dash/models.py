@@ -137,11 +137,11 @@ class Order(models.Model):
     weight = models.FloatField(blank=True, default=0) # max lbs
     mileage = models.SmallIntegerField(blank=False, default=0)
     deadhead = models.SmallIntegerField(blank=False, default=0)
-    gross = models.FloatField(blank=False, default=0)
+    gross = models.DecimalField(blank=False, max_digits=10, decimal_places=2, default=0)
     payment_due = models.DateField(blank=False, default="2022-01-13")
     g_rate = models.FloatField(blank=False, default=0) # to be inherited from Driver 
     fuel_burnt = models.FloatField(blank=False, default=0) # gallons
-    fuel_price = models.FloatField(blank=False, default=0) # USD per gallon
+    fuel_price = models.DecimalField(blank=False, max_digits = 5, decimal_places=2, default=0) # USD per gallon
     toll = models.FloatField(blank=False, default=0)
     completed = models.BooleanField(default=False) 
     paid = models.BooleanField(default=False) 
