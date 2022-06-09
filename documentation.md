@@ -8,3 +8,8 @@ Plus page view instead of table view allows for image or document uploads.
 
 ## Why no ManyToMany relation between Drivers and Trucks (Equipment)?
 Because Driver's trucks can be traced through Driver's orders, and every order has exactly one truck and one trailer. To compensate for profit calculation etc. Driver has attribute owner which simply states the name of the owner operator or a company.
+
+## Why selectrelated queries?
+Because this allows to have just one database hit for referenced related models
+
+

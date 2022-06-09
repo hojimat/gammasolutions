@@ -3,9 +3,6 @@
 
 {% block content %}
 <h1 class="mt-4">Dashboard</h1>
-<ol class="breadcrumb mb-4">
-    <li class="breadcrumb-item active">Dashboard</li>
-</ol>
 <div class="row">
     <div class="col-xl-3 col-md-6">
         <div class="card bg-primary text-white mb-4 shadow">
@@ -43,8 +40,8 @@
             </div>
         </div>
     </div>
-</div>
-<div class="row">
+</div><!-- end row -->
+<div class='row'>
     <!-- Area Chart -->
     <div class="col-xl-8">
         <div class="card shadow mb-4">
@@ -82,19 +79,40 @@
             <div class="card-footer small text-muted">Updated yesterday at 11:58 PM</div>
         </div>
     </div>
-</div>
+</div><!-- end row -->
+<div class="row">
+    <div class="col-xl-4">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                 <i class="fas fa-chart-pie me-1"></i>
+                 Earnings by state
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+                <div class="chart-geo">
+                    <div id="earningsByState"></div>
+                </div>
+            </div>
+            <!-- Card footer -->
+            <div class="card-footer small text-muted">Updated yesterday at 11:58 PM</div>
+        </div>
+    </div>
+</div><!-- end row -->
 
 {% endblock %}
 
 
 {% block scripts %}
 <script src="{% static 'vendor/chartjs/Chart.min.js' %}"></script>
+<script src="{% static 'vendor/googlecharts/loader.js' %}"></script>
 <script>
     const myGross = [{% for i in earnings %}{{ i.gross }},{% endfor %}];
     const myDates = [{% for i in earnings %}"{{ i.payment_due }}",{% endfor %}];
     const driverGross = [{% for i in earnings_by_driver %}{{ i.gross }},{% endfor %}];
-    const driverNames = [{% for i in earnings_by_driver %}"{{ i.driverName }}",{% endfor %}];
+    const driverNames = [{% for i in earnings_by_driver %}"{{ i.driver__first_name }} {{ i.driver__last_name}}",{% endfor %}];
+    const stateGross = [["State", "Earnings"],{% for i in earnings_by_state %}["{{ i.origin_state }}",{{ i.gross }}],{% endfor %}];
 </script>
 <script src="{% static 'js/chart-area.js' %}"></script>
 <script src="{% static 'js/chart-pie.js' %}"></script>
+<script src="{% static 'js/chart-geo.js' %}"></script>
 {% endblock %}

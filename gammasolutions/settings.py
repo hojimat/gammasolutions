@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'django.contrib.staticfiles',
     'dash',
+    'market',
     'crispy_forms',
     'crispy_bootstrap5',
 ]
