@@ -10,9 +10,13 @@ from django.db import models
 #    #market foreign key
 #    #distance to market center
 #    pass
-#
-#class Industry(models.Model):
-#    pass
+
+class Industry(models.Model):
+    naics_code = models.IntegerField(blank=False, default=484)
+    description = models.CharField(max_length=100, blank=False, default="Truck transportation")
+    
+    def __str__(self):
+        return self.description
 
 class Commodity(models.Model):
     sctg_code = models.IntegerField(blank=False, default=0)
