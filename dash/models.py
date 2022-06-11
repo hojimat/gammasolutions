@@ -111,8 +111,8 @@ class Shipper(Customer):
 #####################################################
 
 class Order(models.Model):
-    driver = models.ForeignKey(Driver, on_delete=models.RESTRICT, related_name='orders', null=False)
-    broker = models.ForeignKey(Broker, on_delete=models.RESTRICT, related_name='orders', null=True, blank=True)
+    driver = models.ForeignKey(Driver, on_delete=models.RESTRICT, related_name='orders', null=False, blank=False)
+    broker = models.ForeignKey(Broker, on_delete=models.RESTRICT, related_name='orders', null=True, blank=False)
     shipper = models.ForeignKey(Shipper, on_delete=models.RESTRICT, related_name='orders', null=True, blank=True)
     truck = models.ForeignKey(Equipment, on_delete=models.RESTRICT, related_name='truck_orders', null=True, blank=True)
     trailer = models.ForeignKey(Equipment, on_delete=models.RESTRICT, related_name='trailer_orders', null=True, blank=True)
