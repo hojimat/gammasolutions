@@ -3,14 +3,144 @@
 
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h1 mt-4 mb-0">Order: {{ order}} </h1>
+    <h1 class="h1 mt-4 mb-0">Order details</h1>
     <a href="#" class="btn btn-primary btn-icon-split ml-3"><span class="icon text-white-50"><i class="fas fa-download"></i></span><span class="text">Generate Report</span></a>
 </div>
+
+
+<div class="row">
+    <div class="col-xl-4">
+        <div class="card shadow mb-4 h-100">
+            <div class="card-header py-3">
+                 <i class="fas fa-chart-pie me-1"></i>
+                 Origin and destination states
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+                <div class="chart-map">
+                    <div id="orderRoute"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-8">
+      <div class="card mb-4 shadow h-100">
+        <div class="card-header py-3">
+             <i class="fas fa-dolly"></i>
+             Order details
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-3">
+              <h6 class="mb-0 font-weight-bold text-gray-800">Broker | Driver</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+              {{ order.broker }} | {{order.driver}}
+            </div>
+          </div>
+		  <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <h6 class="mb-0 font-weight-bold text-gray-800">Origin address</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+              {{ order.origin_full_address }}
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <h6 class="mb-0 font-weight-bold text-gray-800">Destination address</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+              {{ order.destination_full_address }}
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <h6 class="mb-0 font-weight-bold text-gray-800">Pickup | Delivery </h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+              {{ order.pickup_date }} | {{ order.delivery_date }}
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <h6 class="mb-0 font-weight-bold text-gray-800">Payment</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+              USD {{ order.gross }} due {{ order.payment_due }}
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <h6 class="mb-0 font-weight-bold text-gray-800">Commodity</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+              {{ order.commodity }}
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <h6 class="mb-0 font-weight-bold text-gray-800">Instructions</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+              {{ order.instructions }}
+            </div>
+          </div>
+          <hr>
+        </div>
+      </div>
+    
+    </div>
+
+</div><!-- end row -->
+
+<div class='row'>
+    <div class="col-xl-6">
+        <div class="card shadow mt-4 h-100">
+            <div class="card-header py-3">
+                 <i class="fas fa-bars-progress me-1"></i>
+                 Milestones and progress
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+				
+				{% if order.completed and order.paid %}
+                    <h4 class="small font-weight-bold">Load delivered; payment complete</h4>
+                    <div class="progress mb-4">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
+                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+				{% elif order.completed and not order.paid %}
+                    <h4 class="small font-weight-bold">Load delivered; waiting payment</h4>
+                    <div class="progress mb-4">
+                        <div class="progress-bar bg-info" role="progressbar" style="width: 80%"
+                            aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+				{% elif not order.completed %}
+                    <h4 class="small font-weight-bold">Load booked</h4>
+                    <div class="progress mb-4">
+                        <div class="progress-bar bg-warning" role="progressbar" style="width: 20%"
+                            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+				{% endif %}
+            </div>
+        </div>
+    </div>
+</div><!-- end row -->
+
 
 <div class="d-flex justify-content-end mb-4">
     <a href="edit/" class="btn btn-info btn-icon-split ms-3"><span class="icon text-white-50"><i class="fas fa-pencil-alt"></i></span><span class="text">Edit order</span></a>
     <a href="delete/" class="btn btn-danger btn-icon-split ms-4"><span class="icon text-white-50"><i class="fas fa-trash"></i></span><span class="text">Delete order</span></a>
 </div>
+
 
 {% endblock %}
 
@@ -21,4 +151,12 @@
 {% endblock %}
 
 {% block scripts %}
+<script src="{% static 'vendor/googlecharts/loader.js' %}"></script>
+<script>
+    const origDest = [["State", "Destination"],
+                      ["{{order.origin_state}}", 0],
+                      ["{{order.destination_state}}", 1]
+                     ];
+</script>
+<script src="{% static 'js/chart-map.js' %}"></script>
 {% endblock %}

@@ -49,20 +49,25 @@
                 <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
+
+
                             <div class="sb-sidenav-menu-heading">Main</div>
+
+
                             <a class="nav-link" href="{% url 'dash-drivers' %}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-user-astronaut"></i></div>
-                                Drivers
+                                <div class="sb-nav-link-icon"><i class="fas fa-user-astronaut"></i></div>Drivers
                             </a>
                             <a class="nav-link" href="{% url 'dash-customers' %}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-user-group"></i></div>
-                                Customers
+                                <div class="sb-nav-link-icon"><i class="fas fa-user-group"></i></div>Customers
                             </a>
                             <a class="nav-link" href="{% url 'dash-orders' %}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-dolly"></i></div>
-                                Orders
+                                <div class="sb-nav-link-icon"><i class="fas fa-dolly"></i></div>Orders
                             </a>
+
+
                             <div class="sb-sidenav-menu-heading">Extra</div>
+
+
                             <a class="nav-link" href="{% url 'dash-equipment' %}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-truck-moving"></i></div>
                                 Equipment
@@ -71,37 +76,46 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-folder-open"></i></div>
                                 Documents
                             </a>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                Pages
+
+
+                            <div class="sb-sidenav-menu-heading">Markets</div>
+
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLocations" aria-expanded="false" aria-controls="collapseLocations">
+                                <div class="sb-nav-link-icon"><i class="fas fa-location-dot"></i></div>
+                                Locations
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                            <div class="collapse" id="collapseLocations" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                        Authentication
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="login.html">Login</a>
-                                            <a class="nav-link" href="register.html">Register</a>
-                                            <a class="nav-link" href="password.html">Forgot Password</a>
-                                        </nav>
-                                    </div>
-                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                                        Error
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="401.html">401 Page</a>
-                                            <a class="nav-link" href="404.html">404 Page</a>
-                                            <a class="nav-link" href="500.html">500 Page</a>
-                                        </nav>
-                                    </div>
+                                     <a class="nav-link" href="{% url 'dash-equipment' %}">
+                                         <div class="sb-nav-link-icon"><i class="fas fa-store"></i></div>
+                                         Market Areas
+                                     </a>
+                                     <a class="nav-link" href="{% url 'dash-equipment' %}">
+                                         <div class="sb-nav-link-icon"><i class="fas fa-tree-city"></i></div>
+                                         Cities
+                                     </a>
                                 </nav>
                             </div>
+
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseProducts" aria-expanded="false" aria-controls="collapseProducts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-industry"></i></div>
+                                Products
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseProducts" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                                     <a class="nav-link" href="{% url 'dash-equipment' %}">
+                                         <div class="sb-nav-link-icon"><i class="fas fa-bag-shopping"></i></div>
+                                         Product categories
+                                     </a>
+                                     <a class="nav-link" href="{% url 'dash-equipment' %}">
+                                         <div class="sb-nav-link-icon"><i class="fas fa-helmet-safety"></i></div>
+                                         Industries
+                                     </a>
+                                </nav>
+                            </div>
+
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">

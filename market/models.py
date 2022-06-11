@@ -1,9 +1,6 @@
 from django.db import models
+from dash.widgets import USCanadaStates
 
-#class KeyMarket(models.Model):
-#    #zip_code
-#    pass
-#
 #class City(models.Model):
 #    #zip_code_3
 #    #name
@@ -25,3 +22,16 @@ class Commodity(models.Model):
     
     def __str__(self):
         return self.description
+
+class MarketArea(models.Model):
+    USA = 'USA'
+    CND = 'CND'
+    MEX = 'MEX'
+    COUNTRIES = ( (USA, "USA"), (CND, "Canada"), (MEX, "Mexico") ) 
+
+    center = models.CharField(max_length=30, blank=False, default="Chicago")
+    state = models.CharField(max_length=2, blank=False, choices=USCanadaStates, default="IL")
+    country = models.CharField(max_length=10, blank=False, choices=COUNTRIES, default=USA)
+
+    def __str__(self):
+        return f"{self.center}, {self.state}"

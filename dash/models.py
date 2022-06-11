@@ -1,7 +1,7 @@
 from django.db import models
 from .widgets import USCanadaStates
 from datetime import datetime, timedelta
-from market.models import Commodity
+from market.models import Commodity, MarketArea
 
 class Equipment(models.Model):
     FRM = 'FRM'
@@ -121,12 +121,12 @@ class Order(models.Model):
     origin_state = models.CharField(max_length=2, blank=False, choices=USCanadaStates, default='NY')
     origin_address = models.CharField(max_length=70, blank=False, default='12 Broadway')
     origin_zip_code = models.CharField(max_length=10, blank=False, default='34342')
-    origin_market = models.CharField(max_length=50, blank=True, default='')
+    origin_market = models.ForeignKey(MarketArea, on_delete=models.RESTRICT, related_name='orders_from', null=True, blank=True)
     destination_city = models.CharField(max_length=30, blank=False, default='Palo Alto')
     destination_state = models.CharField(max_length=2, blank=False, choices=USCanadaStates, default='CA')
     destination_address = models.CharField(max_length=70, blank=False, default='1 Mountain View')
     destination_zip_code = models.CharField(max_length=10, blank=False, default='34341')
-    destination_market = models.CharField(max_length=50, blank=True, default='')
+    destination_market = models.ForeignKey(MarketArea, on_delete=models.RESTRICT, related_name='orders_to', null=True, blank=True)
     pickup_date = models.DateTimeField(blank=False, default="2022-01-13 08:00")
     delivery_date = models.DateTimeField(blank=False, default="2022-01-13 08:00")
     load_type = models.CharField(max_length=100, blank=False, default="palletized;lumper")
@@ -151,10 +151,10 @@ class Order(models.Model):
         return f"{self.pickup_date.strftime('%b %d')} {self.origin_city}, {self.origin_state} - {self.destination_city}, {self.destination_state}"
 
     def origin_full_address(self):
-        return f"{self.origin_zip_code} {self.origin_address}, {self.origin_city}, {self.origin_state}"
+        return f"{self.origin_address}, {self.origin_city}, {self.origin_state} {self.origin_zip_code}"
 
     def destination_full_address(self):
-        return f"{self.destination_zip_code} {self.destination_address}, {self.destination_city}, {self.destination_state}"
+        return f"{self.destination_address}, {self.destination_city}, {self.destination_state} {self.destination_zip_code}"
 
     def origin_short_address(self):
         return f"{self.origin_city}, {self.origin_state}"

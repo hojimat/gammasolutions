@@ -26,7 +26,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3">
 			{{ form.origin_address | as_crispy_field }}
         </div>
         <div class="col-md-3">
@@ -35,12 +35,12 @@
         <div class="col-md-3">
 			{{ form.origin_state | as_crispy_field }}
         </div>
-        <div class="col-md-2">
+        <div class="col-md-3">
 			{{ form.origin_zip_code | as_crispy_field }}
         </div>
       </div>
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3">
 			{{ form.destination_address | as_crispy_field }}
         </div>
         <div class="col-md-3">
@@ -49,7 +49,7 @@
         <div class="col-md-3">
 			{{ form.destination_state | as_crispy_field }}
         </div>
-        <div class="col-md-2">
+        <div class="col-md-3">
 			{{ form.destination_zip_code | as_crispy_field }}
         </div>
       </div>
@@ -89,31 +89,45 @@
         </div>
       </div>
       <div class="row justify-content-between">
-        <div class="col-md-2">
+        <div class="col-md-3">
+			{{ form.width | as_crispy_field }}
+        </div>
+        <div class="col-md-3">
+			{{ form.height | as_crispy_field }}
+        </div>
+        <div class="col-md-3">
+			{{ form.length | as_crispy_field }}
+        </div>
+        <div class="col-md-3">
+			{{ form.weight | as_crispy_field }}
+        </div>
+      </div>
+      <div class="row justify-content-between">
+        <div class="col-md">
 			{{ form.mileage | as_crispy_field }}
         </div>
-        <div class="col-md-2">
+        <div class="col-md">
 			{{ form.deadhead | as_crispy_field }}
         </div>
-        <div class="col-md-2">
+        <div class="col-md">
 			{{ form.toll | as_crispy_field }}
         </div>
-        <div class="col-md-2">
+        <div class="col-md">
 			{{ form.fuel_burnt | as_crispy_field }}
         </div>
-        <div class="col-md-2">
+        <div class="col-md">
 			{{ form.fuel_price | as_crispy_field }}
         </div>
       </div>
       <div class="row justify-content-between">
-        <div class="col-md-3">
+        <div class="col-md-4">
 			{{ form.gross | as_crispy_field }}
 
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
 			{{ form.payment_due | as_crispy_field }}
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
 			{{ form.g_rate | as_crispy_field }}
         </div>
       </div>
