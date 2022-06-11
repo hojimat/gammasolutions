@@ -1,6 +1,7 @@
 from django.db import models
 from .widgets import USCanadaStates
 from datetime import datetime, timedelta
+from market.models import Commodity
 
 class Equipment(models.Model):
     FRM = 'FRM'
@@ -57,7 +58,7 @@ class Entity(models.Model):
         date_from = datetime.today() - timedelta(days=days) 
         all_earnings = self.orders.filter(payment_due__gt = date_from)
         total_earnings = all_earnings.aggregate(models.Sum('gross'))['gross__sum'] or 0.0
-        return total_earnings
+        return round(total_earnings,2)
 
     def earnings_history(self):
         all_earnings = self.orders.values('payment_due').annotate(gross=models.Sum('gross')).order_by('payment_due')
@@ -115,7 +116,7 @@ class Order(models.Model):
     shipper = models.ForeignKey(Shipper, on_delete=models.RESTRICT, related_name='orders', null=True, blank=True)
     truck = models.ForeignKey(Equipment, on_delete=models.RESTRICT, related_name='truck_orders', null=True, blank=True)
     trailer = models.ForeignKey(Equipment, on_delete=models.RESTRICT, related_name='trailer_orders', null=True, blank=True)
-    commodity = models.CharField(max_length=50, blank=True)
+    commodity = models.ForeignKey(Commodity, on_delete=models.RESTRICT, related_name='orders', null=False, blank=False)
     origin_city = models.CharField(max_length=30, blank=False, default='New York')
     origin_state = models.CharField(max_length=2, blank=False, choices=USCanadaStates, default='NY')
     origin_address = models.CharField(max_length=70, blank=False, default='12 Broadway')
@@ -147,7 +148,7 @@ class Order(models.Model):
     paid = models.BooleanField(default=False) 
 
     def __str__(self):
-        return f"{self.pickup_date.strftime('%b %d')} {self.origin_state}-{self.destination_state} by {self.driver}"
+        return f"{self.pickup_date.strftime('%b %d')} {self.origin_city}, {self.origin_state} - {self.destination_city}, {self.destination_state}"
 
     def origin_full_address(self):
         return f"{self.origin_zip_code} {self.origin_address}, {self.origin_city}, {self.origin_state}"

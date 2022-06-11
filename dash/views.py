@@ -10,7 +10,7 @@ def index(request):
     return render(request, 'templates/index.html',)
 
 def main(request):
-    orders = Order.objects.select_related('driver')
+    orders = Order.objects.all()#select_related('driver')
     earnings = orders.values('payment_due').annotate(gross=models.Sum('gross')).order_by('payment_due')
     earnings_by_driver = orders.values('driver').annotate(gross=models.Sum('gross')).values('driver__first_name','driver__last_name','gross')
     earnings_by_state = orders.values('origin_state').annotate(gross=models.Sum('gross'))
@@ -31,7 +31,7 @@ def customers(request):
     return render(request, 'templates/customers.html', {'customers': customers})
 
 def orders(request):
-    orders = Order.objects.select_related('driver')
+    orders = Order.objects.all()#select_related('driver')
     return render(request, 'templates/orders.html', {'orders': orders})
 
 def equipment(request):
@@ -58,6 +58,7 @@ def read_driver(request,pk):
                                                              'earnings_yr': earnings_yr,
                                                              'earnings_hist': earnings_hist,
                                                              'documents': documents,
+                                                             'whois': 'driver',
                                                              })
 
 def read_customer(request,pk):
@@ -67,15 +68,16 @@ def read_customer(request,pk):
     earnings_yr = customer.earnings(days=365)
     earnings_hist = customer.earnings_history()
     return render(request, "templates/entity-details.html", {'user': customer,
-                                                               'userId': pk,
-                                                               'orders': orders,
-                                                               'earnings_wk': earnings_wk,
-                                                               'earnings_yr': earnings_yr,
-                                                               'earnings_hist': earnings_hist,
-                                                               })
+                                                             'userId': pk,
+                                                             'orders': orders,
+                                                             'earnings_wk': earnings_wk,
+                                                             'earnings_yr': earnings_yr,
+                                                             'earnings_hist': earnings_hist,
+                                                             'whois': 'broker',
+                                                             })
 
 def read_order(request,pk):
-    order = Order.objects.select_related('driver').get(pk=pk)
+    order = Order.objects.get(pk=pk)#select_related('driver').get(pk=pk)
     return render(request, "templates/order-details.html", {'order': order})
 
 # CREATE MODELS
@@ -169,7 +171,7 @@ def edit_customer(request,pk):
     return render(request, "templates/customer-form.html", {'form': form})
 
 def edit_order(request,pk):
-    order = Order.objects.select_related('driver').get(pk=pk)
+    order = Order.objects.get(pk=pk)#select_related('driver').get(pk=pk)
     if request.method == "POST":
         form = OrderForm(request.POST, instance=order)
         if form.is_valid():
@@ -238,7 +240,7 @@ def delete_customer(request,pk):
     return render(request, "templates/delete.html", {'object_name': customer})
 
 def delete_order(request,pk):
-    order = Order.objects.select_related('driver').get(pk=pk)
+    order = Order.objects.get(pk=pk)#select_related('driver').get(pk=pk)
     if request.method == "POST":
         try:
             order.delete()
