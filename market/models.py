@@ -35,3 +35,12 @@ class MarketArea(models.Model):
 
     def __str__(self):
         return f"{self.center}, {self.state}"
+
+class StatArea(models.Model):
+    csa_name = models.CharField(max_length=30, blank=False, default="Chicago")
+    state = models.CharField(max_length=2, blank=False, choices=USCanadaStates, default="IL")
+    csa_code = models.IntegerField(blank=False, default=104) 
+    state_code = models.IntegerField(blank=False, default=36)
+
+    def __str__(self):
+        return f"{self.csa_name}, {self.state}"
