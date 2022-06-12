@@ -1,13 +1,6 @@
 from django.db import models
 from dash.widgets import USCanadaStates
 
-#class City(models.Model):
-#    #zip_code_3
-#    #name
-#    #market foreign key
-#    #distance to market center
-#    pass
-
 class Industry(models.Model):
     naics_code = models.IntegerField(blank=False, default=484)
     description = models.CharField(max_length=100, blank=False, default="Truck transportation")
@@ -37,10 +30,14 @@ class MarketArea(models.Model):
         return f"{self.center}, {self.state}"
 
 class StatArea(models.Model):
-    csa_name = models.CharField(max_length=30, blank=False, default="Chicago")
+    csa_name = models.CharField(max_length=60, blank=False)
     state = models.CharField(max_length=2, blank=False, choices=USCanadaStates, default="IL")
     csa_code = models.IntegerField(blank=False, default=104) 
     state_code = models.IntegerField(blank=False, default=36)
 
     def __str__(self):
         return f"{self.csa_name}, {self.state}"
+
+#class City(models.Model):
+#    name = models.CharField(max_length=30, 
+

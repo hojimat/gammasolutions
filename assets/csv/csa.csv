@@ -1,278 +1,278 @@
 csa,state,csa_code,state_code
-Albany-Schenectady,New York,104,36
-Albuquerque-Santa Fe-Las Vegas,New Mexico,106,35
-Altoona-Huntingdon,Pennsylvania,107,42
-Amarillo-Pampa-Borger,Texas,108,48
-Appleton-Oshkosh-Neenah,Wisconsin,118,55
-Asheville-Marion-Brevard,North Carolina,120,37
-Atlanta--Athens-Clarke County--Sandy Springs,Alabama,122,1
-Atlanta--Athens-Clarke County--Sandy Springs,Georgia,122,13
-Bend-Prineville,Oregon,140,41
-Birmingham-Hoover-Talladega,Alabama,142,1
-Bloomington-Bedford,Indiana,144,18
-Bloomington-Pontiac,Illinois,145,17
-Bloomsburg-Berwick-Sunbury,Pennsylvania,146,42
-Boise City-Mountain Home-Ontario,Idaho,147,16
-Boise City-Mountain Home-Ontario,Oregon,147,41
-Boston-Worcester-Providence,Connecticut,148,9
-Boston-Worcester-Providence,Massachusetts,148,25
-Boston-Worcester-Providence,New Hampshire,148,33
-Boston-Worcester-Providence,Rhode Island,148,44
-Bowling Green-Glasgow,Kentucky,150,21
-Brownsville-Harlingen-Raymondville,Texas,154,48
-Buffalo-Cheektowaga-Olean,New York,160,36
-Burlington-Fort Madison-Keokuk,Illinois,161,17
-Burlington-Fort Madison-Keokuk,Iowa,161,19
-Burlington-Fort Madison-Keokuk,Missouri,161,29
-Burlington-South Burlington-Barre,Vermont,162,50
-Cape Coral-Fort Myers-Naples,Florida,163,12
-Cape Girardeau-Sikeston,Illinois,164,17
-Cape Girardeau-Sikeston,Missouri,164,29
-Cedar Rapids-Iowa City,Iowa,168,19
-Charleston-Huntington-Ashland,Kentucky,170,21
-Charleston-Huntington-Ashland,Ohio,170,39
-Charleston-Huntington-Ashland,West Virginia,170,54
-Charlotte-Concord,North Carolina,172,37
-Charlotte-Concord,South Carolina,172,45
-Chattanooga-Cleveland-Dalton,Georgia,174,13
-Chattanooga-Cleveland-Dalton,Tennessee,174,47
-Chicago-Naperville,Illinois,176,17
-Chicago-Naperville,Indiana,176,18
-Chicago-Naperville,Wisconsin,176,55
-Cincinnati-Wilmington-Maysville,Indiana,178,18
-Cincinnati-Wilmington-Maysville,Kentucky,178,21
-Cincinnati-Wilmington-Maysville,Ohio,178,39
-Cleveland-Akron-Canton,Ohio,184,39
-Cleveland-Indianola,Mississippi,185,28
-Clovis-Portales,New Mexico,188,35
-Columbia-Moberly-Mexico,Missouri,190,29
-Columbia-Orangeburg-Newberry,South Carolina,192,45
-Columbus-Auburn-Opelika,Alabama,194,1
-Columbus-Auburn-Opelika,Georgia,194,13
-Columbus-Marion-Zanesville,Ohio,198,39
-Columbus-West Point,Mississippi,200,28
-Corpus Christi-Kingsville-Alice,Texas,204,48
-Dallas-Fort Worth,Oklahoma,206,40
-Dallas-Fort Worth,Texas,206,48
-Davenport-Moline,Illinois,209,17
-Davenport-Moline,Iowa,209,19
-Dayton-Springfield-Kettering,Ohio,212,39
-Denver-Aurora,Colorado,216,8
-DeRidder-Fort Polk South,Louisiana,217,22
-Des Moines-Ames-West Des Moines,Iowa,218,19
-Detroit-Warren-Ann Arbor,Michigan,220,26
-Dixon-Sterling,Illinois,221,17
-Dothan-Ozark,Alabama,222,1
-Eau Claire-Menomonie,Wisconsin,232,55
-Edwards-Glenwood Springs,Colorado,233,8
-Elmira-Corning,New York,236,36
-El Paso-Las Cruces,New Mexico,238,35
-El Paso-Las Cruces,Texas,238,48
-Erie-Meadville,Pennsylvania,240,42
-Fargo-Wahpeton,Minnesota,244,27
-Fargo-Wahpeton,North Dakota,244,38
-Fayetteville-Sanford-Lumberton,North Carolina,246,37
-Fort Wayne-Huntington-Auburn,Indiana,258,18
-Fresno-Madera-Hanford,California,260,6
-Gainesville-Lake City,Florida,264,12
-Grand Rapids-Kentwood-Muskegon,Michigan,266,26
-Green Bay-Shawano,Wisconsin,267,55
-Greensboro--Winston-Salem--High Point,North Carolina,268,37
-Greenville-Kinston-Washington,North Carolina,272,37
-Greenville-Spartanburg-Anderson,South Carolina,273,45
-Harrisburg-York-Lebanon,Pennsylvania,276,42
-Harrisonburg-Staunton,Virginia,277,51
-Hartford-East Hartford,Connecticut,278,9
-Hattiesburg-Laurel,Mississippi,279,28
-Hot Springs-Malvern,Arkansas,284,5
-Houston-The Woodlands,Texas,288,48
-Huntsville-Decatur,Alabama,290,1
-Idaho Falls-Rexburg-Blackfoot,Idaho,292,16
-Indianapolis-Carmel-Muncie,Indiana,294,18
-Ithaca-Cortland,New York,296,36
-Jackson-Brownsville,Tennessee,297,47
-Jackson-Vicksburg-Brookhaven,Mississippi,298,28
-Jacksonville-St. Marys-Palatka,Florida,300,12
-Jacksonville-St. Marys-Palatka,Georgia,300,13
-Johnson City-Kingsport-Bristol,Tennessee,304,47
-Johnson City-Kingsport-Bristol,Virginia,304,51
-Johnstown-Somerset,Pennsylvania,306,42
-Jonesboro-Paragould,Arkansas,308,5
-Joplin-Miami,Missouri,309,29
-Joplin-Miami,Oklahoma,309,40
-Kalamazoo-Battle Creek-Portage,Michigan,310,26
-Kansas City-Overland Park-Kansas City,Kansas,312,20
-Kansas City-Overland Park-Kansas City,Missouri,312,29
-Kennewick-Richland-Walla Walla,Washington,313,53
-Kerrville-Fredericksburg,Texas,314,48
-Knoxville-Morristown-Sevierville,Tennessee,315,47
-Kokomo-Peru,Indiana,316,18
-Lafayette-Opelousas-Morgan City,Louisiana,318,22
-Lafayette-West Lafayette-Frankfort,Indiana,320,18
-Lake Charles-Jennings,Louisiana,324,22
-Las Vegas-Henderson,Nevada,332,32
-Lexington-Fayette--Richmond--Frankfort,Kentucky,336,21
-Lima-Van Wert-Celina,Ohio,338,39
-Lincoln-Beatrice,Nebraska,339,31
-Little Rock-North Little Rock,Arkansas,340,5
-Los Angeles-Long Beach,California,348,6
-Louisville/Jefferson County--Elizabethtown--Bardstown,Indiana,350,18
-Louisville/Jefferson County--Elizabethtown--Bardstown,Kentucky,350,21
-Lubbock-Plainview-Levelland,Texas,352,48
-Macon-Bibb County--Warner Robins,Georgia,356,13
-Madison-Janesville-Beloit,Wisconsin,357,55
-Mankato-New Ulm,Minnesota,359,27
-Mansfield-Ashland-Bucyrus,Ohio,360,39
-Marinette-Iron Mountain,Michigan,361,26
-Marinette-Iron Mountain,Wisconsin,361,55
-Martin-Union City,Tennessee,362,47
-McAllen-Edinburg,Texas,365,48
-Medford-Grants Pass,Oregon,366,41
-Memphis-Forrest City,Arkansas,368,5
-Memphis-Forrest City,Mississippi,368,28
-Memphis-Forrest City,Tennessee,368,47
-Miami-Port St. Lucie-Fort Lauderdale,Florida,370,12
-Midland-Odessa,Texas,372,48
-Milwaukee-Racine-Waukesha,Wisconsin,376,55
-Minneapolis-St. Paul,Minnesota,378,27
-Minneapolis-St. Paul,Wisconsin,378,55
-Mobile-Daphne-Fairhope,Alabama,380,1
-Monroe-Ruston,Louisiana,384,22
-Montgomery-Selma-Alexander City,Alabama,388,1
-Morgantown-Fairmont,West Virginia,390,54
-Moses Lake-Othello,Washington,393,53
-Mount Pleasant-Alma,Michigan,394,26
-Myrtle Beach-Conway,North Carolina,396,37
-Myrtle Beach-Conway,South Carolina,396,45
-Nashville-Davidson--Murfreesboro,Tennessee,400,47
-New Bern-Morehead City,North Carolina,404,37
-New Orleans-Metairie-Hammond,Louisiana,406,22
-New Orleans-Metairie-Hammond,Mississippi,406,28
-New York-Newark,Connecticut,408,9
-New York-Newark,New Jersey,408,34
-New York-Newark,New York,408,36
-New York-Newark,Pennsylvania,408,42
-North Port-Sarasota,Florida,412,12
-Oklahoma City-Shawnee,Oklahoma,416,40
-Omaha-Council Bluffs-Fremont,Iowa,420,19
-Omaha-Council Bluffs-Fremont,Nebraska,420,31
-Orlando-Lakeland-Deltona,Florida,422,12
-Paducah-Mayfield,Illinois,424,17
-Paducah-Mayfield,Kentucky,424,21
-Parkersburg-Marietta-Vienna,Ohio,425,39
-Parkersburg-Marietta-Vienna,West Virginia,425,54
-Pensacola-Ferry Pass,Alabama,426,1
-Pensacola-Ferry Pass,Florida,426,12
-Philadelphia-Reading-Camden,Delaware,428,10
-Philadelphia-Reading-Camden,Maryland,428,24
-Philadelphia-Reading-Camden,New Jersey,428,34
-Philadelphia-Reading-Camden,Pennsylvania,428,42
-Phoenix-Mesa,Arizona,429,4
-Pittsburgh-New Castle-Weirton,Ohio,430,39
-Pittsburgh-New Castle-Weirton,Pennsylvania,430,42
-Pittsburgh-New Castle-Weirton,West Virginia,430,54
-Portland-Lewiston-South Portland,Maine,438,23
-Portland-Vancouver-Salem,Oregon,440,41
-Portland-Vancouver-Salem,Washington,440,53
-Pueblo-Cañon City,Colorado,444,8
-Pullman-Moscow,Idaho,446,16
-Pullman-Moscow,Washington,446,53
-Quincy-Hannibal,Illinois,448,17
-Quincy-Hannibal,Missouri,448,29
-Raleigh-Durham-Cary,North Carolina,450,37
-Rapid City-Spearfish,South Dakota,452,46
-Redding-Red Bluff,California,454,6
-Reno-Carson City-Fernley,Nevada,456,32
-Richmond-Connersville,Indiana,458,18
-Rochester-Austin,Minnesota,462,27
-Rochester-Batavia-Seneca Falls,New York,464,36
-Rockford-Freeport-Rochelle,Illinois,466,17
-Rocky Mount-Wilson-Roanoke Rapids,North Carolina,468,37
-Sacramento-Roseville,California,472,6
-Saginaw-Midland-Bay City,Michigan,474,26
-St. Louis-St. Charles-Farmington,Illinois,476,17
-St. Louis-St. Charles-Farmington,Missouri,476,29
-Salisbury-Cambridge,Delaware,480,10
-Salisbury-Cambridge,Maryland,480,24
-Salt Lake City-Provo-Orem,Utah,482,49
-San Antonio-New Braunfels-Pearsall,Texas,484,48
-San Jose-San Francisco-Oakland,California,488,6
-Savannah-Hinesville-Statesboro,Georgia,496,13
-Scottsboro-Fort Payne,Alabama,497,1
-Seattle-Tacoma,Washington,500,53
-Shreveport-Bossier City-Minden,Louisiana,508,22
-South Bend-Elkhart-Mishawaka,Indiana,515,18
-South Bend-Elkhart-Mishawaka,Michigan,515,26
-Spencer-Spirit Lake,Iowa,517,19
-Spokane-Spokane Valley-Coeur d'Alene,Idaho,518,16
-Spokane-Spokane Valley-Coeur d'Alene,Washington,518,53
-Springfield-Jacksonville-Lincoln,Illinois,522,17
-State College-DuBois,Pennsylvania,524,42
-Steamboat Springs-Craig,Colorado,525,8
-Syracuse-Auburn,New York,532,36
-Toledo-Findlay-Tiffin,Ohio,534,39
-Tucson-Nogales,Arizona,536,4
-Tulsa-Muskogee-Bartlesville,Oklahoma,538,40
-Tupelo-Corinth,Mississippi,539,28
-Tyler-Jacksonville,Texas,540,48
-Victoria-Port Lavaca,Texas,544,48
-Virginia Beach-Norfolk,North Carolina,545,37
-Virginia Beach-Norfolk,Virginia,545,51
-Washington-Baltimore-Arlington,District of Columbia,548,11
-Washington-Baltimore-Arlington,Maryland,548,24
-Washington-Baltimore-Arlington,Pennsylvania,548,42
-Washington-Baltimore-Arlington,Virginia,548,51
-Washington-Baltimore-Arlington,West Virginia,548,54
-Wausau-Stevens Point-Wisconsin Rapids,Wisconsin,554,55
-Wichita-Winfield,Kansas,556,20
-Williamsport-Lock Haven,Pennsylvania,558,42
-Youngstown-Warren,Ohio,566,39
-Youngstown-Warren,Pennsylvania,566,42
-Remainder,Alabama,99999,1
-Remainder,Alaska,99999,2
-Remainder,Arizona,99999,4
-Remainder,Arkansas,99999,5
-Remainder,California,99999,6
-Remainder,Colorado,99999,8
-Remainder,Connecticut,99999,9
-Remainder,Delaware,99999,10
-Remainder,Florida,99999,12
-Remainder,Georgia,99999,13
-Remainder,Hawaii,99999,15
-Remainder,Idaho,99999,16
-Remainder,Illinois,99999,17
-Remainder,Indiana,99999,18
-Remainder,Iowa,99999,19
-Remainder,Kansas,99999,20
-Remainder,Kentucky,99999,21
-Remainder,Louisiana,99999,22
-Remainder,Maine,99999,23
-Remainder,Maryland,99999,24
-Remainder,Massachusetts,99999,25
-Remainder,Michigan,99999,26
-Remainder,Minnesota,99999,27
-Remainder,Mississippi,99999,28
-Remainder,Missouri,99999,29
-Remainder,Montana,99999,30
-Remainder,Nebraska,99999,31
-Remainder,Nevada,99999,32
-Remainder,New Hampshire,99999,33
-Remainder,New Mexico,99999,35
-Remainder,New York,99999,36
-Remainder,North Carolina,99999,37
-Remainder,North Dakota,99999,38
-Remainder,Ohio,99999,39
-Remainder,Oklahoma,99999,40
-Remainder,Oregon,99999,41
-Remainder,Pennsylvania,99999,42
-Remainder,South Carolina,99999,45
-Remainder,South Dakota,99999,46
-Remainder,Tennessee,99999,47
-Remainder,Texas,99999,48
-Remainder,Utah,99999,49
-Remainder,Vermont,99999,50
-Remainder,Virginia,99999,51
-Remainder,Washington,99999,53
-Remainder,West Virginia,99999,54
-Remainder,Wisconsin,99999,55
-Remainder,Wyoming,99999,56
+Albany-Schenectady,NY,104,36
+Albuquerque-Santa Fe-Las Vegas,NM,106,35
+Altoona-Huntingdon,PA,107,42
+Amarillo-Pampa-Borger,TX,108,48
+Appleton-Oshkosh-Neenah,WI,118,55
+Asheville-Marion-Brevard,NC,120,37
+Atlanta--Athens-Clarke County--Sandy Springs,AL,122,1
+Atlanta--Athens-Clarke County--Sandy Springs,GA,122,13
+Bend-Prineville,OR,140,41
+Birmingham-Hoover-Talladega,AL,142,1
+Bloomington-Bedford,IN,144,18
+Bloomington-Pontiac,IL,145,17
+Bloomsburg-Berwick-Sunbury,PA,146,42
+Boise City-Mountain Home-Ontario,ID,147,16
+Boise City-Mountain Home-Ontario,OR,147,41
+Boston-Worcester-Providence,CT,148,9
+Boston-Worcester-Providence,MA,148,25
+Boston-Worcester-Providence,NH,148,33
+Boston-Worcester-Providence,RI,148,44
+Bowling Green-Glasgow,KY,150,21
+Brownsville-Harlingen-Raymondville,TX,154,48
+Buffalo-Cheektowaga-Olean,NY,160,36
+Burlington-Fort Madison-Keokuk,IL,161,17
+Burlington-Fort Madison-Keokuk,IA,161,19
+Burlington-Fort Madison-Keokuk,MO,161,29
+Burlington-South Burlington-Barre,VT,162,50
+Cape Coral-Fort Myers-Naples,FL,163,12
+Cape Girardeau-Sikeston,IL,164,17
+Cape Girardeau-Sikeston,MO,164,29
+Cedar Rapids-IA City,IA,168,19
+Charleston-Huntington-Ashland,KY,170,21
+Charleston-Huntington-Ashland,OH,170,39
+Charleston-Huntington-Ashland,WV,170,54
+Charlotte-Concord,NC,172,37
+Charlotte-Concord,SC,172,45
+Chattanooga-Cleveland-Dalton,GA,174,13
+Chattanooga-Cleveland-Dalton,TN,174,47
+Chicago-Naperville,IL,176,17
+Chicago-Naperville,IN,176,18
+Chicago-Naperville,WI,176,55
+Cincinnati-Wilmington-Maysville,IN,178,18
+Cincinnati-Wilmington-Maysville,KY,178,21
+Cincinnati-Wilmington-Maysville,OH,178,39
+Cleveland-Akron-Canton,OH,184,39
+Cleveland-Indianola,MS,185,28
+Clovis-Portales,NM,188,35
+Columbia-Moberly-Mexico,MO,190,29
+Columbia-Orangeburg-Newberry,SC,192,45
+Columbus-Auburn-Opelika,AL,194,1
+Columbus-Auburn-Opelika,GA,194,13
+Columbus-Marion-Zanesville,OH,198,39
+Columbus-West Point,MS,200,28
+Corpus Christi-Kingsville-Alice,TX,204,48
+Dallas-Fort Worth,OK,206,40
+Dallas-Fort Worth,TX,206,48
+Davenport-Moline,IL,209,17
+Davenport-Moline,IA,209,19
+Dayton-Springfield-Kettering,OH,212,39
+Denver-Aurora,CO,216,8
+DeRidder-Fort Polk South,LA,217,22
+Des Moines-Ames-West Des Moines,IA,218,19
+Detroit-Warren-Ann Arbor,MI,220,26
+Dixon-Sterling,IL,221,17
+Dothan-Ozark,AL,222,1
+Eau Claire-Menomonie,WI,232,55
+Edwards-Glenwood Springs,CO,233,8
+Elmira-Corning,NY,236,36
+El Paso-Las Cruces,NM,238,35
+El Paso-Las Cruces,TX,238,48
+Erie-Meadville,PA,240,42
+Fargo-Wahpeton,MN,244,27
+Fargo-Wahpeton,ND,244,38
+Fayetteville-Sanford-Lumberton,NC,246,37
+Fort Wayne-Huntington-Auburn,IN,258,18
+Fresno-Madera-Hanford,CA,260,6
+Gainesville-Lake City,FL,264,12
+Grand Rapids-Kentwood-Muskegon,MI,266,26
+Green Bay-Shawano,WI,267,55
+Greensboro--Winston-Salem--High Point,NC,268,37
+Greenville-Kinston-Washington,NC,272,37
+Greenville-Spartanburg-Anderson,SC,273,45
+Harrisburg-York-Lebanon,PA,276,42
+Harrisonburg-Staunton,VA,277,51
+Hartford-East Hartford,CT,278,9
+Hattiesburg-Laurel,MS,279,28
+Hot Springs-Malvern,AR,284,5
+Houston-The Woodlands,TX,288,48
+Huntsville-Decatur,AL,290,1
+ID Falls-Rexburg-Blackfoot,ID,292,16
+INpolis-Carmel-Muncie,IN,294,18
+Ithaca-Cortland,NY,296,36
+Jackson-Brownsville,TN,297,47
+Jackson-Vicksburg-Brookhaven,MS,298,28
+Jacksonville-St. Marys-Palatka,FL,300,12
+Jacksonville-St. Marys-Palatka,GA,300,13
+Johnson City-Kingsport-Bristol,TN,304,47
+Johnson City-Kingsport-Bristol,VA,304,51
+Johnstown-Somerset,PA,306,42
+Jonesboro-Paragould,AR,308,5
+Joplin-Miami,MO,309,29
+Joplin-Miami,OK,309,40
+Kalamazoo-Battle Creek-Portage,MI,310,26
+Kansas City-Overland Park-Kansas City,KS,312,20
+Kansas City-Overland Park-Kansas City,MO,312,29
+Kennewick-Richland-Walla Walla,WA,313,53
+Kerrville-Fredericksburg,TX,314,48
+Knoxville-Morristown-Sevierville,TN,315,47
+Kokomo-Peru,IN,316,18
+Lafayette-Opelousas-Morgan City,LA,318,22
+Lafayette-West Lafayette-Frankfort,IN,320,18
+Lake Charles-Jennings,LA,324,22
+Las Vegas-Henderson,NV,332,32
+Lexington-Fayette--Richmond--Frankfort,KY,336,21
+Lima-Van Wert-Celina,OH,338,39
+Lincoln-Beatrice,NE,339,31
+Little Rock-North Little Rock,AR,340,5
+Los Angeles-Long Beach,CA,348,6
+Louisville/Jefferson County--Elizabethtown--Bardstown,IN,350,18
+Louisville/Jefferson County--Elizabethtown--Bardstown,KY,350,21
+Lubbock-Plainview-Levelland,TX,352,48
+Macon-Bibb County--Warner Robins,GA,356,13
+Madison-Janesville-Beloit,WI,357,55
+Mankato-New Ulm,MN,359,27
+Mansfield-Ashland-Bucyrus,OH,360,39
+Marinette-Iron Mountain,MI,361,26
+Marinette-Iron Mountain,WI,361,55
+Martin-Union City,TN,362,47
+McAllen-Edinburg,TX,365,48
+Medford-Grants Pass,OR,366,41
+Memphis-Forrest City,AR,368,5
+Memphis-Forrest City,MS,368,28
+Memphis-Forrest City,TN,368,47
+Miami-Port St. Lucie-Fort Lauderdale,FL,370,12
+Midland-Odessa,TX,372,48
+Milwaukee-Racine-Waukesha,WI,376,55
+Minneapolis-St. Paul,MN,378,27
+Minneapolis-St. Paul,WI,378,55
+Mobile-Daphne-Fairhope,AL,380,1
+Monroe-Ruston,LA,384,22
+Montgomery-Selma-Alexander City,AL,388,1
+Morgantown-Fairmont,WV,390,54
+Moses Lake-Othello,WA,393,53
+Mount Pleasant-Alma,MI,394,26
+Myrtle Beach-Conway,NC,396,37
+Myrtle Beach-Conway,SC,396,45
+Nashville-Davidson--Murfreesboro,TN,400,47
+New Bern-Morehead City,NC,404,37
+New Orleans-Metairie-Hammond,LA,406,22
+New Orleans-Metairie-Hammond,MS,406,28
+NY-Newark,CT,408,9
+NY-Newark,NJ,408,34
+NY-Newark,NY,408,36
+NY-Newark,PA,408,42
+North Port-Sarasota,FL,412,12
+OK City-Shawnee,OK,416,40
+Omaha-Council Bluffs-Fremont,IA,420,19
+Omaha-Council Bluffs-Fremont,NE,420,31
+Orlando-Lakeland-Deltona,FL,422,12
+Paducah-Mayfield,IL,424,17
+Paducah-Mayfield,KY,424,21
+Parkersburg-Marietta-Vienna,OH,425,39
+Parkersburg-Marietta-Vienna,WV,425,54
+Pensacola-Ferry Pass,AL,426,1
+Pensacola-Ferry Pass,FL,426,12
+Philadelphia-Reading-Camden,DE,428,10
+Philadelphia-Reading-Camden,MD,428,24
+Philadelphia-Reading-Camden,NJ,428,34
+Philadelphia-Reading-Camden,PA,428,42
+Phoenix-Mesa,AZ,429,4
+Pittsburgh-New Castle-Weirton,OH,430,39
+Pittsburgh-New Castle-Weirton,PA,430,42
+Pittsburgh-New Castle-Weirton,WV,430,54
+Portland-Lewiston-South Portland,ME,438,23
+Portland-Vancouver-Salem,OR,440,41
+Portland-Vancouver-Salem,WA,440,53
+Pueblo-Cañon City,CO,444,8
+Pullman-Moscow,ID,446,16
+Pullman-Moscow,WA,446,53
+Quincy-Hannibal,IL,448,17
+Quincy-Hannibal,MO,448,29
+Raleigh-Durham-Cary,NC,450,37
+Rapid City-Spearfish,SD,452,46
+Redding-Red Bluff,CA,454,6
+Reno-Carson City-Fernley,NV,456,32
+Richmond-Connersville,IN,458,18
+Rochester-Austin,MN,462,27
+Rochester-Batavia-Seneca Falls,NY,464,36
+Rockford-Freeport-Rochelle,IL,466,17
+Rocky Mount-Wilson-Roanoke Rapids,NC,468,37
+Sacramento-Roseville,CA,472,6
+Saginaw-Midland-Bay City,MI,474,26
+St. Louis-St. Charles-Farmington,IL,476,17
+St. Louis-St. Charles-Farmington,MO,476,29
+Salisbury-Cambridge,DE,480,10
+Salisbury-Cambridge,MD,480,24
+Salt Lake City-Provo-Orem,UT,482,49
+San Antonio-New Braunfels-Pearsall,TX,484,48
+San Jose-San Francisco-Oakland,CA,488,6
+Savannah-Hinesville-Statesboro,GA,496,13
+Scottsboro-Fort Payne,AL,497,1
+Seattle-Tacoma,WA,500,53
+Shreveport-Bossier City-Minden,LA,508,22
+South Bend-Elkhart-Mishawaka,IN,515,18
+South Bend-Elkhart-Mishawaka,MI,515,26
+Spencer-Spirit Lake,IA,517,19
+Spokane-Spokane Valley-Coeur d'Alene,ID,518,16
+Spokane-Spokane Valley-Coeur d'Alene,WA,518,53
+Springfield-Jacksonville-Lincoln,IL,522,17
+State College-DuBois,PA,524,42
+Steamboat Springs-Craig,CO,525,8
+Syracuse-Auburn,NY,532,36
+Toledo-Findlay-Tiffin,OH,534,39
+Tucson-Nogales,AZ,536,4
+Tulsa-Muskogee-Bartlesville,OK,538,40
+Tupelo-Corinth,MS,539,28
+Tyler-Jacksonville,TX,540,48
+Victoria-Port Lavaca,TX,544,48
+VA Beach-Norfolk,NC,545,37
+VA Beach-Norfolk,VA,545,51
+Washington-Baltimore-Arlington,DC,548,11
+Washington-Baltimore-Arlington,MD,548,24
+Washington-Baltimore-Arlington,PA,548,42
+Washington-Baltimore-Arlington,VA,548,51
+Washington-Baltimore-Arlington,WV,548,54
+Wausau-Stevens Point-WI Rapids,WI,554,55
+Wichita-Winfield,KS,556,20
+Williamsport-Lock Haven,PA,558,42
+Youngstown-Warren,OH,566,39
+Youngstown-Warren,PA,566,42
+Remainder,AL,99999,1
+Remainder,AK,99999,2
+Remainder,AZ,99999,4
+Remainder,AR,99999,5
+Remainder,CA,99999,6
+Remainder,CO,99999,8
+Remainder,CT,99999,9
+Remainder,DE,99999,10
+Remainder,FL,99999,12
+Remainder,GA,99999,13
+Remainder,HI,99999,15
+Remainder,ID,99999,16
+Remainder,IL,99999,17
+Remainder,IN,99999,18
+Remainder,IA,99999,19
+Remainder,KS,99999,20
+Remainder,KY,99999,21
+Remainder,LA,99999,22
+Remainder,ME,99999,23
+Remainder,MD,99999,24
+Remainder,MA,99999,25
+Remainder,MI,99999,26
+Remainder,MN,99999,27
+Remainder,MS,99999,28
+Remainder,MO,99999,29
+Remainder,MT,99999,30
+Remainder,NE,99999,31
+Remainder,NV,99999,32
+Remainder,NH,99999,33
+Remainder,NM,99999,35
+Remainder,NY,99999,36
+Remainder,NC,99999,37
+Remainder,ND,99999,38
+Remainder,OH,99999,39
+Remainder,OK,99999,40
+Remainder,OR,99999,41
+Remainder,PA,99999,42
+Remainder,SC,99999,45
+Remainder,SD,99999,46
+Remainder,TN,99999,47
+Remainder,TX,99999,48
+Remainder,UT,99999,49
+Remainder,VT,99999,50
+Remainder,VA,99999,51
+Remainder,WA,99999,53
+Remainder,WV,99999,54
+Remainder,WI,99999,55
+Remainder,WY,99999,56
