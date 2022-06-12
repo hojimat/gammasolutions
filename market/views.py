@@ -1,3 +1,6 @@
 from django.shortcuts import render
+from .models import *
 
-# Create your views here.
+def areas(request):
+    areas = MarketArea.objects.all()
+    return render(request, 'templates/areas.html', {'areas': areas})

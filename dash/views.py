@@ -10,7 +10,7 @@ def index(request):
     return render(request, 'templates/index.html',)
 
 def main(request):
-    orders = Order.objects.all()#select_related('driver')
+    orders = Order.objects.all()
     earnings = orders.values('payment_due').annotate(gross=models.Sum('gross')).order_by('payment_due')
     earnings_by_driver = orders.values('driver').annotate(gross=models.Sum('gross')).values('driver__first_name','driver__last_name','gross')
     earnings_by_state = orders.values('origin_state').annotate(gross=models.Sum('gross'))
@@ -31,7 +31,7 @@ def customers(request):
     return render(request, 'templates/customers.html', {'customers': customers})
 
 def orders(request):
-    orders = Order.objects.all()#select_related('driver')
+    orders = Order.objects.all()
     return render(request, 'templates/orders.html', {'orders': orders})
 
 def equipment(request):

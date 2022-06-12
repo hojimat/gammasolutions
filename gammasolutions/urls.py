@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from dash import views as dash_views
+from market import views as market_views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns as statics
 from django.conf.urls.static import static
 from django.conf import settings
@@ -52,6 +53,9 @@ urlpatterns = [
     path('dash/documents/new/', dash_views.new_document, name='dash-new-document'), # create
     path('dash/documents/<int:pk>/edit/', dash_views.edit_document), # update
     path('dash/documents/<int:pk>/delete/', dash_views.delete_document), # delete
+
+    path('market/areas/', market_views.areas, name='market-areas'),
+
 ]
 
 
