@@ -38,6 +38,14 @@ class StatArea(models.Model):
     def __str__(self):
         return f"{self.csa_name}, {self.state}"
 
-#class City(models.Model):
-#    name = models.CharField(max_length=30, 
-
+class City(models.Model):
+    ET = 'ET'
+    CT = 'CT'
+    MT = 'MT'
+    PT = 'PT'
+    TIMEZONES = ( (ET, 'Eastern Time'), (CT, 'Central Time'), (MT, 'Mountain Time'), (PT, 'Pacific Time') )
+    name = models.CharField(max_length=30, blank=False, default="Chicago")
+    state = models.CharField(max_length=2, blank=False, choices=USCanadaStates, default="IL")
+    market_area = models.ForeignKey(MarketArea, on_delete=models.RESTRICT, related_name="cities", null=True, blank=True)
+    stat_area = models.ForeignKey(StatArea, on_delete=models.RESTRICT, related_name="cities", null=True, blank=True)
+    time_zone = models.CharField(max_length=2, blank=False, choices=TIMEZONES, default=ET)
