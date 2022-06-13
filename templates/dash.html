@@ -80,23 +80,10 @@
 
                             <div class="sb-sidenav-menu-heading">Markets</div>
 
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLocations" aria-expanded="false" aria-controls="collapseLocations">
+                            <a class="nav-link" href="{% url 'market-locations' %}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-location-dot"></i></div>
                                 Locations
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <div class="collapse" id="collapseLocations" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                     <a class="nav-link" href="{% url 'market-areas' %}">
-                                         <div class="sb-nav-link-icon"><i class="fas fa-store"></i></div>
-                                         Market Areas
-                                     </a>
-                                     <a class="nav-link" href="{% url 'dash-equipment' %}">
-                                         <div class="sb-nav-link-icon"><i class="fas fa-tree-city"></i></div>
-                                         Cities
-                                     </a>
-                                </nav>
-                            </div>
 
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseProducts" aria-expanded="false" aria-controls="collapseProducts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-industry"></i></div>

@@ -54,7 +54,11 @@ urlpatterns = [
     path('dash/documents/<int:pk>/edit/', dash_views.edit_document), # update
     path('dash/documents/<int:pk>/delete/', dash_views.delete_document), # delete
 
-    path('market/areas/', market_views.areas, name='market-areas'),
+    path('market/locations/', market_views.locations, name='market-locations'),
+    path('market/cities/new/', market_views.new_city, name='market-new-city'), # create
+    path('market/cities/<int:pk>/', market_views.read_city, name='market-read-city'), # read
+    path('market/cities/<int:pk>/edit/', market_views.edit_city), # update
+    path('market/cities/<int:pk>/delete/', market_views.delete_city), # delete
 
 ]
 

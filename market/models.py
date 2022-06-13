@@ -49,3 +49,6 @@ class City(models.Model):
     market_area = models.ForeignKey(MarketArea, on_delete=models.RESTRICT, related_name="cities", null=True, blank=True)
     stat_area = models.ForeignKey(StatArea, on_delete=models.RESTRICT, related_name="cities", null=True, blank=True)
     time_zone = models.CharField(max_length=2, blank=False, choices=TIMEZONES, default=ET)
+
+    def __str__(self):
+        return f"{self.name}, {self.state}"

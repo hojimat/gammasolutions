@@ -1,0 +1,39 @@
+{% extends 'templates/new-form.html' %}
+{% block newform %}
+{% load crispy_forms_tags %}
+
+<div class="card-header py-3">
+    City information form
+</div>
+
+<div class="card-body">
+    <form method='post' class='bootstrap4'>
+      {% csrf_token %}
+      <div class="row">
+        <div class="col-md">
+			{{ form.name | as_crispy_field }}
+        </div>
+        <div class="col-md">
+			{{ form.state | as_crispy_field }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md">
+			{{ form.market_area | as_crispy_field }}
+        </div>
+        <div class="col-md">
+			{{ form.stat_area | as_crispy_field }}
+        </div>
+        <div class="col-md">
+			{{ form.time_zone | as_crispy_field }}
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block btn-lg">Submit</button>
+    </form>
+</div>
+
+{% endblock %}
+
+
+
