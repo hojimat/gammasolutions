@@ -146,7 +146,7 @@ class Order(models.Model):
     paid = models.BooleanField(default=False) 
 
     def __str__(self):
-        return f"{self.pickup_date.strftime('%b %d')} {self.origin_city}, {self.origin_state} - {self.destination_city}, {self.destination_state}"
+        return f"{self.pickup_date.strftime('%b %d')} {self.origin_city} - {self.destination_city}"
 
     def origin_full_address(self):
         return f"{self.origin_address}, {self.origin_city} {self.origin_zip_code}"

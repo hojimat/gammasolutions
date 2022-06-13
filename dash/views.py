@@ -13,11 +13,11 @@ def main(request):
     orders = Order.objects.all()
     earnings = orders.values('payment_due').annotate(gross=models.Sum('gross')).order_by('payment_due')
     earnings_by_driver = orders.values('driver').annotate(gross=models.Sum('gross')).values('driver__first_name','driver__last_name','gross')
-    #earnings_by_state = orders.values('origin_state').annotate(gross=models.Sum('gross'))
+    earnings_by_state = orders.values('origin_city__state').annotate(gross=models.Sum('gross'))
     return render(request, 'templates/main.html', {'orders': orders,
                                                    'earnings': earnings,
                                                    'earnings_by_driver': earnings_by_driver,
-                                                   #'earnings_by_state': earnings_by_state,
+                                                   'earnings_by_state': earnings_by_state,
                                                    })
 
 # ALL MODELS
