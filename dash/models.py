@@ -1,7 +1,7 @@
 from django.db import models
 from .widgets import USCanadaStates
 from datetime import datetime, timedelta
-from market.models import Commodity, MarketArea
+from market.models import Commodity, MarketArea, City
 
 class Equipment(models.Model):
     FRM = 'FRM'
@@ -117,13 +117,11 @@ class Order(models.Model):
     truck = models.ForeignKey(Equipment, on_delete=models.RESTRICT, related_name='truck_orders', null=True, blank=True)
     trailer = models.ForeignKey(Equipment, on_delete=models.RESTRICT, related_name='trailer_orders', null=True, blank=True)
     commodity = models.ForeignKey(Commodity, on_delete=models.RESTRICT, related_name='orders', null=False, blank=False)
-    origin_city = models.CharField(max_length=30, blank=False, default='New York')
-    origin_state = models.CharField(max_length=2, blank=False, choices=USCanadaStates, default='NY')
+    origin_city = models.ForeignKey(City, on_delete=models.RESTRICT, related_name='orders_from', null=False, blank=False)
     origin_address = models.CharField(max_length=70, blank=False, default='12 Broadway')
     origin_zip_code = models.CharField(max_length=10, blank=False, default='34342')
     origin_market = models.ForeignKey(MarketArea, on_delete=models.RESTRICT, related_name='orders_from', null=True, blank=True)
-    destination_city = models.CharField(max_length=30, blank=False, default='Palo Alto')
-    destination_state = models.CharField(max_length=2, blank=False, choices=USCanadaStates, default='CA')
+    destination_city = models.ForeignKey(City, on_delete=models.RESTRICT, related_name='orders_to', null=False, blank=False)
     destination_address = models.CharField(max_length=70, blank=False, default='1 Mountain View')
     destination_zip_code = models.CharField(max_length=10, blank=False, default='34341')
     destination_market = models.ForeignKey(MarketArea, on_delete=models.RESTRICT, related_name='orders_to', null=True, blank=True)
@@ -151,16 +149,16 @@ class Order(models.Model):
         return f"{self.pickup_date.strftime('%b %d')} {self.origin_city}, {self.origin_state} - {self.destination_city}, {self.destination_state}"
 
     def origin_full_address(self):
-        return f"{self.origin_address}, {self.origin_city}, {self.origin_state} {self.origin_zip_code}"
+        return f"{self.origin_address}, {self.origin_city} {self.origin_zip_code}"
 
     def destination_full_address(self):
-        return f"{self.destination_address}, {self.destination_city}, {self.destination_state} {self.destination_zip_code}"
+        return f"{self.destination_address}, {self.destination_city} {self.destination_zip_code}"
 
     def origin_short_address(self):
-        return f"{self.origin_city}, {self.origin_state}"
+        return self.origin_city
 
     def destination_short_address(self):
-        return f"{self.destination_city}, {self.destination_state}"
+        return self.destination_city
     
     # def to return recent orders only (for last 30 days)
 #####################################################
