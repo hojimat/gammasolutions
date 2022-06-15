@@ -13,4 +13,9 @@ window.addEventListener('DOMContentLoaded', event => {
             perPageSelect: false,
         });
     }
+
+    const datatablesSecond = document.getElementById('datatablesSecond');
+    if (datatablesSecond) {
+        new simpleDatatables.DataTable(datatablesSecond);
+    }
 });
