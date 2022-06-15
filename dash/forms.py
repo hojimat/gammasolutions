@@ -39,7 +39,7 @@ class OrderForm(forms.ModelForm):
             'payment_due' : DateSelect(),
         }
         labels = {
-            'destination_zip_code' : 'Destination ZIP',
+            'destination_zip_code' : 'Dest. ZIP',
             'origin_zip_code' : 'Origin ZIP',
             'g_rate' : 'Default charge rate',
         }

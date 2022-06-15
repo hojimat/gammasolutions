@@ -84,6 +84,7 @@ def read_order(request,pk):
 # CREATE MODELS
 
 def new_order(request):
+    city_form = None
     if request.method == "POST":
         form = OrderForm(request.POST)
         if form.is_valid():
@@ -174,6 +175,7 @@ def edit_customer(request,pk):
 
 def edit_order(request,pk):
     order = Order.objects.get(pk=pk)#select_related('driver').get(pk=pk)
+    city_form = None
     if request.method == "POST":
         form = OrderForm(request.POST, instance=order)
         if form.is_valid():
@@ -182,8 +184,9 @@ def edit_order(request,pk):
             return redirect('/dash/orders/')
     else:
         form = OrderForm(instance=order)
+        city_form = CityForm()
 
-    return render(request, "templates/order-form.html", {'form': form})
+    return render(request, "templates/order-form.html", {'form': form, 'city_form': city_form})
 
 def edit_equipment(request,pk):
     eqm = Equipment.objects.get(pk=pk)

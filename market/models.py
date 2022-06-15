@@ -29,6 +29,9 @@ class MarketArea(models.Model):
     def __str__(self):
         return f"{self.center}, {self.state}"
 
+    class Meta:
+        ordering = ('state',)
+
 class StatArea(models.Model):
     csa_name = models.CharField(max_length=60, blank=False)
     state = models.CharField(max_length=2, blank=False, choices=USCanadaStates, default="IL")
@@ -37,6 +40,9 @@ class StatArea(models.Model):
 
     def __str__(self):
         return f"{self.csa_name}, {self.state}"
+
+    class Meta:
+        ordering = ('state',)
 
 class City(models.Model):
     ET = 'ET'
@@ -52,3 +58,7 @@ class City(models.Model):
 
     def __str__(self):
         return f"{self.name}, {self.state}"
+
+    class Meta:
+        ordering = ('name','state')
+        constraints = (models.UniqueConstraint(fields=('name','state'), name='unique_city'),)

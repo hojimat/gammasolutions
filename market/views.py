@@ -18,6 +18,9 @@ def new_city(request):
             prev = request.POST.get('prev')
             messages.success(request, 'Successfully created a city.')
             return redirect(prev)
+        else:
+            messages.error(request, 'The city already exists.')
+
     else:
         form = CityForm()
 
