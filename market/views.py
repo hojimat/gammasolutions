@@ -15,8 +15,9 @@ def new_city(request):
         form = CityForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Successfully created an order.')
-            return redirect('/market/locations/')
+            prev = request.POST.get('prev')
+            messages.success(request, 'Successfully created a city.')
+            return redirect(prev)
     else:
         form = CityForm()
 

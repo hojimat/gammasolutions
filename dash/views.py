@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from django.db.models import RestrictedError
 from .models import *
 from .forms import * 
+from market.forms import CityForm
 from datetime import datetime, timedelta
 from django.contrib import messages
 
@@ -91,8 +92,9 @@ def new_order(request):
             return redirect('/dash/orders/')
     else:
         form = OrderForm()
+        city_form = CityForm()
 
-    return render(request, "templates/order-form.html", {'form':form})
+    return render(request, "templates/order-form.html", {'form':form, 'city_form':city_form})
  
 def new_driver(request):
     if request.method == "POST":

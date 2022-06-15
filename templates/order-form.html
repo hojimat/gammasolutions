@@ -1,9 +1,28 @@
-{% extends 'templates/new-form.html' %}
-{% block newform %}
+{% extends 'templates/dash.html' %}
+{% block content %}
 {% load crispy_forms_tags %}
 
-<div class="card-header py-3">
+
+
+<div class='row'>
+<div class='col-xxl-6 mx-auto'>
+<div class="card shadow my-4">
+
+<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
     Order information form
+    <div class="dropdown no-arrow">
+      <a class="text-decoration-none text-muted" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+      </a>
+  
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <li><h6 class="dropdown-header">Add missing fields:</h6></li>
+        <li><a class="dropdown-item" href="{% url 'market-new-city' %}" data-bs-toggle="modal" data-bs-target="#cityModal">Add city</a></li>
+        <li><a class="dropdown-item" href="{% url 'dash-new-equipment' %}">Add equipment</a></li>
+        <li><a class="dropdown-item" href="#">Add shipper</a></li>
+      </ul>
+    </div>
+
 </div>
 
 <div class="card-body">
@@ -138,6 +157,56 @@
     </form>
 </div>
 
+</div> <!-- end card -->
+</div> <!-- end col-mdumn -->
+</div> <!-- end row -->
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="cityModal" tabindex="-1" aria-labelledby="cityModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="cityModalLabel">Add city</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form method='post' action="{% url 'market-new-city' %}">
+        <div class="modal-body">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-md">
+	    		{{ city_form.name | as_crispy_field }}
+            </div>
+            <div class="col-md">
+	    		{{ city_form.state | as_crispy_field }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md">
+	    		{{ city_form.market_area | as_crispy_field }}
+            </div>
+            <div class="col-md">
+	    		{{ city_form.stat_area | as_crispy_field }}
+            </div>
+            <div class="col-md">
+	    		{{ city_form.time_zone | as_crispy_field }}
+            </div>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <input type="hidden" name="prev" value="{% url 'dash-new-order' %}">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+
 {% endblock %}
-
-
