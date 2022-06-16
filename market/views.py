@@ -8,8 +8,6 @@ def locations(request):
     cities = City.objects.all()
     return render(request, 'templates/locations.html', {'areas': areas,
                                                         'cities': cities,
-                                                        })
-
 def new_city(request):
     if request.method == "POST":
         form = CityForm(request.POST)
