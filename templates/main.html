@@ -112,7 +112,7 @@
     const myDates = [{% for i in earnings %}"{{ i.payment_due }}",{% endfor %}];
     const driverGross = [{% for i in earnings_by_driver %}{{ i.gross }},{% endfor %}];
     const driverNames = [{% for i in earnings_by_driver %}"{{ i.driver__first_name }} {{ i.driver__last_name}}",{% endfor %}];
-    const stateGross = [["State", "Earnings"],{% for i in earnings_by_state %}["{{ i.origin_city__state }}",{{ i.gross }}],{% endfor %}];
+    const stateGross = [["State", "Earnings"],{% for i in earnings_by_state %}["{{ i.origin_city__metro_area__code }}",{{ i.gross }}],{% endfor %}];
 </script>
 <script src="{% static 'js/chart-area.js' %}"></script>
 <script src="{% static 'js/chart-pie.js' %}"></script>

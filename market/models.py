@@ -51,7 +51,7 @@ class MetroArea(models.Model):
     fips = models.IntegerField(blank=False, default=36)
 
     def __str__(self):
-        return f"{self.code}:{self.state}:{self.core}"
+        return f"{self.code} {self.core}, {self.state}"
 
     class Meta:
         ordering = ('state',)

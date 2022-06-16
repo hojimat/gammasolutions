@@ -154,8 +154,8 @@
 <script src="{% static 'vendor/googlecharts/loader.js' %}"></script>
 <script>
     const origDest = [["State", "Destination"],
-                      ["{{order.origin_state}}", 0],
-                      ["{{order.destination_state}}", 1]
+                      ["{{order.origin_city.metro_area.code}}", 0],
+                      ["{{order.destination_city.metro_area.code}}", 1]
                      ];
 </script>
 <script src="{% static 'js/chart-map.js' %}"></script>

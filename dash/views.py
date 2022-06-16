@@ -14,7 +14,7 @@ def main(request):
     orders = Order.objects.all()
     earnings = orders.values('payment_due').annotate(gross=models.Sum('gross')).order_by('payment_due')
     earnings_by_driver = orders.values('driver').annotate(gross=models.Sum('gross')).values('driver__first_name','driver__last_name','gross')
-    earnings_by_state = orders.values('origin_city__state').annotate(gross=models.Sum('gross'))
+    earnings_by_state = orders.values('origin_city__metro_area__code').annotate(gross=models.Sum('gross'))
     return render(request, 'templates/main.html', {'orders': orders,
                                                    'earnings': earnings,
                                                    'earnings_by_driver': earnings_by_driver,
@@ -78,7 +78,7 @@ def read_customer(request,pk):
                                                              })
 
 def read_order(request,pk):
-    order = Order.objects.get(pk=pk)#select_related('driver').get(pk=pk)
+    order = Order.objects.get(pk=pk)
     return render(request, "templates/order-details.html", {'order': order})
 
 # CREATE MODELS

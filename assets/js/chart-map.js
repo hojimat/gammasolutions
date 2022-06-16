@@ -9,7 +9,7 @@ function drawRegionsMap() {
   var options = {
     region: 'US',
     displayMode: 'regions',
-    resolution: 'provinces',
+    resolution: 'metros',
 	colorAxis: {colors: ['Tomato', 'DodgerBlue']},
 	legend: 'none',
   };
