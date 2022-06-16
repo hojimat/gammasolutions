@@ -66,6 +66,7 @@ class City(models.Model):
     state = models.CharField(max_length=2, blank=False, choices=USCanadaStates, default="IL")
     market_area = models.ForeignKey(MarketArea, on_delete=models.RESTRICT, related_name="cities", null=True, blank=True)
     stat_area = models.ForeignKey(StatArea, on_delete=models.RESTRICT, related_name="cities", null=True, blank=True)
+    metro_area = models.ForeignKey(MetroArea, on_delete=models.RESTRICT, related_name="cities", null=True, blank=True)
     time_zone = models.CharField(max_length=2, blank=False, choices=TIMEZONES, default=ET)
 
     def __str__(self):
