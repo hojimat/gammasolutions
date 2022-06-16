@@ -1,6 +1,6 @@
 from django.db import models
 from .widgets import USCanadaStates
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 from market.models import Commodity, City, Industry
 
 class Equipment(models.Model):

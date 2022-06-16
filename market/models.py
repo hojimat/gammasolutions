@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import date
 from dash.widgets import USCanadaStates
 
 class Industry(models.Model):
@@ -75,3 +76,25 @@ class City(models.Model):
     class Meta:
         ordering = ('name','state')
         constraints = (models.UniqueConstraint(fields=('name','state'), name='unique_city'),)
+
+class MarketCondition(models.Model):
+    SUN = 'SUN'
+    WND = 'WND'
+    CLD = 'CLD'
+    RNY = 'RNY'
+    SNW = 'SNW'
+    STM = 'STM'
+    FOG = 'FOG'
+    WEATHER = ((SUN, "Sunny"), (WND, "Windy"), (CLD, "Cloudy"), (RNY, "Rainy"), (SNW, "Snowy"), (STM, "Stormy"), (FOG, "Foggy"))
+
+    city = models.ForeignKey(City, on_delete=models.RESTRICT, related_name="conditions", null=True, blank=True)
+    date = models.DateField(blank=False, null=False, default=date.today)
+    temperature = models.FloatField(default=0)
+    precipitation = models.CharField(max_length=10, blank=True, choices=WEATHER, default=SUN)
+    l2t_van = models.FloatField(blank=True, default=1.0) # loads to trucks ratio
+    mci_van = models.FloatField(blank=True, default=1.0) # market conditions index by DAT
+    rate_van = models.FloatField(blank=True, default=1.0) # average rate per mile
+    l2t_reefer = models.FloatField(blank=True, default=1.0)
+    mci_reefer = models.FloatField(blank=True, default=1.0)
+    rate_reefer = models.FloatField(blank=True, default=1.0)
+
