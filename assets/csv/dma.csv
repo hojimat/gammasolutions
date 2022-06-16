@@ -1,211 +1,211 @@
-code,core,state
-500,Portland-Auburn,ME
-501,New York,NY
-502,Binghamton,NY
-503,Macon,GA
-504,Philadelphia,PA
-505,Detroit,MI
-506,Boston-Manchester,NH
-507,Savannah,GA
-508,Pittsburgh,PA
-509,Ft. Wayne,IN
-510,Cleveland-Akron-Canton,OH
-511,"Washington, DC-Hagarstown",MD
-512,Baltimore,MD
-513,Flint-Saginaw-Bay City,MI
-514,Buffalo,NY
-515,Cincinnati,OH
-516,Erie,PA
-517,Charlotte,NC
-518,Greensboro-High Point-Winston Salem,NC
-519,"Charleston, SC",SC
-520,Augusta,GA
-521,Providence-New Bedford,MA
-522,"Columbus, GA-Opelika, AL",GA
-523,Burlington-Plattsburgh,NY
-524,Atlanta,GA
-525,"Albany, GA",GA
-526,Utica,NY
-527,Indianapolis,IN
-528,Miami-Ft. Lauderdale,FL
-529,Louisville,KY
-530,Tallahassee-Thomasville,GA
-531,"Tri-Cities, TN-VA",VA
-532,Albany-Schenectady-Troy,NY
-533,Hartford-New Haven,CT
-534,Orlando-Daytona Beach-Melbourne,FL
-535,"Columbus, OH",OH
-536,Youngstown,OH
-537,Bangor,ME
-538,"Rochester, NY",NY
-539,Tampa-St. Petersburg-Sarasota,FL
-540,Traverse City-Cadillac,MI
-541,Lexington,KY
-542,Dayton,OH
-543,Springfield-Holyoke,MA
-544,Norfolk-Portsmith-Newport News,VA
-545,"Greenville-New Bern-Washington,Nc",NC
-546,"Columbia, SC",SC
-547,Toledo,OH
-548,West Palm Beach-Ft. Pierce,FL
-549,Watertown,NY
-550,Wilmington,NC
-551,Lansing,MI
-552,Presque Isle,ME
-553,Marquette,MI
-554,Wheeling-Steubenville,OH
-555,Syracuse,NY
-556,Richmond-Petersburg,VA
-557,Knoxville,TN
-558,Lima,OH
-559,Bluefield-Beckley-Oak Hill,WV
-560,Raleigh-Durham-Fayettevlle,NC
-561,Jacksonville,FL
-563,Grand Rapids-Kalmzoo-Battlecreek,MI
-564,Charleston-Huntington,WV
-565,Elmira-Corning,NY
-566,"Harrisburg-Lancaster-Lebanon-York,PA",PA
-567,Greenville-Sparta-Asheville,SC
-569,Harrisonburg,VA
-570,Myrtle Beach-Florence,SC
-571,Ft. Myers-Naples,FL
-573,Roanoke-Lynchburg,VA
-574,Johnstown-Altoona-St Colge,PA
-575,Chattanooga,TN
-576,Salisbury,MD
-577,Wilkes Barre-Scranton,PA
-581,Terre Haute,IN
-582,"Lafayette, IN",IN
-583,Alpena,MI
-584,Charlottesville,VA
-588,South Bend-Elkhart,IN
-592,Gainesville,FL
-596,Zanesville,OH
-597,Parkersburg,WV
-598,Clarksburg-Weston,WV
-600,Corpus Christi,TX
-602,Chicago,IL
-603,Joplin-Pittsburg,KS
-604,Columbia-Jefferson City,MO
-605,Topeka,KS
-606,Dothan,AL
-609,St. Louis,MO
-610,Rockford,IL
-611,Rochestr-Mason City-Austin,MN
-612,Shreveport,LA
-613,Minneapolis-St. Paul,MN
-616,Kansas City,MO
-617,Milwaukee,WI
-618,Houston,TX
-619,"Springfield, MO",MO
-622,New Orleans,LA
-623,Dallas-Ft. Worth,TX
-624,Sioux City,IA
-625,Waco-Temple-Bryan,TX
-626,Victoria,TX
-627,Wichita Falls & Lawton,OK
-628,Monroe-El Dorado,AR
-630,Birmingham-Anniston-Tuscaloosa,AL
-631,Ottumwa-Kirksville,MO
-632,Paducah-Cape Girardo-Harrisburg,IL
-633,Odessa-Midland,TX
-634,Amarillo,TX
-635,Austin,TX
-636,Harlingen-Weslaco-Brownsville-Mcarthur,TX
-637,"Cedar Rapids-Waterloo-Iowa City & Dubuque, IA",IA
-638,St. Joseph,MO
-639,"Jackson, TN",TN
-640,Memphis,TN
-641,San Antonio,TX
-642,"Lafayette, LA",LA
-643,Lake Charles,LA
-644,"Alexandria, LA",LA
-647,Greenwood-Greenville,MS
-648,Champaign & Springfield-Decatur,IL
-649,Evansville,IN
-650,Oklahoma City,OK
-651,Lubbock,TX
-652,Omaha,NE
-656,Panama City,FL
-657,Sherman-Ada,OK
-658,Green Bay-Appleton,WI
-659,Nashville,TN
-661,San Angelo,TX
-662,Abilene-Sweetwater,TX
-669,Madison,WI
-670,Ft. Smith-Fayetteville-Sprngdale-Rogers,AR
-671,Tulsa,OK
-673,Columbus-Tupelo-West Point,MS
-675,Peoria-Bloomington,IL
-676,Duluth-Superior,WI
-678,Wichita-Hutchinson Plus,KS
-679,Des Moines-Ames,IA
-682,Davenport-R.Island-Moline,IL
-686,Mobile-Pensacola,FL
-687,Minot-Bismarck-Dickinson,ND
-691,Huntsville-Decatur-Florence,AL
-692,Beaumont-Port Arthur,TX
-693,Little Rock-Pine Bluff,AR
-698,Montgomery-Selma,AL
-702,La Crosse-Eau Claire,WI
-705,Wausau-Rhinelander,WI
-709,Tyler-Longview (Lufkin&Nacogdoches),TX
-710,Hattiesburg-Laurel,MS
-711,Meridian,MS
-716,Baton Rouge,LA
-717,Quincy-Hannibal-Keokuk,IA
-718,"Jackson, MS",MS
-722,Lincoln & Hastings-Kearny,NE
-724,Fargo-Valley City,ND
-725,Sioux Falls-Mitchell,SD
-734,Jonesboro,AR
-736,Bowling Green,KY
-737,Mankato,MN
-740,North Platte,NE
-743,Anchorage,AK
-744,Honolulu,HI
-745,Fairbanks,AK
-746,Biloxi-Gulfport,MS
-747,Juneau,AK
-749,Laredo,TX
-751,Denver,CO
-752,Colorado Springs-Pueblo,CO
-753,Phoenix-Prescott,AZ
-754,Butte-Bozeman,MT
-755,Great Falls,MT
-756,Billings,MT
-757,Boise,ID
-758,Idaho Falls-Pocatello-Jackson,ID
-759,Cheyenne-Scottsbluff,NE
-760,Twin Falls,ID
-762,Missoula,MT
-764,Rapid City,SD
-765,El Paso-Las Cruces,TX
-766,Helena,MT
-767,Casper-Riverton,WY
-770,Salt Lake City,UT
-771,Yuma-El Centro,CA
-773,Grand Junction-Montrose,CO
-789,Tucson-Sierra Vista,AZ
-790,Albuquerque-Santa Fe,NM
-798,Glendive,MT
-800,Bakersfield,CA
-801,Eugene,OR
-802,Eureka,CA
-803,Los Angeles,CA
-804,Palm Springs,CA
-807,San Francisco-Oakland-San Jose,CA
-810,Yakima-Pasco-Richland-Kennwick,WA
-811,Reno,NV
-813,Medford-Klamath Falls,OR
-819,Seattle-Tacoma,WA
-820,"Portland, OR",OR
-821,"Bend, OR",OR
-825,San Diego,CA
-828,Monterey-Salinas,CA
-839,Las Vegas,NV
-855,Santa Barbara-Santa Maria-San Luis Obispo,CA
-862,Sacramento-Stockton-Modesto,CA
-866,Fresno-Visalia,CA
-868,Chico-Redding,CA
-881,Spokane,WA
+code,core,state,fips
+500,Portland-Auburn,ME,23
+501,New York,NY,36
+502,Binghamton,NY,36
+503,Macon,GA,13
+504,Philadelphia,PA,42
+505,Detroit,MI,26
+506,Boston-Manchester,NH,33
+507,Savannah,GA,13
+508,Pittsburgh,PA,42
+509,Ft. Wayne,IN,18
+510,Cleveland-Akron-Canton,OH,39
+511,"Washington, DC-Hagarstown",MD,24
+512,Baltimore,MD,24
+513,Flint-Saginaw-Bay City,MI,26
+514,Buffalo,NY,36
+515,Cincinnati,OH,39
+516,Erie,PA,42
+517,Charlotte,NC,37
+518,Greensboro-High Point-Winston Salem,NC,37
+519,"Charleston, SC",SC,45
+520,Augusta,GA,13
+521,Providence-New Bedford,MA,25
+522,"Columbus, GA-Opelika, AL",GA,13
+523,Burlington-Plattsburgh,NY,36
+524,Atlanta,GA,13
+525,"Albany, GA",GA,13
+526,Utica,NY,36
+527,Indianapolis,IN,18
+528,Miami-Ft. Lauderdale,FL,12
+529,Louisville,KY,21
+530,Tallahassee-Thomasville,GA,13
+531,"Tri-Cities, TN-VA",VA,51
+532,Albany-Schenectady-Troy,NY,36
+533,Hartford-New Haven,CT,9
+534,Orlando-Daytona Beach-Melbourne,FL,12
+535,"Columbus, OH",OH,39
+536,Youngstown,OH,39
+537,Bangor,ME,23
+538,"Rochester, NY",NY,36
+539,Tampa-St. Petersburg-Sarasota,FL,12
+540,Traverse City-Cadillac,MI,26
+541,Lexington,KY,21
+542,Dayton,OH,39
+543,Springfield-Holyoke,MA,25
+544,Norfolk-Portsmith-Newport News,VA,51
+545,"Greenville-New Bern-Washington,Nc",NC,37
+546,"Columbia, SC",SC,45
+547,Toledo,OH,39
+548,West Palm Beach-Ft. Pierce,FL,12
+549,Watertown,NY,36
+550,Wilmington,NC,37
+551,Lansing,MI,26
+552,Presque Isle,ME,23
+553,Marquette,MI,26
+554,Wheeling-Steubenville,OH,39
+555,Syracuse,NY,36
+556,Richmond-Petersburg,VA,51
+557,Knoxville,TN,47
+558,Lima,OH,39
+559,Bluefield-Beckley-Oak Hill,WV,54
+560,Raleigh-Durham-Fayettevlle,NC,37
+561,Jacksonville,FL,12
+563,Grand Rapids-Kalmzoo-Battlecreek,MI,26
+564,Charleston-Huntington,WV,54
+565,Elmira-Corning,NY,36
+566,"Harrisburg-Lancaster-Lebanon-York,PA",PA,42
+567,Greenville-Sparta-Asheville,SC,45
+569,Harrisonburg,VA,51
+570,Myrtle Beach-Florence,SC,45
+571,Ft. Myers-Naples,FL,12
+573,Roanoke-Lynchburg,VA,51
+574,Johnstown-Altoona-St Colge,PA,42
+575,Chattanooga,TN,47
+576,Salisbury,MD,24
+577,Wilkes Barre-Scranton,PA,42
+581,Terre Haute,IN,18
+582,"Lafayette, IN",IN,18
+583,Alpena,MI,26
+584,Charlottesville,VA,51
+588,South Bend-Elkhart,IN,18
+592,Gainesville,FL,12
+596,Zanesville,OH,39
+597,Parkersburg,WV,54
+598,Clarksburg-Weston,WV,54
+600,Corpus Christi,TX,48
+602,Chicago,IL,17
+603,Joplin-Pittsburg,KS,20
+604,Columbia-Jefferson City,MO,29
+605,Topeka,KS,20
+606,Dothan,AL,1
+609,St. Louis,MO,29
+610,Rockford,IL,17
+611,Rochestr-Mason City-Austin,MN,27
+612,Shreveport,LA,22
+613,Minneapolis-St. Paul,MN,27
+616,Kansas City,MO,29
+617,Milwaukee,WI,55
+618,Houston,TX,48
+619,"Springfield, MO",MO,29
+622,New Orleans,LA,22
+623,Dallas-Ft. Worth,TX,48
+624,Sioux City,IA,19
+625,Waco-Temple-Bryan,TX,48
+626,Victoria,TX,48
+627,Wichita Falls & Lawton,OK,40
+628,Monroe-El Dorado,AR,5
+630,Birmingham-Anniston-Tuscaloosa,AL,1
+631,Ottumwa-Kirksville,MO,29
+632,Paducah-Cape Girardo-Harrisburg,IL,17
+633,Odessa-Midland,TX,48
+634,Amarillo,TX,48
+635,Austin,TX,48
+636,Harlingen-Weslaco-Brownsville-Mcarthur,TX,48
+637,"Cedar Rapids-Waterloo-Iowa City & Dubuque, IA",IA,19
+638,St. Joseph,MO,29
+639,"Jackson, TN",TN,47
+640,Memphis,TN,47
+641,San Antonio,TX,48
+642,"Lafayette, LA",LA,22
+643,Lake Charles,LA,22
+644,"Alexandria, LA",LA,22
+647,Greenwood-Greenville,MS,28
+648,Champaign & Springfield-Decatur,IL,17
+649,Evansville,IN,18
+650,Oklahoma City,OK,40
+651,Lubbock,TX,48
+652,Omaha,NE,31
+656,Panama City,FL,12
+657,Sherman-Ada,OK,40
+658,Green Bay-Appleton,WI,55
+659,Nashville,TN,47
+661,San Angelo,TX,48
+662,Abilene-Sweetwater,TX,48
+669,Madison,WI,55
+670,Ft. Smith-Fayetteville-Sprngdale-Rogers,AR,5
+671,Tulsa,OK,40
+673,Columbus-Tupelo-West Point,MS,28
+675,Peoria-Bloomington,IL,17
+676,Duluth-Superior,WI,55
+678,Wichita-Hutchinson Plus,KS,20
+679,Des Moines-Ames,IA,19
+682,Davenport-R.Island-Moline,IL,17
+686,Mobile-Pensacola,FL,12
+687,Minot-Bismarck-Dickinson,ND,38
+691,Huntsville-Decatur-Florence,AL,1
+692,Beaumont-Port Arthur,TX,48
+693,Little Rock-Pine Bluff,AR,5
+698,Montgomery-Selma,AL,1
+702,La Crosse-Eau Claire,WI,55
+705,Wausau-Rhinelander,WI,55
+709,Tyler-Longview (Lufkin&Nacogdoches),TX,48
+710,Hattiesburg-Laurel,MS,28
+711,Meridian,MS,28
+716,Baton Rouge,LA,22
+717,Quincy-Hannibal-Keokuk,IA,19
+718,"Jackson, MS",MS,28
+722,Lincoln & Hastings-Kearny,NE,31
+724,Fargo-Valley City,ND,38
+725,Sioux Falls-Mitchell,SD,46
+734,Jonesboro,AR,5
+736,Bowling Green,KY,21
+737,Mankato,MN,27
+740,North Platte,NE,31
+743,Anchorage,AK,2
+744,Honolulu,HI,15
+745,Fairbanks,AK,2
+746,Biloxi-Gulfport,MS,28
+747,Juneau,AK,2
+749,Laredo,TX,48
+751,Denver,CO,8
+752,Colorado Springs-Pueblo,CO,8
+753,Phoenix-Prescott,AZ,4
+754,Butte-Bozeman,MT,30
+755,Great Falls,MT,30
+756,Billings,MT,30
+757,Boise,ID,16
+758,Idaho Falls-Pocatello-Jackson,ID,16
+759,Cheyenne-Scottsbluff,NE,31
+760,Twin Falls,ID,16
+762,Missoula,MT,30
+764,Rapid City,SD,46
+765,El Paso-Las Cruces,TX,48
+766,Helena,MT,30
+767,Casper-Riverton,WY,56
+770,Salt Lake City,UT,49
+771,Yuma-El Centro,CA,6
+773,Grand Junction-Montrose,CO,8
+789,Tucson-Sierra Vista,AZ,4
+790,Albuquerque-Santa Fe,NM,35
+798,Glendive,MT,30
+800,Bakersfield,CA,6
+801,Eugene,OR,41
+802,Eureka,CA,6
+803,Los Angeles,CA,6
+804,Palm Springs,CA,6
+807,San Francisco-Oakland-San Jose,CA,6
+810,Yakima-Pasco-Richland-Kennwick,WA,53
+811,Reno,NV,32
+813,Medford-Klamath Falls,OR,41
+819,Seattle-Tacoma,WA,53
+820,"Portland, OR",OR,41
+821,"Bend, OR",OR,41
+825,San Diego,CA,6
+828,Monterey-Salinas,CA,6
+839,Las Vegas,NV,32
+855,Santa Barbara-Santa Maria-San Luis Obispo,CA,6
+862,Sacramento-Stockton-Modesto,CA,6
+866,Fresno-Visalia,CA,6
+868,Chico-Redding,CA,6
+881,Spokane,WA,53

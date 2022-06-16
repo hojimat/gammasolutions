@@ -22,28 +22,40 @@ class MarketArea(models.Model):
     MEX = 'MEX'
     COUNTRIES = ( (USA, "USA"), (CND, "Canada"), (MEX, "Mexico") ) 
 
-    center = models.CharField(max_length=30, blank=False, default="Chicago")
+    core = models.CharField(max_length=30, blank=False, default="Chicago")
     state = models.CharField(max_length=2, blank=False, choices=USCanadaStates, default="IL")
     country = models.CharField(max_length=10, blank=False, choices=COUNTRIES, default=USA)
 
     def __str__(self):
-        return f"{self.center}, {self.state}"
+        return f"{self.core}, {self.state}"
 
     class Meta:
         ordering = ('state',)
 
 class StatArea(models.Model):
-    csa_name = models.CharField(max_length=60, blank=False)
+    core = models.CharField(max_length=60, blank=False)
     state = models.CharField(max_length=2, blank=False, choices=USCanadaStates, default="IL")
-    csa_code = models.IntegerField(blank=False, default=104) 
-    state_code = models.IntegerField(blank=False, default=36)
+    code = models.IntegerField(blank=False, default=104) 
+    fips = models.IntegerField(blank=False, default=36)
 
     def __str__(self):
-        return f"{self.csa_name}, {self.state}"
+        return f"{self.core}, {self.state}"
 
     class Meta:
         ordering = ('state',)
 
+class MetroArea(models.Model):
+    core = models.CharField(max_length=60, blank=False)
+    state = models.CharField(max_length=2, blank=False, choices=USCanadaStates, default="IL")
+    code = models.IntegerField(blank=False, default=602) 
+    fips = models.IntegerField(blank=False, default=36)
+
+    def __str__(self):
+        return f"{self.code}:{self.state}:{self.core}"
+
+    class Meta:
+        ordering = ('state',)
+        
 class City(models.Model):
     ET = 'ET'
     CT = 'CT'
