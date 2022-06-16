@@ -27,6 +27,11 @@ class BrokerForm(forms.ModelForm):
             'usdot' : 'US DOT number',
         }
 
+class ShipperForm(forms.ModelForm):
+    class Meta:
+        model = Shipper
+        fields = '__all__'
+        
 class OrderForm(forms.ModelForm):
     truck = forms.ModelChoiceField(queryset=Equipment.objects.filter(active=True).filter(category=Equipment.TRK), empty_label="Choose")
     trailer = forms.ModelChoiceField(queryset=Equipment.objects.filter(active=True).exclude(category=Equipment.TRK), empty_label="Choose")

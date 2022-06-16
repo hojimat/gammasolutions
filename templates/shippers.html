@@ -1,0 +1,54 @@
+{% extends 'templates/dash.html' %}
+{% block content %}
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h1 mt-4 mb-0">Shippers</h1>
+    <a href="{% url 'dash-new-shipper' %}" class="btn btn-sm btn-primary shadow"><i
+            class="fas fa-plus text-white-50"></i> New shipper</a>
+</div>
+
+<!-- Customers Table -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+         <i class="fas fa-table me-1"></i>
+         Shippers
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover" id="datatablesSimple" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Company Name</th>
+                        <th>EIN</th>
+                        <th>Office</th>
+                        <th>Industry</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for shipper in shippers %}
+                    <tr>
+                        <td>{{ shipper }}</td>
+                        <td>{{ shipper.ein }}</td>
+                        <td>{{ shipper.full_address }}</td>
+                        <td>{{ shipper.industry }}</td>
+                        <td>
+                            <a class='btn btn-primary btn-sm' href="{% url 'dash-read-shipper' shipper.pk %}">View</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% load static %}
+{% block styles %}
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

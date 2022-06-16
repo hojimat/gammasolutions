@@ -1,7 +1,7 @@
 from django.db import models
 from .widgets import USCanadaStates
 from datetime import datetime, timedelta
-from market.models import Commodity, MarketArea, City
+from market.models import Commodity, City, Industry
 
 class Equipment(models.Model):
     FRM = 'FRM'
@@ -105,7 +105,7 @@ class Broker(Customer):
     usdot = models.CharField(max_length=10, blank=True)
 
 class Shipper(Customer):
-    industry = models.CharField(max_length=20, blank=True)
+    industry = models.ForeignKey(Industry, on_delete=models.RESTRICT, related_name='shippers', null=False, blank=False, default=23) # Trucking and Transportation
     ein = models.CharField(max_length=20, blank=True) # IRS EIN number
 
 #####################################################

@@ -11,14 +11,16 @@ def index(request):
     return render(request, 'templates/index.html',)
 
 def main(request):
-    orders = Order.objects.all()
+    orders = Order.objects.select_related('origin_city','destination_city')
     earnings = orders.values('payment_due').annotate(gross=models.Sum('gross')).order_by('payment_due')
     earnings_by_driver = orders.values('driver').annotate(gross=models.Sum('gross')).values('driver__first_name','driver__last_name','gross')
-    earnings_by_state = orders.values('origin_city__metro_area__code').annotate(gross=models.Sum('gross'))
+    earnings_by_origin = orders.values('origin_city__metro_area__code').annotate(gross=models.Sum('gross'))
+    earnings_by_destination = orders.values('destination_city__metro_area__code').annotate(gross=models.Sum('gross'))
     return render(request, 'templates/main.html', {'orders': orders,
                                                    'earnings': earnings,
                                                    'earnings_by_driver': earnings_by_driver,
-                                                   'earnings_by_state': earnings_by_state,
+                                                   'earnings_by_origin': earnings_by_origin,
+                                                   'earnings_by_destination': earnings_by_destination,
                                                    })
 
 # ALL MODELS
@@ -32,7 +34,7 @@ def customers(request):
     return render(request, 'templates/customers.html', {'customers': customers})
 
 def orders(request):
-    orders = Order.objects.all()
+    orders = Order.objects.select_related('origin_city','destination_city')
     return render(request, 'templates/orders.html', {'orders': orders})
 
 def equipment(request):
@@ -43,11 +45,15 @@ def documents(request):
     documents = Document.objects.all()
     return render(request, 'templates/documents.html', {'documents': documents})
 
+def shippers(request):
+    shippers = Shipper.objects.all()
+    return render(request, 'templates/shippers.html', {'shippers': shippers})
+
 # READ MODELS
 
 def read_driver(request,pk):
     driver = Driver.objects.get(pk=pk)
-    orders = driver.orders.all()
+    orders = driver.orders.select_related('origin_city','destination_city')
     earnings_wk = driver.earnings(days=7)
     earnings_yr = driver.earnings(days=365)
     earnings_hist = driver.earnings_history()
@@ -64,7 +70,7 @@ def read_driver(request,pk):
 
 def read_customer(request,pk):
     customer = Broker.objects.get(pk=pk)
-    orders = customer.orders.all()
+    orders = customer.orders.select_related('origin_city','destination_city')
     earnings_wk = customer.earnings(days=7)
     earnings_yr = customer.earnings(days=365)
     earnings_hist = customer.earnings_history()
@@ -80,6 +86,16 @@ def read_customer(request,pk):
 def read_order(request,pk):
     order = Order.objects.get(pk=pk)
     return render(request, "templates/order-details.html", {'order': order})
+
+def read_shipper(request,pk):
+    shipper = Shipper.objects.get(pk=pk)
+    orders = shipper.orders.select_related('origin_city','destination_city')
+    return render(request, "templates/entity-details.html", {'user': shipper,
+                                                        'userId': pk,
+                                                        'orders': orders,
+                                                        'whois': 'shipper',
+                                                        })
+
 
 # CREATE MODELS
 
@@ -144,6 +160,18 @@ def new_document(request):
         form = DocumentForm()
 
     return render(request, "templates/document-form.html", {'form':form})
+
+def new_shipper(request):
+    if request.method == "POST":
+        form = ShipperForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully added a shipper.')
+            return redirect('/dash/shippers/')
+    else:
+        form = ShipperForm()
+
+    return render(request, "templates/shipper-form.html", {'form':form})
 
 # UPDATE MODELS
 
@@ -214,6 +242,18 @@ def edit_document(request,pk):
 
     return render(request, "templates/document-form.html", {'form': form})
 
+def edit_shipper(request,pk):
+    shipper = Shipper.objects.get(pk=pk)
+    if request.method == "POST":
+        form = ShipperForm(request.POST, request.FILES, instance=shipper)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully updated the shipper information.')
+            return redirect('/dash/shippers/')
+    else:
+        form = ShipperForm(instance=shipper)
+
+    return render(request, "templates/shipper-form.html", {'form': form})
 # DELETE MODELS
 
 def delete_driver(request,pk):
@@ -283,3 +323,17 @@ def delete_document(request,pk):
         return redirect('/dash/documents/')
         
     return render(request, "templates/delete.html", {'object_name': document})
+
+def delete_shipper(request,pk):
+    shipper = Shipper.objects.get(pk=pk)
+    if request.method == "POST":
+        try:
+            shipper.delete()
+            messages.warning(request, 'Successfully deleted the shipper.')
+        except RestrictedError:
+            messages.error(request, 'Could not delete the shipper. Delete associated orders first.')
+            pass
+
+        return redirect('/dash/shippers/')
+        
+    return render(request, "templates/delete.html", {'object_name': shipper})

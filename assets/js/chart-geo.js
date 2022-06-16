@@ -4,7 +4,8 @@ google.charts.load('current', {
 google.charts.setOnLoadCallback(drawRegionsMap);
 
 function drawRegionsMap() {
-  var data = google.visualization.arrayToDataTable(stateGross);
+  var data0 = google.visualization.arrayToDataTable(originGross);
+  var data1 = google.visualization.arrayToDataTable(destinationGross);
 
   var options = {
     region: 'US',
@@ -12,7 +13,9 @@ function drawRegionsMap() {
     resolution: 'metros',
   };
 
-  var chart = new google.visualization.GeoChart(document.getElementById('earningsByState'));
+  var chart0 = new google.visualization.GeoChart(document.getElementById('earningsByOrigin'));
+  var chart1 = new google.visualization.GeoChart(document.getElementById('earningsByDestination'));
 
-  chart.draw(data, options);
+  chart0.draw(data0, options);
+  chart1.draw(data1, options);
 }

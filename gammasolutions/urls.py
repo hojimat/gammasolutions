@@ -60,6 +60,11 @@ urlpatterns = [
     path('market/cities/<int:pk>/edit/', market_views.edit_city), # update
     path('market/cities/<int:pk>/delete/', market_views.delete_city), # delete
 
+    path('dash/shippers/', dash_views.shippers, name='dash-shippers'),
+    path('dash/shippers/new/', dash_views.new_shipper, name='dash-new-shipper'), # create
+    path('dash/shippers/<int:pk>/', dash_views.read_shipper, name='dash-read-shipper'), # read
+    path('dash/shippers/<int:pk>/edit/', dash_views.edit_shipper), # update
+    path('dash/shippers/<int:pk>/delete/', dash_views.delete_shipper), # delete
 ]
 
 
