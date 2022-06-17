@@ -26,9 +26,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for area in areas %}
+                            {% for area in marketareas %}
                             <tr>
-                                <td>{{ area.center }}</td>
+                                <td>{{ area.core }}</td>
                                 <td>{{ area.get_state_display }}</td>
                                 <td>{{ area.get_country_display }}</td>
                             </tr>
@@ -40,6 +40,41 @@
         </div>
     </div>
     <div class="col-xl-6">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                 <i class="fas fa-table me-1"></i>
+                 Metropolitan Statistical Areas
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover" id="datatablesThird" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Code</th>
+                                <th>FIPS</th>
+                                <th>Core</th>
+                                <th>State</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for area in statareas %}
+                            <tr>
+                                <td>{{ area.code }}</td>
+                                <td>{{ area.fips }}</td>
+                                <td>{{ area.core }}</td>
+                                <td>{{ area.get_state_display }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- end row -->
+
+<div class="row justify-content-center">
+    <div class="col-xl-8">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                  <i class="fas fa-table me-1"></i>
@@ -78,7 +113,6 @@
         </div>
     </div>
 </div><!-- end row -->
-
 {% endblock %}
 
 

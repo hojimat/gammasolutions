@@ -4,10 +4,12 @@ from .models import *
 from .forms import *
 
 def locations(request):
-    areas = MarketArea.objects.all()
+    marketareas = MarketArea.objects.all()
     cities = City.objects.all()
-    return render(request, 'templates/locations.html', {'areas': areas,
+    statareas = StatArea.objects.all()
+    return render(request, 'templates/locations.html', {'marketareas': marketareas,
                                                         'cities': cities,
+                                                        'statareas': statareas,
                                                         })
 def new_city(request):
     if request.method == "POST":
