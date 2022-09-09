@@ -84,7 +84,7 @@ DATABASES = {
         'NAME': 'gamma_database',
         'USER': 'gamma_database_user',
         'PASSWORD': 'Bogazici',
-        'HOST': 'localhost',
+        'HOST': 'db',
         'PORT': ''
     }
 }
